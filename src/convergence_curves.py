@@ -1,37 +1,55 @@
-import json
-import matplotlib.pyplot as plt
 import openai
+import matplotlib.pyplot as plt
+import json
+import numpy as np
 
-# Set your OpenAI API key
-openai.api_key = 'YOUR_API_KEY'
+# Load your dataset
+with open('datasets/your_dataset.json', 'r') as file:
+    full_dataset = json.load(file)
 
-# Load the dataset
-with open('datasets.json') as f:
-    datasets = json.load(f)
+def evaluate_model(dataset, api_key, num_epochs):
+    openai.api_key = api_key
+    performance_metrics = []
 
-# Define the percentage of dataset to consider
-percentage = 100  # Change this value as needed
+    for epoch in range(num_epochs):
+        # Subset your dataset based on the epoch
+        subset_data = dataset[:len(dataset) * (epoch + 1) // num_epochs]
 
-# Define the number of epochs or queries
-epochs = [1, 2, 3, 4, 5]  # Change this list as needed
+        # Implement your model evaluation logic here
+        performance = mock_model_evaluation(subset_data)
+        performance_metrics.append(performance)
 
-# Initialize lists to store the number of epochs and performance levels
-num_epochs = []
-performance = []
+    return performance_metrics
 
-# Run the model for each epoch and record the performance
-for epoch in epochs:
-    # Run the model with the specified percentage of dataset
-    # and get the performance level
-    performance_level = run_model(datasets, percentage, epoch)
+def mock_model_evaluation(data):
+    # Mock evaluation function. Replace with actual evaluation logic.
+    return len(data) % 10  # Placeholder value
 
-    # Append the number of epochs and performance level to the lists
-    num_epochs.append(epoch)
-    performance.append(performance_level)
+def plot_convergence_curve(average_performance_metrics, num_epochs):
+    plt.plot(range(num_epochs), average_performance_metrics)
+    plt.xlabel('Number of Epochs')
+    plt.ylabel('Average Performance Metric')
+    plt.title('Convergence Curve for PromptAgent Model')
+    plt.show()
 
-# Plot the convergence curve
-plt.plot(num_epochs, performance)
-plt.xlabel('Number of Epochs')
-plt.ylabel('Performance Level')
-plt.title('Convergence Curve')
-plt.show()
+# Adjust these parameters
+api_key = 'YOUR_API_KEY'
+num_epochs = 10  # Number of epochs or queries
+percentage_of_dataset = 50  # For example, 50%
+num_iterations = 3  # Number of iterations
+
+# Adjust the dataset size
+adjusted_dataset = full_dataset[:int(len(full_dataset) * (percentage_of_dataset / 100))]
+
+# Accumulate results from each iteration
+all_results = np.zeros(num_epochs)
+
+for _ in range(num_iterations):
+    performance_metrics = evaluate_model(adjusted_dataset, api_key, num_epochs)
+    all_results += np.array(performance_metrics)
+
+# Compute the average performance
+average_performance_metrics = all_results / num_iterations
+
+# Plot the average convergence curve
+plot_convergence_curve(average_performance_metrics, num_epochs)
