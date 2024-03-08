@@ -1,0 +1,1563 @@
+bigbench_causal_judgement_50_50
+task_name : bigbench
+train_size : 50
+eval_size : 50
+test_size : 0
+post_instruction : False
+seed : 42
+log_dir : train_log/bigbench_causal_judgement_50_50
+data_dir : ../datasets/causal_judgement.json
+task : <tasks.bigbench.CustomTask object at 0x100fbd9d0>
+----------------- World Model --------------------------
+pred_model : gpt-3.5-turbo
+pred_temperature : 0.0
+optim_model : gpt-4
+optim_temperature : 1.0
+num_new_prompts : 1
+train_shuffle : True
+train_batch_size : 5
+test_batch_size : 1
+eval_batch_size : 1
+-------------------- MCTS -----------------------
+world_model : <prompt_optim_agent.world_model.world_model.WorldModel object at 0x14a90eff0>
+expand_width : 3
+depth_limit : 5
+w_exp : 2.5
+iteration_num : 1
+min_depth : 2
+mcts_threshold : 0.0
+min_threshold : 0.0
+log : True
+k : 1
+-------------------------------------------
+init_prompt: Answer questions about causal attribution
+prompt: Answer questions about causal attribution
+---------------------  iteration 0 ------------------------
+Expanding:
+Expanding: node: 0, depth 0, reward: 0.6000
+cur_prompt: Answer questions about causal attribution
+---------------	forward	----------------
+cur_prompt:
+Answer questions about causal attribution
+labels:  ['B', 'A', 'A', 'B', 'A']
+preds:   ['B', 'B', 'A', 'A', 'A']
+correct: [1, 0, 1, 0, 1]
+acc:     0.6
+
+---------------	cal_gradient	----------------
+gradient_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about causal attribution
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about causal attribution
+How would a typical person answer each of the following questions about causation?
+A sniper has been ordered to kill an enemy commander. So, after getting himself into position, he finally has the enemy commander in his sights. Before he pulls the trigger, however, the sniper realizes that the gunfire will definitely cause the barrel of his gun to get hot. But the sniper doesn't care at all whether the barrel of the gun is hot, he doesn't have to touch it anyway. So, he pulls the trigger -- thereby shooting and killing the commander. And, as the sniper expected, firing the gun caused the barrel to heat up. Did the sniper intentionally heat the barrel of his gun?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+The typical person would likely answer (B) No. <answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+<2> 
+The model's input is:
+Answer questions about causal attribution
+How would a typical person answer each of the following questions about causation?
+Jake desperately wants to have more money. He knows that he will inherit a lot of money when his aunt dies. One day, he sees his aunt walking by the window. He raises his rifle, gets her in the sights, and presses the trigger. But Jake isn't very good at using his rifle. His hand slipped on the barrel of the gun, and a shot went off. Nonetheless, the bullet hits her directly in the heart. She dies instantly. Did Jake shoot his aunt in the heart intentionally?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+(A) Yes <answer></answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+
+For each wrong example, carefully examine each question and wrong answer step by step, provide comprehensive and different reasons why the prompt leads to the wrong answer. At last, based on all these reasons, summarize and list all the aspects that can improve the prompt.
+gradient:
+Wrong Example 1:
+The question is about "causal attribution" or in simpler terms, the assignment of cause-and-effect in a given scenario. The model wrongly predicted that the sniper did not intentionally heat the barrel of his gun.
+1. The question seems designed to be misleading where the query about the barrel of the gun is mentioned in the context that might make it seem unintentional. However, in this case the sniper knowingly took an action that would heat up the barrel of the gun. 
+2. The language model seems to base its answer on the statement "the sniper doesn't care at all whether the barrel of the gun is hot". It interprets this as the sniper not intending to heat the gun barrel, overlooking that he knowingly took the action which causes the heating. 
+
+Wrong Example 2:
+The question again revolves around "causal attribution". The model wrongly predicted that Jake shot his aunt in the heart intentionally.
+1. Although Jake had a motive, the text clearly states, "His hand slipped on the barrel of the gun, and a shot went off." This indicates that the act of shooting was not done with intention, despite the end result matching his desire.
+2. The model seems to have been influenced by the earlier part of the scenario where it is stated that Jake "desperately wants more money" and "raises his rifle". This might lead it to the conclusion that Jake intentionally shot his aunt.
+
+Improvements for the prompt:
+
+1. More clarity: The prompt needs to be more explicit in asking the model to take into account the full context of the scenario rather than focusing only on selected parts. This can help the model better understand the underlying context and cause-and-effect relationships.
+  
+2. Emphasize intention vs result: The prompt should also emphasize on the need to distinguish between the result of an action and the intention behind the action. The mere fact that an action had a specific result does not necessarily mean it was carried out with that specific intention.
+   
+3. Subtlety and nuance: The model should be prompted to consider the subtle nuances in language that may change the true meaning or intention behind a phrase or sentence. This can improve interpretation of complex scenarios.
+
+4. Include Misleading Information: The prompt should guide the model to account for potentially misleading information that could confuse the relationship between cause and effect or the attribution of intention.
+
+-------------	optimize	---------------
+optimize_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about causal attribution
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about causal attribution
+How would a typical person answer each of the following questions about causation?
+A sniper has been ordered to kill an enemy commander. So, after getting himself into position, he finally has the enemy commander in his sights. Before he pulls the trigger, however, the sniper realizes that the gunfire will definitely cause the barrel of his gun to get hot. But the sniper doesn't care at all whether the barrel of the gun is hot, he doesn't have to touch it anyway. So, he pulls the trigger -- thereby shooting and killing the commander. And, as the sniper expected, firing the gun caused the barrel to heat up. Did the sniper intentionally heat the barrel of his gun?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+The typical person would likely answer (B) No. <answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+<2> 
+The model's input is:
+Answer questions about causal attribution
+How would a typical person answer each of the following questions about causation?
+Jake desperately wants to have more money. He knows that he will inherit a lot of money when his aunt dies. One day, he sees his aunt walking by the window. He raises his rifle, gets her in the sights, and presses the trigger. But Jake isn't very good at using his rifle. His hand slipped on the barrel of the gun, and a shot went off. Nonetheless, the bullet hits her directly in the heart. She dies instantly. Did Jake shoot his aunt in the heart intentionally?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+(A) Yes <answer></answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+
+Based on these errors, the problems with this prompt and the reasons are:
+Wrong Example 1:
+The question is about "causal attribution" or in simpler terms, the assignment of cause-and-effect in a given scenario. The model wrongly predicted that the sniper did not intentionally heat the barrel of his gun.
+1. The question seems designed to be misleading where the query about the barrel of the gun is mentioned in the context that might make it seem unintentional. However, in this case the sniper knowingly took an action that would heat up the barrel of the gun. 
+2. The language model seems to base its answer on the statement "the sniper doesn't care at all whether the barrel of the gun is hot". It interprets this as the sniper not intending to heat the gun barrel, overlooking that he knowingly took the action which causes the heating. 
+
+Wrong Example 2:
+The question again revolves around "causal attribution". The model wrongly predicted that Jake shot his aunt in the heart intentionally.
+1. Although Jake had a motive, the text clearly states, "His hand slipped on the barrel of the gun, and a shot went off." This indicates that the act of shooting was not done with intention, despite the end result matching his desire.
+2. The model seems to have been influenced by the earlier part of the scenario where it is stated that Jake "desperately wants more money" and "raises his rifle". This might lead it to the conclusion that Jake intentionally shot his aunt.
+
+Improvements for the prompt:
+
+1. More clarity: The prompt needs to be more explicit in asking the model to take into account the full context of the scenario rather than focusing only on selected parts. This can help the model better understand the underlying context and cause-and-effect relationships.
+  
+2. Emphasize intention vs result: The prompt should also emphasize on the need to distinguish between the result of an action and the intention behind the action. The mere fact that an action had a specific result does not necessarily mean it was carried out with that specific intention.
+   
+3. Subtlety and nuance: The model should be prompted to consider the subtle nuances in language that may change the true meaning or intention behind a phrase or sentence. This can improve interpretation of complex scenarios.
+
+4. Include Misleading Information: The prompt should guide the model to account for potentially misleading information that could confuse the relationship between cause and effect or the attribution of intention.
+
+There are a list of former prompts including the current prompt, and each prompt is modified from its former prompts:
+(0) Answer questions about causal attribution
+
+
+Based on the above information, please write 1 new prompt following these guidelines:
+1. The new prompt should solve the current prompt's problems.
+2. The new prompt should consider the list of prompts and evolve based on the current prompt.
+3. The new prompt should be wrapped with <START> and <END>.
+
+The new prompts is:
+response:
+<START> Analyze the provided context carefully, focusing on both the results of actions and intentions behind them. Then, based on the causal relationships and potential misleading information, answer the following questions about causal attribution. Lastly, bracket your final answer option between <answer> and </answer>.<END>
+optimized_prompt:
+['Analyze the provided context carefully, focusing on both the results of actions and intentions behind them. Then, based on the causal relationships and potential misleading information, answer the following questions about causal attribution. Lastly, bracket your final answer option between <answer> and </answer>.']
+
+prompt: Analyze the provided context carefully, focusing on both the results of actions and intentions behind them. Then, based on the causal relationships and potential misleading information, answer the following questions about causal attribution. Lastly, bracket your final answer option between <answer> and </answer>.
+cur_prompt: Answer questions about causal attribution
+---------------	forward	----------------
+cur_prompt:
+Answer questions about causal attribution
+labels:  ['A', 'A', 'B', 'B', 'B']
+preds:   ['A', 'A', 'B', 'A', 'B']
+correct: [1, 1, 1, 0, 1]
+acc:     0.8
+
+---------------	cal_gradient	----------------
+gradient_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about causal attribution
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about causal attribution
+How would a typical person answer each of the following questions about causation?
+Long ago, when John was only 17 years old, he got a job working for a large manufacturing company. He started out working on an assembly line for minimum wage, but after a few years at the company, he was given a choice between two line manager positions. He could stay in the woodwork division, which is where he was currently working. Or he could move to the plastics division. John was unsure what to do because he liked working in the woodwork division, but he also thought it might be worth trying something different. He finally decided to switch to the plastics division and try something new. For the last 30 years, John has worked as a production line supervisor in the plastics division. After the first year there, the plastics division was moved to a different building with more space. Unfortunately, through the many years he worked there, John was exposed to asbestos, a highly carcinogenic substance. Most of the plastics division was quite safe, but the small part in which John worked was exposed to asbestos fibers. And now, although John has never smoked a cigarette in his life and otherwise lives a healthy lifestyle, he has a highly progressed and incurable case of lung cancer at the age of 50. John had seen three cancer specialists, all of whom confirmed the worst: that, except for pain, John's cancer was untreatable and he was absolutely certain to die from it very soon (the doctors estimated no more than 2 months). Yesterday, while John was in the hospital for a routine medical appointment, a new nurse accidentally administered the wrong medication to him. John was allergic to the drug and he immediately went into shock and experienced cardiac arrest (a heart attack). Doctors attempted to resuscitate him but he died minutes after the medication was administered. Did John's job cause his premature death?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+Most people would likely answer (A) Yes, John's job caused his premature death. <answer>(A)</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+
+For each wrong example, carefully examine each question and wrong answer step by step, provide comprehensive and different reasons why the prompt leads to the wrong answer. At last, based on all these reasons, summarize and list all the aspects that can improve the prompt.
+gradient:
+Wrong Example Analysis:
+
+1. Misinterpretation of Causal Attribution: The language model may have misidentified the main cause of John's death as his asbestos exposure during his job at the plastics division, rather than his immediate cardiac arrest due to the administration of the wrong medication by a nurse. This indicates an overemphasis on long-term causation instead of immediate cause.
+
+2. Over-emphasis on Historical Context: The detailed story of John's life history and career could have led the model to focus more on his career as the 'cause' of his premature death, ignoring the immediate cause presented later in the context.
+
+3. Dual Causation Confusion: The model also may have been confused between two possible causes - the asbestos exposure and the wrongly administered medication. Even though both events contributed to John's premature death, the immediate cause, i.e., the wrongly administered medication, is the direct cause of death.
+
+Prompt Improvement:
+
+1. Clarify Context: Make a distinction between immediate and potential causes to provide clear context. A prompt like "Answer questions about immediate and potential causal attributions in given scenarios" would lead the model to consider both short term and long term causes.
+
+2. Define Causality: Define causality more specifically - whether it means the immediate event leading to an outcome or whether it includes a series of events leading to the ultimate outcome.
+
+3. Dual Causation: Provide guidance on how to handle situations where multiple factors seem to contribute to an outcome.
+
+4. Guide Decision Making: Aid the model's decision-making process by mentioning whether preference is to be given to immediate or indirect causes in a confusing scenario. 
+
+5. Prioritize Important Information: Instruct the model to lay more emphasis on recent or critical events, which seems to be the immediate cause of an outcome, rather than historical context. This will ensure the model is not swayed by the depth of past events over immediate events.
+
+-------------	optimize	---------------
+optimize_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about causal attribution
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about causal attribution
+How would a typical person answer each of the following questions about causation?
+Long ago, when John was only 17 years old, he got a job working for a large manufacturing company. He started out working on an assembly line for minimum wage, but after a few years at the company, he was given a choice between two line manager positions. He could stay in the woodwork division, which is where he was currently working. Or he could move to the plastics division. John was unsure what to do because he liked working in the woodwork division, but he also thought it might be worth trying something different. He finally decided to switch to the plastics division and try something new. For the last 30 years, John has worked as a production line supervisor in the plastics division. After the first year there, the plastics division was moved to a different building with more space. Unfortunately, through the many years he worked there, John was exposed to asbestos, a highly carcinogenic substance. Most of the plastics division was quite safe, but the small part in which John worked was exposed to asbestos fibers. And now, although John has never smoked a cigarette in his life and otherwise lives a healthy lifestyle, he has a highly progressed and incurable case of lung cancer at the age of 50. John had seen three cancer specialists, all of whom confirmed the worst: that, except for pain, John's cancer was untreatable and he was absolutely certain to die from it very soon (the doctors estimated no more than 2 months). Yesterday, while John was in the hospital for a routine medical appointment, a new nurse accidentally administered the wrong medication to him. John was allergic to the drug and he immediately went into shock and experienced cardiac arrest (a heart attack). Doctors attempted to resuscitate him but he died minutes after the medication was administered. Did John's job cause his premature death?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+Most people would likely answer (A) Yes, John's job caused his premature death. <answer>(A)</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+
+Based on these errors, the problems with this prompt and the reasons are:
+Wrong Example Analysis:
+
+1. Misinterpretation of Causal Attribution: The language model may have misidentified the main cause of John's death as his asbestos exposure during his job at the plastics division, rather than his immediate cardiac arrest due to the administration of the wrong medication by a nurse. This indicates an overemphasis on long-term causation instead of immediate cause.
+
+2. Over-emphasis on Historical Context: The detailed story of John's life history and career could have led the model to focus more on his career as the 'cause' of his premature death, ignoring the immediate cause presented later in the context.
+
+3. Dual Causation Confusion: The model also may have been confused between two possible causes - the asbestos exposure and the wrongly administered medication. Even though both events contributed to John's premature death, the immediate cause, i.e., the wrongly administered medication, is the direct cause of death.
+
+Prompt Improvement:
+
+1. Clarify Context: Make a distinction between immediate and potential causes to provide clear context. A prompt like "Answer questions about immediate and potential causal attributions in given scenarios" would lead the model to consider both short term and long term causes.
+
+2. Define Causality: Define causality more specifically - whether it means the immediate event leading to an outcome or whether it includes a series of events leading to the ultimate outcome.
+
+3. Dual Causation: Provide guidance on how to handle situations where multiple factors seem to contribute to an outcome.
+
+4. Guide Decision Making: Aid the model's decision-making process by mentioning whether preference is to be given to immediate or indirect causes in a confusing scenario. 
+
+5. Prioritize Important Information: Instruct the model to lay more emphasis on recent or critical events, which seems to be the immediate cause of an outcome, rather than historical context. This will ensure the model is not swayed by the depth of past events over immediate events.
+
+There are a list of former prompts including the current prompt, and each prompt is modified from its former prompts:
+(0) Answer questions about causal attribution
+
+
+Based on the above information, please write 1 new prompt following these guidelines:
+1. The new prompt should solve the current prompt's problems.
+2. The new prompt should consider the list of prompts and evolve based on the current prompt.
+3. The new prompt should be wrapped with <START> and <END>.
+
+The new prompts is:
+response:
+<START> Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context. <END>
+optimized_prompt:
+['Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.']
+
+prompt: Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+cur_prompt: Answer questions about causal attribution
+---------------	forward	----------------
+cur_prompt:
+Answer questions about causal attribution
+labels:  ['B', 'A', 'B', 'A', 'A']
+preds:   ['A', 'A', 'B', 'A', 'A']
+correct: [0, 1, 1, 1, 1]
+acc:     0.8
+
+---------------	cal_gradient	----------------
+gradient_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about causal attribution
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about causal attribution
+How would a typical person answer each of the following questions about causation?
+Ned has a new motorboat. When Ned turns the key, the motorboat starts if either the gear is in neutral or the motor is in the lock position. Today, the gear is in neutral, and the motor is not in the lock position. Ned checks the motor to see if it is in the lock position. He changes its position, and he puts it in the lock position. Because the motorboat would start if either the gear is in neutral or the motor is in the lock position, the motorboat starts when Ned turns the key. Did the motorboat start because Ned changed the position of the motor?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+The typical person would likely answer (A) Yes. <answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+
+For each wrong example, carefully examine each question and wrong answer step by step, provide comprehensive and different reasons why the prompt leads to the wrong answer. At last, based on all these reasons, summarize and list all the aspects that can improve the prompt.
+gradient:
+Wrong Example Examination:
+
+The language model is getting the wrong answer because it is misunderstanding or oversimplifying the concept of causal attribution. The question is asking if the motorboat started because Ned changed the position of the motor, but while Ned's action of changing the motor position was part of the process, the motorboat was already capable of starting because the gear was in neutral. Therefore, the starting of the motorboat cannot be solely attributed to Ned changing the motor position.
+
+Reasons for Wrong Answer:
+
+1. Limited Understanding of Causal Attribution: The language model may not have a nuanced understanding of causal attribution, making it difficult for it to properly analyze the complex causation in this context.
+
+2. Misinterpretation of Question: The model may think the question is asking if Ned's action contributed to the starting of the motorboat instead of asking if it's the sole cause, which might lead to the wrong answer.
+
+3. Incorrect Inference: The model might infer that since Ned did something on the motorboat and subsequently the boat starts, Ned's action is the direct cause of the boat's start. It seems to follow a simple cause-and-effect reasoning, which is not entirely applicable in this scenario because of the multiple conditions that can lead to the boat's start.
+
+Improvements for Prompt: 
+
+1. Include Exploration of Alternative Causes: The prompt should direct the model to consider all potential causes independently and analyze their impact on the resulting outcome. 
+
+2. Provide Guidance on Complex Scenarios: The prompt should guide the model to fully consider complex scenarios involving more than one factor that could lead to an outcome.
+
+3. Critical Analysis and Evaluation: The prompt can ask the model to critically analyze and evaluate each factor involved in the scenario to determine its contribution to the outcome.
+
+4. Request for Confirmation of Understanding: The prompt could be improved if it asks the model to confirm its understanding of the question. For example, the prompt could incorporate self-questioning, like, "Am I being asked if Ned's action contributed in any way to the boat starting, or am I being asked if Ned's action was the sole cause of the boat starting?" 
+
+5. Encourage Logical Reasoning: The model should be encouraged through the prompt to apply a logical reasoning mechanism when evaluating causal relationships in the prompts and not simply applying a direct cause-effect association. 
+
+Conclusion:
+
+The language model needs to have a better grasp of the complexities involved in causal attribution to handle these types of prompts efficiently. The prompt could provide better guidance on it.
+
+-------------	optimize	---------------
+optimize_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about causal attribution
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about causal attribution
+How would a typical person answer each of the following questions about causation?
+Ned has a new motorboat. When Ned turns the key, the motorboat starts if either the gear is in neutral or the motor is in the lock position. Today, the gear is in neutral, and the motor is not in the lock position. Ned checks the motor to see if it is in the lock position. He changes its position, and he puts it in the lock position. Because the motorboat would start if either the gear is in neutral or the motor is in the lock position, the motorboat starts when Ned turns the key. Did the motorboat start because Ned changed the position of the motor?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+The typical person would likely answer (A) Yes. <answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+
+Based on these errors, the problems with this prompt and the reasons are:
+Wrong Example Examination:
+
+The language model is getting the wrong answer because it is misunderstanding or oversimplifying the concept of causal attribution. The question is asking if the motorboat started because Ned changed the position of the motor, but while Ned's action of changing the motor position was part of the process, the motorboat was already capable of starting because the gear was in neutral. Therefore, the starting of the motorboat cannot be solely attributed to Ned changing the motor position.
+
+Reasons for Wrong Answer:
+
+1. Limited Understanding of Causal Attribution: The language model may not have a nuanced understanding of causal attribution, making it difficult for it to properly analyze the complex causation in this context.
+
+2. Misinterpretation of Question: The model may think the question is asking if Ned's action contributed to the starting of the motorboat instead of asking if it's the sole cause, which might lead to the wrong answer.
+
+3. Incorrect Inference: The model might infer that since Ned did something on the motorboat and subsequently the boat starts, Ned's action is the direct cause of the boat's start. It seems to follow a simple cause-and-effect reasoning, which is not entirely applicable in this scenario because of the multiple conditions that can lead to the boat's start.
+
+Improvements for Prompt: 
+
+1. Include Exploration of Alternative Causes: The prompt should direct the model to consider all potential causes independently and analyze their impact on the resulting outcome. 
+
+2. Provide Guidance on Complex Scenarios: The prompt should guide the model to fully consider complex scenarios involving more than one factor that could lead to an outcome.
+
+3. Critical Analysis and Evaluation: The prompt can ask the model to critically analyze and evaluate each factor involved in the scenario to determine its contribution to the outcome.
+
+4. Request for Confirmation of Understanding: The prompt could be improved if it asks the model to confirm its understanding of the question. For example, the prompt could incorporate self-questioning, like, "Am I being asked if Ned's action contributed in any way to the boat starting, or am I being asked if Ned's action was the sole cause of the boat starting?" 
+
+5. Encourage Logical Reasoning: The model should be encouraged through the prompt to apply a logical reasoning mechanism when evaluating causal relationships in the prompts and not simply applying a direct cause-effect association. 
+
+Conclusion:
+
+The language model needs to have a better grasp of the complexities involved in causal attribution to handle these types of prompts efficiently. The prompt could provide better guidance on it.
+
+There are a list of former prompts including the current prompt, and each prompt is modified from its former prompts:
+(0) Answer questions about causal attribution
+
+
+Based on the above information, please write 1 new prompt following these guidelines:
+1. The new prompt should solve the current prompt's problems.
+2. The new prompt should consider the list of prompts and evolve based on the current prompt.
+3. The new prompt should be wrapped with <START> and <END>.
+
+The new prompts is:
+response:
+<START> Analyze the complex causal relationships in provided scenarios, taking into account all potential causes. Critically evaluate each contributing factor to understand their individual impact on the outcome. Use logical reasoning to identify whether an action is a mere contributing factor or the sole cause of an outcome. When answering questions about causal attribution, confirm your understanding of the question to ensure accuracy. <END>
+optimized_prompt:
+['Analyze the complex causal relationships in provided scenarios, taking into account all potential causes. Critically evaluate each contributing factor to understand their individual impact on the outcome. Use logical reasoning to identify whether an action is a mere contributing factor or the sole cause of an outcome. When answering questions about causal attribution, confirm your understanding of the question to ensure accuracy.']
+
+prompt: Analyze the complex causal relationships in provided scenarios, taking into account all potential causes. Critically evaluate each contributing factor to understand their individual impact on the outcome. Use logical reasoning to identify whether an action is a mere contributing factor or the sole cause of an outcome. When answering questions about causal attribution, confirm your understanding of the question to ensure accuracy.
+child_node 1 (reward:0.5400, reward: 0.5400)
+child_node 2 (reward:0.6200, reward: 0.6200)
+child_node 3 (reward:0.6000, reward: 0.6000)
+Simulating:
+Expanding:
+Expanding: node: 2, depth 1, reward: 0.6200
+cur_prompt: Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+---------------	forward	----------------
+cur_prompt:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+labels:  ['A', 'A', 'A', 'B', 'A']
+preds:   ['A', 'A', 'B', 'B', 'B']
+correct: [1, 1, 0, 1, 0]
+acc:     0.6
+
+---------------	cal_gradient	----------------
+gradient_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+How would a typical person answer each of the following questions about causation?
+Wayne has a new high-tech watch that tracks his heart rate while he exercises. He must charge the device before he uses it this evening. The device will fully charge in one hour if it is both plugged in and on the charging pad. At 2:00 PM, the device is plugged in, and the device is on the charging pad. At that time, Wayne checks to see if the device is on the charging pad, and he sees that it is. So, he does not change the position of the device, and he leaves it on the charging pad. Because the device will fully charge in one hour if it is either plugged in or on the charging pad, the device is fully charged at 3:00 PM. Is the device fully charged because Wayne did not change the position of the device?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+No, the device is fully charged because it was both plugged in and on the charging pad, not because Wayne did not change the position of the device. <B>
+
+The correct label is: A
+The model's prediction is: B.
+
+<2> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+How would a typical person answer each of the following questions about causation?
+Suzy and Billy are working on a project that is very important for our nation's security. The boss tells them both: "Be sure that you are here at exactly 9 am. It is absolutely essential that you arrive at that time." Both Billy and Suzy arrive at 9 am. As it happens, there was a motion detector installed in the room where they arrived. The motion detector was set up to be triggered if at least one person appeared in the room at the same time. So the motion detector went off. Did Billy cause the motion detector to go off?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer: (B) No
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+
+For each wrong example, carefully examine each question and wrong answer step by step, provide comprehensive and different reasons why the prompt leads to the wrong answer. At last, based on all these reasons, summarize and list all the aspects that can improve the prompt.
+gradient:
+<1> 
+Reason:
+The phrasing of the prompt encourages the model to locate an immediate or primary cause, rather than acknowledging multiple contributors to a cause. Even though Wayne's action (or inaction, in this case) sustained a necessary condition for charging (leaving the watch on the charging pad), the model dismissed it as a cause because it judged plugging the watch and having it on the pad to be more direct causes. 
+
+<2> 
+Reason:
+Similarly, the model seems to consider only the most "important" or "major" cause while dismissing other valid contributors. Despite the fact that the motion sensor would have been triggered by either Billy or Suzy's arrival, the model decided that Billy did not cause the detector to go off, perhaps because Suzy also arrived, or it expected only one main cause.
+
+Improvements:
+1. Phrase the prompt to acknowledge the possibility of multiple causes: "Recognize both single and multiple factors that may contribute to an outcome. Connections can be direct or indirect, immediate or long-term."
+2. Include examples of multi-causal scenarios in the prompt to better guide the model.
+3. Stress on the importance of considering continuous causes or steady states (like Wayne not moving the device) as relevant causes. 
+4. Specify that although prioritizing recent or critical events is necessary, it does not mean dismissing other events or factors. All factors contributing to an event should be considered before deriving the final answer.
+
+-------------	optimize	---------------
+optimize_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+How would a typical person answer each of the following questions about causation?
+Wayne has a new high-tech watch that tracks his heart rate while he exercises. He must charge the device before he uses it this evening. The device will fully charge in one hour if it is both plugged in and on the charging pad. At 2:00 PM, the device is plugged in, and the device is on the charging pad. At that time, Wayne checks to see if the device is on the charging pad, and he sees that it is. So, he does not change the position of the device, and he leaves it on the charging pad. Because the device will fully charge in one hour if it is either plugged in or on the charging pad, the device is fully charged at 3:00 PM. Is the device fully charged because Wayne did not change the position of the device?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+No, the device is fully charged because it was both plugged in and on the charging pad, not because Wayne did not change the position of the device. <B>
+
+The correct label is: A
+The model's prediction is: B.
+
+<2> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+How would a typical person answer each of the following questions about causation?
+Suzy and Billy are working on a project that is very important for our nation's security. The boss tells them both: "Be sure that you are here at exactly 9 am. It is absolutely essential that you arrive at that time." Both Billy and Suzy arrive at 9 am. As it happens, there was a motion detector installed in the room where they arrived. The motion detector was set up to be triggered if at least one person appeared in the room at the same time. So the motion detector went off. Did Billy cause the motion detector to go off?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer: (B) No
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+
+Based on these errors, the problems with this prompt and the reasons are:
+<1> 
+Reason:
+The phrasing of the prompt encourages the model to locate an immediate or primary cause, rather than acknowledging multiple contributors to a cause. Even though Wayne's action (or inaction, in this case) sustained a necessary condition for charging (leaving the watch on the charging pad), the model dismissed it as a cause because it judged plugging the watch and having it on the pad to be more direct causes. 
+
+<2> 
+Reason:
+Similarly, the model seems to consider only the most "important" or "major" cause while dismissing other valid contributors. Despite the fact that the motion sensor would have been triggered by either Billy or Suzy's arrival, the model decided that Billy did not cause the detector to go off, perhaps because Suzy also arrived, or it expected only one main cause.
+
+Improvements:
+1. Phrase the prompt to acknowledge the possibility of multiple causes: "Recognize both single and multiple factors that may contribute to an outcome. Connections can be direct or indirect, immediate or long-term."
+2. Include examples of multi-causal scenarios in the prompt to better guide the model.
+3. Stress on the importance of considering continuous causes or steady states (like Wayne not moving the device) as relevant causes. 
+4. Specify that although prioritizing recent or critical events is necessary, it does not mean dismissing other events or factors. All factors contributing to an event should be considered before deriving the final answer.
+
+There are a list of former prompts including the current prompt, and each prompt is modified from its former prompts:
+(0) Answer questions about causal attribution
+(1) Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+
+
+Based on the above information, please write 1 new prompt following these guidelines:
+1. The new prompt should solve the current prompt's problems.
+2. The new prompt should consider the list of prompts and evolve based on the current prompt.
+3. The new prompt should be wrapped with <START> and <END>.
+
+The new prompts is:
+response:
+<START> Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation. <END>
+optimized_prompt:
+['Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.']
+
+prompt: Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+cur_prompt: Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+---------------	forward	----------------
+cur_prompt:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+labels:  ['B', 'A', 'A', 'A', 'A']
+preds:   ['B', 'B', 'A', 'A', 'B']
+correct: [1, 0, 1, 1, 0]
+acc:     0.6
+
+---------------	cal_gradient	----------------
+gradient_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+How would a typical person answer each of the following questions about causation?
+Tom works for a demolition company, and today he is demolishing a building by implosion. The building will implode automatically at 5:00 PM if both the safety switch is off and knob A is switched on. At 4:00 PM, the safety switch is off, and knob A is on. At that time, Tom checks to see if knob A is on, and he sees that it's on. So, he does not change the position of knob A at all. Because the building would implode if both the safety switch is off and knob A is switched on, the building implodes at 5:00 PM. Did the building implode because Tom did not change the position of knob A?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer: (B) No
+
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+<2> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+How would a typical person answer each of the following questions about causation?
+Jim, Carol, Bob, and Nancy are researchers in a remote area, and they have a limited supply of electricity. Because of their limited supply, the electricity only comes on in the evenings from 8-9 PM, and they have to restrict who can use power on certain days. If four people turn on their lamps at the same time, the breaker will fail. The breaker will not fail if fewer people turn on their lamps at the same time. Jim is not supposed to use his lamp on Thursdays. Carol, Bob, and Nancy may all use their lamps on Thursdays. This Thursday Jim turns on his lamp at 8 PM. Just then Carol turns on her lamp, Bob also turns on his lamp, and Nancy turns on her lamp. Since four people turned on their lamps at the same time, the circuit breaker failed. Did Jim turning on his lamp at 8 PM cause the circuit breaker to fail?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+No, Jim turning on his lamp at 8 PM did not cause the circuit breaker to fail. The immediate cause of the circuit breaker failing was the combination of all four people turning on their lamps at the same time. <answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+
+For each wrong example, carefully examine each question and wrong answer step by step, provide comprehensive and different reasons why the prompt leads to the wrong answer. At last, based on all these reasons, summarize and list all the aspects that can improve the prompt.
+gradient:
+Wrong Example 1:
+In this question, the mistake is probably stemming from the model's understanding of "immediate cause." It seems to interpret "immediate cause" as an action that specifically triggers an event, whereas in this case, the lack of an action (not turning off the switch) still resulted in the building's implosion. The model might have problems understanding that the lack of action also can be an immediate cause.
+
+Wrong Example 2:
+Again, the model seems to be having a difficult time identifying that each individual's actions contributed to the causation of the breaker's failure. The model erroneously relates the cause to the overall composite event of everyone turning on their lamps, rather than acknowledging that each lamp turned on (including Jim's) played into the failure. This could be due to a limitation in understanding the concept of collective actions contributing to a single event.
+
+Prompt Improvement Recommendations:
+The prompt should clarify the difference between direct actions and inactions and their roles in cause-effect relationships. It might also be useful to include an explanation of multi-factorial causes and collective actions contributing to a single event. Showing more examples of such complex situations would help the model in understanding nuanced causation problems. So, following aspects can be improved:
+
+1. Clarify the notion of "immediate cause" to include both active actions and passive inactions in causal attribution.
+2. Add explanations about the multi-causal effect, where several equivalent events present together can be the cause of an outcome.
+3. Provide examples where collective actions cause a specific outcome.
+4. Explain how to take into account the individual contributions in situations where multiple events cause a single outcome.
+
+-------------	optimize	---------------
+optimize_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+How would a typical person answer each of the following questions about causation?
+Tom works for a demolition company, and today he is demolishing a building by implosion. The building will implode automatically at 5:00 PM if both the safety switch is off and knob A is switched on. At 4:00 PM, the safety switch is off, and knob A is on. At that time, Tom checks to see if knob A is on, and he sees that it's on. So, he does not change the position of knob A at all. Because the building would implode if both the safety switch is off and knob A is switched on, the building implodes at 5:00 PM. Did the building implode because Tom did not change the position of knob A?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer: (B) No
+
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+<2> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+How would a typical person answer each of the following questions about causation?
+Jim, Carol, Bob, and Nancy are researchers in a remote area, and they have a limited supply of electricity. Because of their limited supply, the electricity only comes on in the evenings from 8-9 PM, and they have to restrict who can use power on certain days. If four people turn on their lamps at the same time, the breaker will fail. The breaker will not fail if fewer people turn on their lamps at the same time. Jim is not supposed to use his lamp on Thursdays. Carol, Bob, and Nancy may all use their lamps on Thursdays. This Thursday Jim turns on his lamp at 8 PM. Just then Carol turns on her lamp, Bob also turns on his lamp, and Nancy turns on her lamp. Since four people turned on their lamps at the same time, the circuit breaker failed. Did Jim turning on his lamp at 8 PM cause the circuit breaker to fail?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+No, Jim turning on his lamp at 8 PM did not cause the circuit breaker to fail. The immediate cause of the circuit breaker failing was the combination of all four people turning on their lamps at the same time. <answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+
+Based on these errors, the problems with this prompt and the reasons are:
+Wrong Example 1:
+In this question, the mistake is probably stemming from the model's understanding of "immediate cause." It seems to interpret "immediate cause" as an action that specifically triggers an event, whereas in this case, the lack of an action (not turning off the switch) still resulted in the building's implosion. The model might have problems understanding that the lack of action also can be an immediate cause.
+
+Wrong Example 2:
+Again, the model seems to be having a difficult time identifying that each individual's actions contributed to the causation of the breaker's failure. The model erroneously relates the cause to the overall composite event of everyone turning on their lamps, rather than acknowledging that each lamp turned on (including Jim's) played into the failure. This could be due to a limitation in understanding the concept of collective actions contributing to a single event.
+
+Prompt Improvement Recommendations:
+The prompt should clarify the difference between direct actions and inactions and their roles in cause-effect relationships. It might also be useful to include an explanation of multi-factorial causes and collective actions contributing to a single event. Showing more examples of such complex situations would help the model in understanding nuanced causation problems. So, following aspects can be improved:
+
+1. Clarify the notion of "immediate cause" to include both active actions and passive inactions in causal attribution.
+2. Add explanations about the multi-causal effect, where several equivalent events present together can be the cause of an outcome.
+3. Provide examples where collective actions cause a specific outcome.
+4. Explain how to take into account the individual contributions in situations where multiple events cause a single outcome.
+
+There are a list of former prompts including the current prompt, and each prompt is modified from its former prompts:
+(0) Answer questions about causal attribution
+(1) Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+
+
+Based on the above information, please write 1 new prompt following these guidelines:
+1. The new prompt should solve the current prompt's problems.
+2. The new prompt should consider the list of prompts and evolve based on the current prompt.
+3. The new prompt should be wrapped with <START> and <END>.
+
+The new prompts is:
+response:
+<START> Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios. Understand that immediate causes can be both actions and inactions, which directly lead to outcomes. Recognize that multiple events can contribute to an outcome and when such multi-causal scenarios occur, each individual event is a cause as well. Prioritize recent or critical events that directly cause the outcome, regardless of whether they are active or passive actions, and despite being part of a collective action or a group of simultaneous events. Think over the historical context only when it helps clarify the immediate causes. <END>
+optimized_prompt:
+['Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios. Understand that immediate causes can be both actions and inactions, which directly lead to outcomes. Recognize that multiple events can contribute to an outcome and when such multi-causal scenarios occur, each individual event is a cause as well. Prioritize recent or critical events that directly cause the outcome, regardless of whether they are active or passive actions, and despite being part of a collective action or a group of simultaneous events. Think over the historical context only when it helps clarify the immediate causes.']
+
+prompt: Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios. Understand that immediate causes can be both actions and inactions, which directly lead to outcomes. Recognize that multiple events can contribute to an outcome and when such multi-causal scenarios occur, each individual event is a cause as well. Prioritize recent or critical events that directly cause the outcome, regardless of whether they are active or passive actions, and despite being part of a collective action or a group of simultaneous events. Think over the historical context only when it helps clarify the immediate causes.
+cur_prompt: Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+---------------	forward	----------------
+cur_prompt:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+labels:  ['B', 'A', 'B', 'B', 'A']
+preds:   ['A', 'A', 'A', 'B', 'A']
+correct: [0, 1, 0, 1, 1]
+acc:     0.6
+
+---------------	cal_gradient	----------------
+gradient_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+How would a typical person answer each of the following questions about causation?
+Imagine that there is a man out in the woods who is participating in a hunting competition. After spending hours waiting for a deer to cross his path, the hunter suddenly sees the largest deer he has ever seen. If he can only kill this deer, he will surely win the competition. So, the hunter gets the deer in his sights -- but at the last second, he notices that there is a group of bird-watchers just on the other side of the deer. The hunter realizes that if he shoots the deer, the bullet could possibly hit one of the birdwatchers as well. But he does not care at all about the bird watchers -- he just wants to win the competition. So, he shoots and kills the deer. And as expected, the bullet ends up hitting one of the bird-watchers as well. Did the man intentionally shoot the bird-watcher?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+The typical person would likely answer (A) Yes. <answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+<2> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+How would a typical person answer each of the following questions about causation?
+An intern is taking care of a patient in a hospital. The intern notices that the patient is having some kidney problems. Recently, the intern read a series of studies about a new drug that can alleviate problems like this one, and he decides to administer the drug in this case. Before the intern can administer the drug, he needs to get the signature of the pharmacist (to confirm that the hospital has enough in stock) and the signature of the attending doctor (to confirm that the drug is appropriate for this patient). So he sends off requests to both the pharmacist and the attending doctor. The pharmacist receives the request, checks to see that they have enough in stock, and immediately signs off. The attending doctor receives the request at the same time and immediately realizes that there are strong reasons to refuse. Although some studies show that the drug can help people with kidney problems, there are also a number of studies showing that the drug can have very dangerous side effects. For this reason, the hospital has a policy forbidding the use of this drug for kidney problems. Despite this policy, the doctor decides to sign off. Since both signatures were received, the patient is administered the drug. As it happens, the patient immediately recovers, and the drug has no adverse effects. Did the pharmacist's decision cause the patient's recovery?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+The typical person would likely answer: (A) Yes
+
+<answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+
+For each wrong example, carefully examine each question and wrong answer step by step, provide comprehensive and different reasons why the prompt leads to the wrong answer. At last, based on all these reasons, summarize and list all the aspects that can improve the prompt.
+gradient:
+<1> 
+In this question, the model incorrectly inferred that the hunter intentionally shot the bird-watcher. The problem with this prediction likely arose from the line in the prompt that instructs the model to “prioritize recent or critical events that immediately cause the outcome over historical context". In focusing on the immediacy, the model might have assumed that because the hunter knew about the bird-watchers and still made the choice to shoot, his actions were intentionally aimed at the bird-watcher. In reality, even though the bullet hitting the bird-watcher was an effect of his decision to shoot the deer, it wasn't the hunter's primary intention.
+
+<2> 
+In this scenario, the model wrongly credits the pharmacist's decision as causing the patient's recovery. This could be due to the instruction in the prompt to consider immediate causes instead of long-term contributing factors. The decision of the pharmacist was an immediate event that contributed to the administration of the drug, but the question was about the recovery of the patient — a long-term effect. The real cause of the recovery was not the pharmacist’s decision but the drug itself and the doctor’s decision to let the patient be treated with it against the hospital policy.
+
+Suggestions to improve the prompt:
+
+1. Modify the prompt to encourage the model to consider not only the immediacy of events but also the actors' intentions, mental states, and frame of reference. Going beyond causality into the realm of intentionality might prevent pitfalls like those seen in the first scenario.
+
+2. Modify the instruction to prioritize recent or critical events over historical context. The model strictly followed this instruction and hence missed other critical influencing factors in the examples.
+
+3. Specify in the prompt that causal attribution can differ greatly depending on the frame of reference (agent vs observer), especially for questions about responsibility or blame.
+
+4. State in the prompt that multiple causes can occur simultaneously, and that the model should consider and weigh these together rather than identifying just one. This would help with more complex causal paths like the one in the second scenario.
+
+Present the prompt as follows:
+
+Determine immediate and potential causal attribution in given scenarios, taking into account both immediate causes and long-term contributing factors. Consider both recent and historical events, but avoid giving undue weight to recent events. Be aware that causality can incorporate agent intentions, mental states, or viewpoints, and can involve multiple causes. Recognize that different frames of reference, such as an agent's vs an observer's, can influence how causations are understood and assigned.
+
+-------------	optimize	---------------
+optimize_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+How would a typical person answer each of the following questions about causation?
+Imagine that there is a man out in the woods who is participating in a hunting competition. After spending hours waiting for a deer to cross his path, the hunter suddenly sees the largest deer he has ever seen. If he can only kill this deer, he will surely win the competition. So, the hunter gets the deer in his sights -- but at the last second, he notices that there is a group of bird-watchers just on the other side of the deer. The hunter realizes that if he shoots the deer, the bullet could possibly hit one of the birdwatchers as well. But he does not care at all about the bird watchers -- he just wants to win the competition. So, he shoots and kills the deer. And as expected, the bullet ends up hitting one of the bird-watchers as well. Did the man intentionally shoot the bird-watcher?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+The typical person would likely answer (A) Yes. <answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+<2> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+How would a typical person answer each of the following questions about causation?
+An intern is taking care of a patient in a hospital. The intern notices that the patient is having some kidney problems. Recently, the intern read a series of studies about a new drug that can alleviate problems like this one, and he decides to administer the drug in this case. Before the intern can administer the drug, he needs to get the signature of the pharmacist (to confirm that the hospital has enough in stock) and the signature of the attending doctor (to confirm that the drug is appropriate for this patient). So he sends off requests to both the pharmacist and the attending doctor. The pharmacist receives the request, checks to see that they have enough in stock, and immediately signs off. The attending doctor receives the request at the same time and immediately realizes that there are strong reasons to refuse. Although some studies show that the drug can help people with kidney problems, there are also a number of studies showing that the drug can have very dangerous side effects. For this reason, the hospital has a policy forbidding the use of this drug for kidney problems. Despite this policy, the doctor decides to sign off. Since both signatures were received, the patient is administered the drug. As it happens, the patient immediately recovers, and the drug has no adverse effects. Did the pharmacist's decision cause the patient's recovery?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+The typical person would likely answer: (A) Yes
+
+<answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+
+Based on these errors, the problems with this prompt and the reasons are:
+<1> 
+In this question, the model incorrectly inferred that the hunter intentionally shot the bird-watcher. The problem with this prediction likely arose from the line in the prompt that instructs the model to “prioritize recent or critical events that immediately cause the outcome over historical context". In focusing on the immediacy, the model might have assumed that because the hunter knew about the bird-watchers and still made the choice to shoot, his actions were intentionally aimed at the bird-watcher. In reality, even though the bullet hitting the bird-watcher was an effect of his decision to shoot the deer, it wasn't the hunter's primary intention.
+
+<2> 
+In this scenario, the model wrongly credits the pharmacist's decision as causing the patient's recovery. This could be due to the instruction in the prompt to consider immediate causes instead of long-term contributing factors. The decision of the pharmacist was an immediate event that contributed to the administration of the drug, but the question was about the recovery of the patient — a long-term effect. The real cause of the recovery was not the pharmacist’s decision but the drug itself and the doctor’s decision to let the patient be treated with it against the hospital policy.
+
+Suggestions to improve the prompt:
+
+1. Modify the prompt to encourage the model to consider not only the immediacy of events but also the actors' intentions, mental states, and frame of reference. Going beyond causality into the realm of intentionality might prevent pitfalls like those seen in the first scenario.
+
+2. Modify the instruction to prioritize recent or critical events over historical context. The model strictly followed this instruction and hence missed other critical influencing factors in the examples.
+
+3. Specify in the prompt that causal attribution can differ greatly depending on the frame of reference (agent vs observer), especially for questions about responsibility or blame.
+
+4. State in the prompt that multiple causes can occur simultaneously, and that the model should consider and weigh these together rather than identifying just one. This would help with more complex causal paths like the one in the second scenario.
+
+Present the prompt as follows:
+
+Determine immediate and potential causal attribution in given scenarios, taking into account both immediate causes and long-term contributing factors. Consider both recent and historical events, but avoid giving undue weight to recent events. Be aware that causality can incorporate agent intentions, mental states, or viewpoints, and can involve multiple causes. Recognize that different frames of reference, such as an agent's vs an observer's, can influence how causations are understood and assigned.
+
+There are a list of former prompts including the current prompt, and each prompt is modified from its former prompts:
+(0) Answer questions about causal attribution
+(1) Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+
+
+Based on the above information, please write 1 new prompt following these guidelines:
+1. The new prompt should solve the current prompt's problems.
+2. The new prompt should consider the list of prompts and evolve based on the current prompt.
+3. The new prompt should be wrapped with <START> and <END>.
+
+The new prompts is:
+response:
+<START> Analyze and answer questions about causal attribution in given scenarios, making distinct considerations for both immediate causes and long-term contributing factors. When multiple events seem to contribute to an outcome, evaluate them in terms of their respective timing, actors' intentions, mental states, and greater context, without unduly prioritizing recent or immediate events over historical or background elements. Understand that causal attribution may involve multiple simultaneous causes and can be heavily influenced by varied frames of reference, such as the perspectives of the agent versus an observer. <END>
+optimized_prompt:
+["Analyze and answer questions about causal attribution in given scenarios, making distinct considerations for both immediate causes and long-term contributing factors. When multiple events seem to contribute to an outcome, evaluate them in terms of their respective timing, actors' intentions, mental states, and greater context, without unduly prioritizing recent or immediate events over historical or background elements. Understand that causal attribution may involve multiple simultaneous causes and can be heavily influenced by varied frames of reference, such as the perspectives of the agent versus an observer."]
+
+prompt: Analyze and answer questions about causal attribution in given scenarios, making distinct considerations for both immediate causes and long-term contributing factors. When multiple events seem to contribute to an outcome, evaluate them in terms of their respective timing, actors' intentions, mental states, and greater context, without unduly prioritizing recent or immediate events over historical or background elements. Understand that causal attribution may involve multiple simultaneous causes and can be heavily influenced by varied frames of reference, such as the perspectives of the agent versus an observer.
+child_node 4 (reward:0.5600, reward: 0.5600)
+child_node 5 (reward:0.5600, reward: 0.5600)
+child_node 6 (reward:0.5400, reward: 0.5400)
+Expanding:
+Expanding: node: 4, depth 2, reward: 0.5600
+cur_prompt: Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+---------------	forward	----------------
+cur_prompt:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+labels:  ['B', 'B', 'A', 'B', 'A']
+preds:   ['B', 'A', 'A', 'A', 'B']
+correct: [1, 0, 1, 0, 0]
+acc:     0.4
+
+---------------	cal_gradient	----------------
+gradient_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+David has a new dryer in his apartment. David's clothes will dry in sixty minutes if either the cycle is set to MAX DRY or the temperature is set to HIGH. Today, the cycle is already set to MAX DRY, and the temperature is not set on HIGH. David checks the dryer's settings, and he sees that the temperature is not set on HIGH. He completely changes the setting, and he sets the temperature to HIGH. He then turns on the dryer. Because the dryer would dry David's clothes in sixty minutes if either the cycle is set to MAX DRY or the temperature is set to HIGH, the dryer dries David's clothes in sixty minutes. Did David's clothes dry in sixty minutes because David changed the temperature setting?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer: (A) Yes
+
+<answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+<2> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+Alex will only win the game if the total of his dice roll is greater than 11 AND the coin comes up heads. It is very unlikely that he will roll higher than 11, but the coin has equal odds of coming up heads or tails. Alex flips the coin and rolls his dice at exactly the same time. The coin comes up heads, and he rolls a 12, so amazingly, he rolled greater than 11. Alex wins the game. Did Alex win because of the coin flip?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+Alex won the game because of both the coin flip and rolling greater than 11. The outcome was dependent on both events happening simultaneously. 
+
+<answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+<3> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+Bill's wife, Sue, is out of town for the weekend. She leaves Bill a message that says, 'I just saw this marvelous bookend. It's called a Bartlett bookend. So pretty! I'm going to go back tomorrow and get one. It will be perfect for the left side of our bookshelf'. Bill goes and visits his friend. Bill and his friend talk for a while, and when Bill asks if his friend is willing to sell the bookend, his friend tells him it's a precious heirloom and he can't part with it. Bill waits until later when his friend is in the bathroom, and slips the bookend into his bag. Finally, Bill leaves his friend's house with the stolen right-side Bartlett bookend in his bag. Then the next day, Sue goes and buys the left-side Bartlett bookend. So, when Sue got home, they had the paired set of bookends. Did Bill cause them to possess the paired set of bookends?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer: (B) No
+
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+
+For each wrong example, carefully examine each question and wrong answer step by step, provide comprehensive and different reasons why the prompt leads to the wrong answer. At last, based on all these reasons, summarize and list all the aspects that can improve the prompt.
+gradient:
+<1> In the first example, the model incorrectly predicted the outcome as a result of David changing the temperature setting. However, the action of David changing the temperature setting of the dryer does not contribute to the causation in this case, since setting the cycle to MAX DRY already satisfies the condition for the clothes to dry in sixty minutes. Therefore, David's action of changing the temperature setting did not contribute to the outcome. This wrong answer might have resulted from the heavy emphasis on recognizing multiple factors and indirect causes in the prompt. 
+
+<2> The second example shows another misunderstanding of the causal attribution. Alex won the game due to both conditions being satisfied, rolling a total more than 11 and the coin landing on heads. The model incorrectly attributed the win exclusively to the coin flip. This might have been caused by the prompt's emphasis on singling out separate actions when exploring causality, causing the model to overlook the combined effect of the different conditions.
+
+<3> In the third example, the model did not recognize Bill's action of taking the right-side Bartlett bookend as contributing to the possession of the paired set of bookends. The prompt might have led to the error through its emphasis on prioritizing recent or critical events that directly cause the outcome, steering the model away towards Sue's final action of purchasing the left-side bookend.
+
+Improvements:
+
+1. Emphasize the logical structure of the scenario: The model should understand how combinations of conditions or actions can lead to an outcome, especially in logically complex cases.
+
+2. Prioritize direct causes without ignoring indirect ones: While the prompt currently tells the model to prioritize recent or critical events, it might need to stress that this does not mean ignoring or discounting direct causes that happened earlier.
+
+3. Discern between dependent and independent actions: The prompt can underline that not every action in a scenario necessarily contributes to the final result. For example, a prompt might specify that both 'necessary' and 'sufficient' conditions of causes need to be determined and explain how to handle scenarios where conditions might overlap.
+
+4. Explain the prominence of 'either-or' and 'and' situations: The model needs to comprehend the difference between situations where one of several actions can cause an outcome ('either-or' situations) and those where multiple actions simultaneously contribute to the outcome ('and' situations).
+
+5. Address each option separately: In scenarios where options are provided, the model should evaluate and respond to each option separately to avoid binary assumptions unless specifically required. This would help in determining contributive and determining factors more accurately.
+
+Based on these points, the revised prompt could guide the model more accurately towards the correct causal attributions.
+
+-------------	optimize	---------------
+optimize_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+David has a new dryer in his apartment. David's clothes will dry in sixty minutes if either the cycle is set to MAX DRY or the temperature is set to HIGH. Today, the cycle is already set to MAX DRY, and the temperature is not set on HIGH. David checks the dryer's settings, and he sees that the temperature is not set on HIGH. He completely changes the setting, and he sets the temperature to HIGH. He then turns on the dryer. Because the dryer would dry David's clothes in sixty minutes if either the cycle is set to MAX DRY or the temperature is set to HIGH, the dryer dries David's clothes in sixty minutes. Did David's clothes dry in sixty minutes because David changed the temperature setting?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer: (A) Yes
+
+<answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+<2> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+Alex will only win the game if the total of his dice roll is greater than 11 AND the coin comes up heads. It is very unlikely that he will roll higher than 11, but the coin has equal odds of coming up heads or tails. Alex flips the coin and rolls his dice at exactly the same time. The coin comes up heads, and he rolls a 12, so amazingly, he rolled greater than 11. Alex wins the game. Did Alex win because of the coin flip?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+Alex won the game because of both the coin flip and rolling greater than 11. The outcome was dependent on both events happening simultaneously. 
+
+<answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+<3> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+Bill's wife, Sue, is out of town for the weekend. She leaves Bill a message that says, 'I just saw this marvelous bookend. It's called a Bartlett bookend. So pretty! I'm going to go back tomorrow and get one. It will be perfect for the left side of our bookshelf'. Bill goes and visits his friend. Bill and his friend talk for a while, and when Bill asks if his friend is willing to sell the bookend, his friend tells him it's a precious heirloom and he can't part with it. Bill waits until later when his friend is in the bathroom, and slips the bookend into his bag. Finally, Bill leaves his friend's house with the stolen right-side Bartlett bookend in his bag. Then the next day, Sue goes and buys the left-side Bartlett bookend. So, when Sue got home, they had the paired set of bookends. Did Bill cause them to possess the paired set of bookends?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer: (B) No
+
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+
+Based on these errors, the problems with this prompt and the reasons are:
+<1> In the first example, the model incorrectly predicted the outcome as a result of David changing the temperature setting. However, the action of David changing the temperature setting of the dryer does not contribute to the causation in this case, since setting the cycle to MAX DRY already satisfies the condition for the clothes to dry in sixty minutes. Therefore, David's action of changing the temperature setting did not contribute to the outcome. This wrong answer might have resulted from the heavy emphasis on recognizing multiple factors and indirect causes in the prompt. 
+
+<2> The second example shows another misunderstanding of the causal attribution. Alex won the game due to both conditions being satisfied, rolling a total more than 11 and the coin landing on heads. The model incorrectly attributed the win exclusively to the coin flip. This might have been caused by the prompt's emphasis on singling out separate actions when exploring causality, causing the model to overlook the combined effect of the different conditions.
+
+<3> In the third example, the model did not recognize Bill's action of taking the right-side Bartlett bookend as contributing to the possession of the paired set of bookends. The prompt might have led to the error through its emphasis on prioritizing recent or critical events that directly cause the outcome, steering the model away towards Sue's final action of purchasing the left-side bookend.
+
+Improvements:
+
+1. Emphasize the logical structure of the scenario: The model should understand how combinations of conditions or actions can lead to an outcome, especially in logically complex cases.
+
+2. Prioritize direct causes without ignoring indirect ones: While the prompt currently tells the model to prioritize recent or critical events, it might need to stress that this does not mean ignoring or discounting direct causes that happened earlier.
+
+3. Discern between dependent and independent actions: The prompt can underline that not every action in a scenario necessarily contributes to the final result. For example, a prompt might specify that both 'necessary' and 'sufficient' conditions of causes need to be determined and explain how to handle scenarios where conditions might overlap.
+
+4. Explain the prominence of 'either-or' and 'and' situations: The model needs to comprehend the difference between situations where one of several actions can cause an outcome ('either-or' situations) and those where multiple actions simultaneously contribute to the outcome ('and' situations).
+
+5. Address each option separately: In scenarios where options are provided, the model should evaluate and respond to each option separately to avoid binary assumptions unless specifically required. This would help in determining contributive and determining factors more accurately.
+
+Based on these points, the revised prompt could guide the model more accurately towards the correct causal attributions.
+
+There are a list of former prompts including the current prompt, and each prompt is modified from its former prompts:
+(0) Answer questions about causal attribution
+(1) Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+(2) Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+
+
+Based on the above information, please write 1 new prompt following these guidelines:
+1. The new prompt should solve the current prompt's problems.
+2. The new prompt should consider the list of prompts and evolve based on the current prompt.
+3. The new prompt should be wrapped with <START> and <END>.
+
+The new prompts is:
+response:
+<START> When answering questions about causal attribution, identify both immediate and potential causes. Understand that both individual and multiple factors can influence a scenario. Causes might be direct or indirect, immediate or long-term. Note that continuous actions, as well as inactions, can also lead to outcomes. When determining the primary cause, prioritize factors or events that have a direct impact on the outcome, but do not exclude other contributing factors. Ensure you adequately consider all factors before providing a final answer. Understand and evaluate 'necessary' and 'sufficient' conditions, as well as their overlap in the context of causation. Comprehend the difference between scenarios in which any one or several factors can lead to an outcome ('either-or' conditions), and situations where multiple factors need to occur simultaneously for the outcome ('and' conditions). Pay special attention to logically complex causes and chain of events. When provided with options, assess each option independently before forming a conclusion. Your task is to trace the chain of causation in scenarios and answer queries about the primary cause or causes of the given outcome. <END>
+optimized_prompt:
+["When answering questions about causal attribution, identify both immediate and potential causes. Understand that both individual and multiple factors can influence a scenario. Causes might be direct or indirect, immediate or long-term. Note that continuous actions, as well as inactions, can also lead to outcomes. When determining the primary cause, prioritize factors or events that have a direct impact on the outcome, but do not exclude other contributing factors. Ensure you adequately consider all factors before providing a final answer. Understand and evaluate 'necessary' and 'sufficient' conditions, as well as their overlap in the context of causation. Comprehend the difference between scenarios in which any one or several factors can lead to an outcome ('either-or' conditions), and situations where multiple factors need to occur simultaneously for the outcome ('and' conditions). Pay special attention to logically complex causes and chain of events. When provided with options, assess each option independently before forming a conclusion. Your task is to trace the chain of causation in scenarios and answer queries about the primary cause or causes of the given outcome."]
+
+prompt: When answering questions about causal attribution, identify both immediate and potential causes. Understand that both individual and multiple factors can influence a scenario. Causes might be direct or indirect, immediate or long-term. Note that continuous actions, as well as inactions, can also lead to outcomes. When determining the primary cause, prioritize factors or events that have a direct impact on the outcome, but do not exclude other contributing factors. Ensure you adequately consider all factors before providing a final answer. Understand and evaluate 'necessary' and 'sufficient' conditions, as well as their overlap in the context of causation. Comprehend the difference between scenarios in which any one or several factors can lead to an outcome ('either-or' conditions), and situations where multiple factors need to occur simultaneously for the outcome ('and' conditions). Pay special attention to logically complex causes and chain of events. When provided with options, assess each option independently before forming a conclusion. Your task is to trace the chain of causation in scenarios and answer queries about the primary cause or causes of the given outcome.
+cur_prompt: Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+---------------	forward	----------------
+cur_prompt:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+labels:  ['A', 'A', 'A', 'A', 'A']
+preds:   ['A', 'B', 'A', 'B', 'A']
+correct: [1, 0, 1, 0, 1]
+acc:     0.6
+
+---------------	cal_gradient	----------------
+gradient_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+Ned has a new motorboat. When Ned turns the key, the motorboat starts if either the gear is in neutral or the motor is in the lock position. Today, the gear is in neutral, and the motor is in the lock position. Ned checks the motor to see if it is in the lock position. He sees that it is in the lock position, and he does not change its position at all. Because the motorboat would start if either the gear is in neutral or the motor is in the lock position, the motorboat starts when Ned turns the key. Did the motorboat start because Ned did not change the position of the motor?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer: (B) No
+
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+<2> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+Karen was an assistant editor for a small publishing firm. She had a rare hereditary disease called Karpinson's hemotrysoma, characterized by the lack of an enzyme that normally breaks down certain proteins in the digestive system. Because of this, fermented drinks such as wine and liqueurs can cause a severe allergic reaction in someone with the disease. Karen had just received a promotion so her boss, Mr. Carlson, took her to an expensive French restaurant to celebrate. Mr. Carlson had been to this restaurant several times, so he ordered for both of them. As he looked over the menu, Mr. Carlson considered what to order for Karen. He first thought about ordering the Scallops Meuniere, but at the last moment decided on the Moules Mariniere instead. Although Mr. Carlson did not know this, the Moules Mariniere was made in a wine sauce whereas the Scallops Meuniere did not contain any wine. Karen enjoyed her meal greatly, but began to feel ill shortly after finishing. Within minutes, she went into convulsions and was rushed away in an ambulance. She died on the way to the hospital. Did Mr. Carlson's choice of dish cause Karen's death?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer:
+(B) No
+
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+
+For each wrong example, carefully examine each question and wrong answer step by step, provide comprehensive and different reasons why the prompt leads to the wrong answer. At last, based on all these reasons, summarize and list all the aspects that can improve the prompt.
+gradient:
+Wrong Example 1:
+The question probed on the concept of whether both 'actions' and 'inactions' can be causative factors. The prompt may have led to an incorrect answer because it does not sufficiently stress the importance of considering inaction (i.e., someone not doing something) as a potential cause. In this particular scenario, Ned’s inaction to change the motor's position was integral to the motorboat’s starting. The model overlooked the fact that inaction can also be a contributing causal factor.
+
+Wrong Example 2:
+In this scenario, the main cause of Karen's death is the wine sauce in the dish ordered by Mr. Carlson. Her disease was a contributing factor as it made her susceptible to an adverse reaction. The prompt perhaps did not adequately emphasize the need to consider several elements jointly when identifying a cause. In addition, the model may have failed to recognize 'indirect' causes, wherein one factor (Mr. Carlson's order) indirectly led to another (Karen's reaction to the wine in the sauce), resulting in the adverse outcome.
+
+Summary of Problems:
+1. The prompt does not stress enough the importance of considering 'inaction' as a potential cause.
+2. The model may not be adequately distinguishing between 'indirect' and 'direct' causes.
+3. The prompt may not be fully asserting the fact that 'a single action' can lead to a chain of events, thereby contributing to the final outcome.
+4. The model may not comprehend that all elements should be considered concurrently when looking for a cause, even if some seem less involved in the outcome.
+
+Improvements:
+1. The prompt should underline the significance of both 'action' and 'inaction' as possible causes of an event. Specify the need to consider both when identifying causes.
+2. Modify the prompt to insist more on the different categories of causes: 'direct', 'indirect', 'immediate', 'long-term'.
+3. Elaborate on how a single action can lead to a series of events, thus having a contributory effect to the outcome.
+4. Further emphasize that every individual factor must be contemplated in conjunction - even if they seem insignificant or uninvolved.
+5. The model should also be prompted to navigate carefully through scenarios where causality is embedded within a complex chain of events or conditions.
+
+-------------	optimize	---------------
+optimize_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+Ned has a new motorboat. When Ned turns the key, the motorboat starts if either the gear is in neutral or the motor is in the lock position. Today, the gear is in neutral, and the motor is in the lock position. Ned checks the motor to see if it is in the lock position. He sees that it is in the lock position, and he does not change its position at all. Because the motorboat would start if either the gear is in neutral or the motor is in the lock position, the motorboat starts when Ned turns the key. Did the motorboat start because Ned did not change the position of the motor?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer: (B) No
+
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+<2> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+Karen was an assistant editor for a small publishing firm. She had a rare hereditary disease called Karpinson's hemotrysoma, characterized by the lack of an enzyme that normally breaks down certain proteins in the digestive system. Because of this, fermented drinks such as wine and liqueurs can cause a severe allergic reaction in someone with the disease. Karen had just received a promotion so her boss, Mr. Carlson, took her to an expensive French restaurant to celebrate. Mr. Carlson had been to this restaurant several times, so he ordered for both of them. As he looked over the menu, Mr. Carlson considered what to order for Karen. He first thought about ordering the Scallops Meuniere, but at the last moment decided on the Moules Mariniere instead. Although Mr. Carlson did not know this, the Moules Mariniere was made in a wine sauce whereas the Scallops Meuniere did not contain any wine. Karen enjoyed her meal greatly, but began to feel ill shortly after finishing. Within minutes, she went into convulsions and was rushed away in an ambulance. She died on the way to the hospital. Did Mr. Carlson's choice of dish cause Karen's death?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer:
+(B) No
+
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+
+Based on these errors, the problems with this prompt and the reasons are:
+Wrong Example 1:
+The question probed on the concept of whether both 'actions' and 'inactions' can be causative factors. The prompt may have led to an incorrect answer because it does not sufficiently stress the importance of considering inaction (i.e., someone not doing something) as a potential cause. In this particular scenario, Ned’s inaction to change the motor's position was integral to the motorboat’s starting. The model overlooked the fact that inaction can also be a contributing causal factor.
+
+Wrong Example 2:
+In this scenario, the main cause of Karen's death is the wine sauce in the dish ordered by Mr. Carlson. Her disease was a contributing factor as it made her susceptible to an adverse reaction. The prompt perhaps did not adequately emphasize the need to consider several elements jointly when identifying a cause. In addition, the model may have failed to recognize 'indirect' causes, wherein one factor (Mr. Carlson's order) indirectly led to another (Karen's reaction to the wine in the sauce), resulting in the adverse outcome.
+
+Summary of Problems:
+1. The prompt does not stress enough the importance of considering 'inaction' as a potential cause.
+2. The model may not be adequately distinguishing between 'indirect' and 'direct' causes.
+3. The prompt may not be fully asserting the fact that 'a single action' can lead to a chain of events, thereby contributing to the final outcome.
+4. The model may not comprehend that all elements should be considered concurrently when looking for a cause, even if some seem less involved in the outcome.
+
+Improvements:
+1. The prompt should underline the significance of both 'action' and 'inaction' as possible causes of an event. Specify the need to consider both when identifying causes.
+2. Modify the prompt to insist more on the different categories of causes: 'direct', 'indirect', 'immediate', 'long-term'.
+3. Elaborate on how a single action can lead to a series of events, thus having a contributory effect to the outcome.
+4. Further emphasize that every individual factor must be contemplated in conjunction - even if they seem insignificant or uninvolved.
+5. The model should also be prompted to navigate carefully through scenarios where causality is embedded within a complex chain of events or conditions.
+
+There are a list of former prompts including the current prompt, and each prompt is modified from its former prompts:
+(0) Answer questions about causal attribution
+(1) Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+(2) Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+
+
+Based on the above information, please write 1 new prompt following these guidelines:
+1. The new prompt should solve the current prompt's problems.
+2. The new prompt should consider the list of prompts and evolve based on the current prompt.
+3. The new prompt should be wrapped with <START> and <END>.
+
+The new prompts is:
+response:
+<START> Analyses questions about causation by distinguishing between direct, indirect, immediate, and long-term causes in each scenario. Prioritize evaluation of recent or critical events that appear to have had a direct impact on the outcome, but do not disregard distant or minor events and casual factors. Take account of both actions and inactions as they can similarly lead to consequential outcomes. Appreciate that a single action can act as a trigger to a series of events, also consider that an entire series of actions or inactions, when combined, can result in a specific outcome. Be mindful to integrate all individual factors, even those that initially seem unrelated or insignificant, as they might be crucial in a complex chain of causal events or conditions. Encourage an all-encompassing view towards causation—it is common that multiple factors jointly contribute to a single outcome. <END>
+optimized_prompt:
+['Analyses questions about causation by distinguishing between direct, indirect, immediate, and long-term causes in each scenario. Prioritize evaluation of recent or critical events that appear to have had a direct impact on the outcome, but do not disregard distant or minor events and casual factors. Take account of both actions and inactions as they can similarly lead to consequential outcomes. Appreciate that a single action can act as a trigger to a series of events, also consider that an entire series of actions or inactions, when combined, can result in a specific outcome. Be mindful to integrate all individual factors, even those that initially seem unrelated or insignificant, as they might be crucial in a complex chain of causal events or conditions. Encourage an all-encompassing view towards causation—it is common that multiple factors jointly contribute to a single outcome.']
+
+prompt: Analyses questions about causation by distinguishing between direct, indirect, immediate, and long-term causes in each scenario. Prioritize evaluation of recent or critical events that appear to have had a direct impact on the outcome, but do not disregard distant or minor events and casual factors. Take account of both actions and inactions as they can similarly lead to consequential outcomes. Appreciate that a single action can act as a trigger to a series of events, also consider that an entire series of actions or inactions, when combined, can result in a specific outcome. Be mindful to integrate all individual factors, even those that initially seem unrelated or insignificant, as they might be crucial in a complex chain of causal events or conditions. Encourage an all-encompassing view towards causation—it is common that multiple factors jointly contribute to a single outcome.
+cur_prompt: Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+---------------	forward	----------------
+cur_prompt:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+labels:  ['B', 'A', 'A', 'A', 'B']
+preds:   ['A', 'B', 'B', 'A', 'A']
+correct: [0, 0, 0, 1, 0]
+acc:     0.2
+
+---------------	cal_gradient	----------------
+gradient_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+There is a supervillain who has a group of evil henchmen working for him. The supervillain and his henchman are the baddest of the bad, never passing up a chance to spread malice and evil. In fact, the supervillain and his henchman do bad things almost exclusively. You are the assistant to the supervillain. Your job is to help him choose whom to promote within the ranks of the evil henchmen. The job of the evil henchmen is to do maximum evil at every opportunity. To make your decisions, you've planted secret microphones and video cameras to observe the henchmen in action. Below is an episode that you've observed involving Bob, a henchman eager to move up the ranks whom you will be asked to evaluate: A rookie henchmen said to Bob: "Sir, we have a plan to rob a bank by releasing neurotoxins in the air, temporarily causing anyone in the vicinity of the bank to be incapacitated. However, trace amounts of the neurotoxin will remain in the air, and we've discovered that in small amounts it causes increased susceptibility to a poison the supervillain has been slowly introducing into the water supply. Exposure to the neurotoxin will cause even more people in town to become ill from the water, and their reactions will be more severe. It will greatly harm the town's quality of life." Bob the henchman said: "I don't care one way or another about the health of the townspeople. I just want to steal as much money as I can. Let's go ahead with the plan." They went ahead with the plan, and sure enough Bob the henchman acquired large amounts of money from the bank and many townspeople became severely ill. The health of the townspeople was thus harmed. Your boss, the supervillain says: "I need to choose someone to promote up the villain ranks. I have a lot of henchmen to choose from. All of them have proven that they are capable of doing evil, but I want someone who is truly evil. What about Bob? I heard he robbed a bank, acquired a large amount of money, and made a bunch of townspeople ill." Did Bob intentionally harm the health of the townspeople?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+Yes, Bob intentionally harmed the health of the townspeople. 
+
+<answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+<2> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+Janet is an employee in a factory. Since she works in the maintenance department, she knows how to grease and oil all of the machines in the factory. It is her responsibility to put oil into the machines. Kate is also an employee at the factory. While she works in the human resources department, she knows how to grease and oil all of the machines in the factory. If Janet does not put oil in the machines, it is not Kate's responsibility to do so. One day, Janet forgets to put oil in an important machine. Kate noticed that Janet did not put oil in the machine, and Kate also did not put oil in the machine. The machine broke down a few days later. Did Kate not putting oil in the machine cause it to break down?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+Kate not putting oil in the machine did not directly cause it to break down. The immediate cause of the machine breaking down was Janet forgetting to put oil in it. However, Kate's inaction could be seen as a contributing factor, as she also knew how to grease and oil the machines and could have prevented the breakdown by taking action when she noticed Janet's mistake.
+
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+<3> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+A bear and a hedgehog were shown a box full of colored pencils. Only bears were allowed to take pencils, whereas hedgehogs were not allowed to take them. The hedgehog was absent when the new rule about pencil use was announced. Therefore, the hedgehog did not know about the new norm. Both animals alternately took pencils out of the box six times. At last, the hedgehog and the bear came to the box and simultaneously took a pencil. A short time later, another animal, a polar bear, approached the box seeking a pencil to do his homework with. However, there were no pencils left in the box. The polar bear could not finish his homework. Did the hedgehog cause the problem?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+The hedgehog did not cause the problem. The problem was caused by the bear and the hedgehog taking all the pencils from the box before the polar bear arrived. The hedgehog's lack of knowledge about the new rule regarding pencil use may have contributed to the situation, but it was not the direct cause of the polar bear not having a pencil for his homework.
+
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+<4> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+Louie is playing a game of basketball, and he made a bet with his friends who are watching on the sidelines. If Louie either makes a layup or makes a 3-point shot during the game, then he'll win $100. Just when the game started, Louie immediately got the ball at the 3-point line. He looked to the basket, focused his shot, and made a 3-point shot right at the beginning of the game. Louie and his friends continued playing, but as hard as he tried, Louie couldn't make another shot. And then right at the end of the game as the clock was winding down, Louie got the ball at the 3-point line. He looked to the basket, dribbled in, and then made a layup right at the buzzer. Then the game ended. Because Louie would win $100 if he either made a layup or a 3-point shot, Louie won $100. Did Louie win the $100 bet because he made the layup?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer (A) Yes, Louie won the $100 bet because he made the layup. 
+
+<answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+
+For each wrong example, carefully examine each question and wrong answer step by step, provide comprehensive and different reasons why the prompt leads to the wrong answer. At last, based on all these reasons, summarize and list all the aspects that can improve the prompt.
+gradient:
+1. Example 1:
+   - Question: Did Bob intentionally harm the health of the townspeople?
+   - Wrong Answer: Yes
+   - Right Answer: No
+
+   Analysis: The model wrongly identified Bob's action as the direct cause of the townspeople's illness. The prompt emphasizes the accounting of both single actions and a series of events when determining causation. The model might have associated Bob's decision to execute the plan with intent to harm. However, it seems to neglect an important aspect: Bob’s intent was to steal the money, not to harm the people.
+
+2. Example 2:
+   - Question: Did Kate not putting oil in the machine cause it to break down?
+   - Wrong Answer: No
+   - Right Answer: Yes
+   
+   Analysis: The model incorrectly focuses on Janet's action of not oiling the machine as the primary cause of the machine breaking down. The model seems to misinterpret the concept of responsibility detailed in the prompt. It did not differentiate between causative inaction and responsibility, leading to an incorrect assessment.
+
+3. Example 3:
+   - Question: Did the hedgehog cause the problem?
+   - Wrong Answer: No
+   - Right Answer: Yes
+   
+   Analysis: The model erroneously exonerated the hedgehog due to its lack of knowledge about pencil use rules. The model only focuses on whether the hedgehog knew the rules, but it didn't consider the fact that ignorance of a rule doesn't eliminate one's role in the causal chain of events.
+
+4. Example 4:
+   - Question: Did Louie win the $100 bet because he made the layup?
+   - Wrong Answer: Yes
+   - Right Answer: No
+   
+   Analysis: The model wrongly recognized the layup at the end of the game as the sole cause of winning. This shows that the prompt failed in adequately instructing the model to identify decisive and non-decisive factors in a sequence of events. Louie already won the bet with his first 3-point shot.
+
+Improvements for the prompt:
+   - Make it clearer that intent matters in deciding if an action causes a particular outcome.
+   - Clearly distinguish between causative inaction and responsibility.
+   - Factor in the unawareness of rules or norms may not exempt the role in causing the outcome.
+   - Improve the instruction to allow the model to focus more adeptly on decisive events/actions in a sequence.
+   - Guide the model to draw a logical line between cause and effect rather than making assumptions based on a sequence of actions.
+
+-------------	optimize	---------------
+optimize_prompt:
+I'm writing prompts for a language model designed for a task.
+
+My current prompt is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+
+But this prompt gets the following examples wrong:
+
+<1> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+There is a supervillain who has a group of evil henchmen working for him. The supervillain and his henchman are the baddest of the bad, never passing up a chance to spread malice and evil. In fact, the supervillain and his henchman do bad things almost exclusively. You are the assistant to the supervillain. Your job is to help him choose whom to promote within the ranks of the evil henchmen. The job of the evil henchmen is to do maximum evil at every opportunity. To make your decisions, you've planted secret microphones and video cameras to observe the henchmen in action. Below is an episode that you've observed involving Bob, a henchman eager to move up the ranks whom you will be asked to evaluate: A rookie henchmen said to Bob: "Sir, we have a plan to rob a bank by releasing neurotoxins in the air, temporarily causing anyone in the vicinity of the bank to be incapacitated. However, trace amounts of the neurotoxin will remain in the air, and we've discovered that in small amounts it causes increased susceptibility to a poison the supervillain has been slowly introducing into the water supply. Exposure to the neurotoxin will cause even more people in town to become ill from the water, and their reactions will be more severe. It will greatly harm the town's quality of life." Bob the henchman said: "I don't care one way or another about the health of the townspeople. I just want to steal as much money as I can. Let's go ahead with the plan." They went ahead with the plan, and sure enough Bob the henchman acquired large amounts of money from the bank and many townspeople became severely ill. The health of the townspeople was thus harmed. Your boss, the supervillain says: "I need to choose someone to promote up the villain ranks. I have a lot of henchmen to choose from. All of them have proven that they are capable of doing evil, but I want someone who is truly evil. What about Bob? I heard he robbed a bank, acquired a large amount of money, and made a bunch of townspeople ill." Did Bob intentionally harm the health of the townspeople?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+Yes, Bob intentionally harmed the health of the townspeople. 
+
+<answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+<2> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+Janet is an employee in a factory. Since she works in the maintenance department, she knows how to grease and oil all of the machines in the factory. It is her responsibility to put oil into the machines. Kate is also an employee at the factory. While she works in the human resources department, she knows how to grease and oil all of the machines in the factory. If Janet does not put oil in the machines, it is not Kate's responsibility to do so. One day, Janet forgets to put oil in an important machine. Kate noticed that Janet did not put oil in the machine, and Kate also did not put oil in the machine. The machine broke down a few days later. Did Kate not putting oil in the machine cause it to break down?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+Kate not putting oil in the machine did not directly cause it to break down. The immediate cause of the machine breaking down was Janet forgetting to put oil in it. However, Kate's inaction could be seen as a contributing factor, as she also knew how to grease and oil the machines and could have prevented the breakdown by taking action when she noticed Janet's mistake.
+
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+<3> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+A bear and a hedgehog were shown a box full of colored pencils. Only bears were allowed to take pencils, whereas hedgehogs were not allowed to take them. The hedgehog was absent when the new rule about pencil use was announced. Therefore, the hedgehog did not know about the new norm. Both animals alternately took pencils out of the box six times. At last, the hedgehog and the bear came to the box and simultaneously took a pencil. A short time later, another animal, a polar bear, approached the box seeking a pencil to do his homework with. However, there were no pencils left in the box. The polar bear could not finish his homework. Did the hedgehog cause the problem?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+The hedgehog did not cause the problem. The problem was caused by the bear and the hedgehog taking all the pencils from the box before the polar bear arrived. The hedgehog's lack of knowledge about the new rule regarding pencil use may have contributed to the situation, but it was not the direct cause of the polar bear not having a pencil for his homework.
+
+<answer>(B) No</answer>
+
+The correct label is: A
+The model's prediction is: B.
+
+<4> 
+The model's input is:
+Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+How would a typical person answer each of the following questions about causation?
+Louie is playing a game of basketball, and he made a bet with his friends who are watching on the sidelines. If Louie either makes a layup or makes a 3-point shot during the game, then he'll win $100. Just when the game started, Louie immediately got the ball at the 3-point line. He looked to the basket, focused his shot, and made a 3-point shot right at the beginning of the game. Louie and his friends continued playing, but as hard as he tried, Louie couldn't make another shot. And then right at the end of the game as the clock was winding down, Louie got the ball at the 3-point line. He looked to the basket, dribbled in, and then made a layup right at the buzzer. Then the game ended. Because Louie would win $100 if he either made a layup or a 3-point shot, Louie won $100. Did Louie win the $100 bet because he made the layup?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+The model's response is: 
+A typical person would likely answer (A) Yes, Louie won the $100 bet because he made the layup. 
+
+<answer>(A) Yes</answer>
+
+The correct label is: B
+The model's prediction is: A.
+
+
+Based on these errors, the problems with this prompt and the reasons are:
+1. Example 1:
+   - Question: Did Bob intentionally harm the health of the townspeople?
+   - Wrong Answer: Yes
+   - Right Answer: No
+
+   Analysis: The model wrongly identified Bob's action as the direct cause of the townspeople's illness. The prompt emphasizes the accounting of both single actions and a series of events when determining causation. The model might have associated Bob's decision to execute the plan with intent to harm. However, it seems to neglect an important aspect: Bob’s intent was to steal the money, not to harm the people.
+
+2. Example 2:
+   - Question: Did Kate not putting oil in the machine cause it to break down?
+   - Wrong Answer: No
+   - Right Answer: Yes
+   
+   Analysis: The model incorrectly focuses on Janet's action of not oiling the machine as the primary cause of the machine breaking down. The model seems to misinterpret the concept of responsibility detailed in the prompt. It did not differentiate between causative inaction and responsibility, leading to an incorrect assessment.
+
+3. Example 3:
+   - Question: Did the hedgehog cause the problem?
+   - Wrong Answer: No
+   - Right Answer: Yes
+   
+   Analysis: The model erroneously exonerated the hedgehog due to its lack of knowledge about pencil use rules. The model only focuses on whether the hedgehog knew the rules, but it didn't consider the fact that ignorance of a rule doesn't eliminate one's role in the causal chain of events.
+
+4. Example 4:
+   - Question: Did Louie win the $100 bet because he made the layup?
+   - Wrong Answer: Yes
+   - Right Answer: No
+   
+   Analysis: The model wrongly recognized the layup at the end of the game as the sole cause of winning. This shows that the prompt failed in adequately instructing the model to identify decisive and non-decisive factors in a sequence of events. Louie already won the bet with his first 3-point shot.
+
+Improvements for the prompt:
+   - Make it clearer that intent matters in deciding if an action causes a particular outcome.
+   - Clearly distinguish between causative inaction and responsibility.
+   - Factor in the unawareness of rules or norms may not exempt the role in causing the outcome.
+   - Improve the instruction to allow the model to focus more adeptly on decisive events/actions in a sequence.
+   - Guide the model to draw a logical line between cause and effect rather than making assumptions based on a sequence of actions.
+
+There are a list of former prompts including the current prompt, and each prompt is modified from its former prompts:
+(0) Answer questions about causal attribution
+(1) Answer questions about immediate and potential causal attribution, distinguishing between immediate causes and long-term contributing factors in given scenarios, especially when multiple events seem to contribute to an outcome. Prioritize recent or critical events that immediate cause the outcome over historical context.
+(2) Answer questions about immediate and potential causal attribution, recognizing individual as well as multiple contributing factors in given scenarios. Remember that causes can be direct, indirect, immediate, or long-term. Continuous actions or inactions can also contribute as causes. Prioritize recent or critical events that directly cause the outcome, but do not dismiss other factors. All factors in play should be considered before arriving at a final answer. Lean on the knowledge that multiple events or circumstances can contribute to a single outcome. Make sure to account for both single actions and a series of events when determining causation.
+
+
+Based on the above information, please write 1 new prompt following these guidelines:
+1. The new prompt should solve the current prompt's problems.
+2. The new prompt should consider the list of prompts and evolve based on the current prompt.
+3. The new prompt should be wrapped with <START> and <END>.
+
+The new prompts is:
+response:
+<START> Assess questions about causal attribution in given scenarios, differentiating between immediate and potential causes. Consider a variety of factors including direct actions, indirect consequences, immediate decisions, and long-term sequences. Bear in mind that continuous actions or inactions can contribute to both intended and unintended outcomes. Intent matters in deciding if an action causes a specific outcome. Evidently, draw the line between causative inactions and assigned responsibilities. Note that unawareness of rules or norms might not free the actor from having a role in the causal chain of events. Recent or critical incidents that directly cause the outcome should be prioritized but historical or minor contexts should not be dismissed. Be sure all crucial and auxiliary elements in play have been contemplated before determining the final causation. Understand and apply the principle that multiple events or conditions can collectively contribute to a single outcome. In causative sequences, ascertain decisive events/actions that fundamentally change the course rather than non-decisive occurrences. <END>
+optimized_prompt:
+['Assess questions about causal attribution in given scenarios, differentiating between immediate and potential causes. Consider a variety of factors including direct actions, indirect consequences, immediate decisions, and long-term sequences. Bear in mind that continuous actions or inactions can contribute to both intended and unintended outcomes. Intent matters in deciding if an action causes a specific outcome. Evidently, draw the line between causative inactions and assigned responsibilities. Note that unawareness of rules or norms might not free the actor from having a role in the causal chain of events. Recent or critical incidents that directly cause the outcome should be prioritized but historical or minor contexts should not be dismissed. Be sure all crucial and auxiliary elements in play have been contemplated before determining the final causation. Understand and apply the principle that multiple events or conditions can collectively contribute to a single outcome. In causative sequences, ascertain decisive events/actions that fundamentally change the course rather than non-decisive occurrences.']
+
+prompt: Assess questions about causal attribution in given scenarios, differentiating between immediate and potential causes. Consider a variety of factors including direct actions, indirect consequences, immediate decisions, and long-term sequences. Bear in mind that continuous actions or inactions can contribute to both intended and unintended outcomes. Intent matters in deciding if an action causes a specific outcome. Evidently, draw the line between causative inactions and assigned responsibilities. Note that unawareness of rules or norms might not free the actor from having a role in the causal chain of events. Recent or critical incidents that directly cause the outcome should be prioritized but historical or minor contexts should not be dismissed. Be sure all crucial and auxiliary elements in play have been contemplated before determining the final causation. Understand and apply the principle that multiple events or conditions can collectively contribute to a single outcome. In causative sequences, ascertain decisive events/actions that fundamentally change the course rather than non-decisive occurrences.

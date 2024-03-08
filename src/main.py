@@ -48,7 +48,7 @@ def config():
     parser.add_argument('--optim_temperature', type=float, default=1.0)
     
     # Others
-    parser.add_argument('--log_dir', type=str, default='../logs/', help='Log directory.')
+    parser.add_argument('--log_dir', type=str, default='../train_log/', help='Log directory.')
     parser.add_argument('--data_dir', type=str, default=None, help='Path to the data file (if needed)')
     parser.add_argument('--api_key', type=str, default=os.getenv("OPENAI_API_KEY"), help='OpenAI api key or PaLM 2 api key')
     

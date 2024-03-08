@@ -88,7 +88,7 @@ class BaseAgent():
             task_name = task_name + "_" + data_dir.split('/')[-1].split('.')[-2]
         
         exp_name = f'{get_pacific_time().strftime("%Y%m%d_%H%M%S")}-{task_name}-algo_{search_algo}-batch_{batch_size}-train_{train_size}'
-        
+        exp_name = f"{task_name}_{train_size}_{eval_size}"
         self.log_dir = os.path.join(log_dir, exp_name)
         self.logger = create_logger(self.log_dir, f'{exp_name}', log_mode='train')
         self.logger.info(exp_name)

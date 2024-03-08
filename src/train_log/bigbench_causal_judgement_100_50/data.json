@@ -1,0 +1,390 @@
+{
+    "all_paths": [
+        [
+            {
+                "id": 0,
+                "depth": 0,
+                "parent": -1,
+                "visited": 1,
+                "expand_times": 1,
+                "q": 3.12,
+                "uct": 3.12,
+                "prompt": "Answer questions about causal attribution",
+                "reward": 0.6,
+                "test_metric": -1.0
+            },
+            {
+                "id": 2,
+                "depth": 1,
+                "parent": 0,
+                "visited": 1,
+                "expand_times": 1,
+                "q": 2.52,
+                "uct": 4.601386527894244,
+                "prompt": "Analyze the provided scenario with attention to detail, to identify the primary and direct cause for the stated event or outcome. Distinguish the significant information that directly relates to the cause of the event or the outcome. Without simplifying or side-lining secondary details, correctly answer questions about the direct causal attribution. Avoid incorrect assumptions and ensure the consideration of the entire context before making a decision.",
+                "reward": 0.66,
+                "test_metric": -1.0
+            },
+            {
+                "id": 6,
+                "depth": 2,
+                "parent": 2,
+                "visited": 1,
+                "expand_times": 1,
+                "q": 1.8599999999999999,
+                "uct": 3.941386527894244,
+                "prompt": "Carefully examine the presented scenario, focusing on identifying the contributory cause related to a specified actor for the occurrence or outcome of an event. Understand that even multiple entities can contribute to an event, however, your task is to determine whether or not the specified entity was a cause. Avoid simplifying or ignoring minor details, answer the causation questions precisely, focusing on the actor's role in causing an event rather than the level of responsibility. Do not make assumptions, consider all the information provided, especially rules or norms shared in the scenario that might influence the actions and outcomes. With this mind, provide a direct answer to whether or not the actor caused the event, recalling that we are focusing on their contributory cause regardless of intentionality or fairness. At the end, indicate your answer option within <answer> and </answer> tags.",
+                "reward": 0.62,
+                "test_metric": -1.0
+            },
+            {
+                "id": 9,
+                "depth": 3,
+                "parent": 6,
+                "visited": 1,
+                "expand_times": 1,
+                "q": 1.24,
+                "uct": 3.3213865278942443,
+                "prompt": "Closely scrutinize the given scenario, placing emphasis on determining whether the specified actor contributed in causing the outcome or event. Multiple entities may play a role in the occurrence of an event, yet your task is primarily to ascertain if the stated entity had a part in causing the event. Without disregarding minor details, answer the related causation questions accurately, concentrating on whether the actor's actions contributed to the event rather than the extent of their responsibility. Unconscious of intentionality or fairness, we are focusing on the actor's contributory cause. 'Intentionality' here specifies that the actor must have a deliberate plan or desire for the outcome to be so. An actor can cause an event directly or indirectly, even if they are not the primary cause. An actor's awareness of potential outcomes doesn't equate to their intentionality in causing them. Despite being a contributory cause, an actor might not be responsible for the outcome, especially if they are ignorant of certain rules or norms. Refrain from making assumptions and interpretations outside of the provided information, pay attention to all details, particularly rules or norms mentioned in the scenario that could influence the actions and possible outcomes. With these considerations in mind, determine whether or not the actor caused the event. Convey your answer by bracketing it within <answer> and </answer> tags.",
+                "reward": 0.64,
+                "test_metric": -1.0
+            },
+            {
+                "id": 10,
+                "depth": 4,
+                "parent": 9,
+                "visited": 1,
+                "expand_times": 0,
+                "q": 0.6,
+                "uct": 2.681386527894244,
+                "prompt": "Analyze the provided scenario meticulously, concentrating on whether the specified actor's actions, direct or indirect, had a contributing role in the event or outcome in question. Rather than debating the level of responsibility, you should focus on the role of the actor, underscoring that an actor can cause an event both directly and indirectly, knowingly or unknowingly, through action or inaction. 'Intentionality' here refers to the actor's explicit wish or plan for the outcome. While one or more entities might contribute to an occurrence, your primary goal is to discern if the specified entity was part of the sequence that led to the event. Always remember, an actor's foreknowledge of potential outcomes does not equate to their intentionality in causing them. Furthermore, being a contributing factor does not always make the actor responsible for the outcome, especially if they lack knowledge of certain rules or norms. Consider all information provided without making assumptions or interpretations outside of it. Give particular attention to any stated rules or norms that could have influenced the actor's actions or the potential outcomes. After sound consideration, ascertain whether or not the actor's action, inaction, or unawareness played a role in the causation of the event. Convey your answer by enclosing it within <answer> and </answer> tags.",
+                "reward": 0.6,
+                "test_metric": -1.0
+            }
+        ]
+    ],
+    "all_nodes": [
+        {
+            "id": 0,
+            "depth": 0,
+            "parent": -1,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 3.12,
+            "uct": 3.12,
+            "prompt": "Answer questions about causal attribution",
+            "reward": 0.6,
+            "test_metric": -1.0
+        },
+        {
+            "id": 1,
+            "depth": 1,
+            "parent": 0,
+            "visited": 0,
+            "expand_times": 0,
+            "q": 0.54,
+            "uct": 0.0,
+            "prompt": "Analyze the narrative context and answer questions about causal attribution, focusing on intentional, incidental consequences and unintended outcomes.",
+            "reward": 0.54,
+            "test_metric": -1.0
+        },
+        {
+            "id": 2,
+            "depth": 1,
+            "parent": 0,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 2.52,
+            "uct": 4.601386527894244,
+            "prompt": "Analyze the provided scenario with attention to detail, to identify the primary and direct cause for the stated event or outcome. Distinguish the significant information that directly relates to the cause of the event or the outcome. Without simplifying or side-lining secondary details, correctly answer questions about the direct causal attribution. Avoid incorrect assumptions and ensure the consideration of the entire context before making a decision.",
+            "reward": 0.66,
+            "test_metric": -1.0
+        },
+        {
+            "id": 3,
+            "depth": 1,
+            "parent": 0,
+            "visited": 0,
+            "expand_times": 0,
+            "q": 0.52,
+            "uct": 0.0,
+            "prompt": "Analyze situations with multiple contributing factors to determine causal attribution, recognizing that both actions taken and actions not taken can be causes. Understand that the perception of a typical answer may differ depending on the individual's interpretation of cause and effect. Answer each question accordingly by considering all possible causes.",
+            "reward": 0.52,
+            "test_metric": -1.0
+        },
+        {
+            "id": 4,
+            "depth": 2,
+            "parent": 2,
+            "visited": 0,
+            "expand_times": 0,
+            "q": 0.6,
+            "uct": 0.0,
+            "prompt": "Examine the provided scenario in-depth, identifying all significant actors whether active or passive and uncovering the main and secondary causes that triggered the desired event or outcome. Both actions and non-actions should be examined with equal weight while considering causality. Highlight all of the information directly or indirectly linking to the cause of the event or outcome, without discounting any secondary details. When answering questions about the direct causal attribution, avoid oversimplification of the causal relationships, ensuring balanced attribution across all factors. Be careful not to make incorrect assumptions. Before settling on a concrete conclusion, guarantee complete consideration of the entire context. Detail your reasoning process demonstrating how you arrived at your conclusion, thus showcasing your ability to understand and depict a detailed causal reasoning process.",
+            "reward": 0.6,
+            "test_metric": -1.0
+        },
+        {
+            "id": 5,
+            "depth": 2,
+            "parent": 2,
+            "visited": 0,
+            "expand_times": 0,
+            "q": 0.56,
+            "uct": 0.0,
+            "prompt": "Analyze the provided scenario with nuanced attention to detail to identify both the primary and any indirect, contributing causes leading to the stated event or outcome. Understand that causality can involve a sequence of events resulting in the eventual outcome. It's important to distinguish between significant information and secondary details, however do not exclude secondary details as they may contribute to the main cause. Keep in mind that in multiple outcome situations, certain conditions can modify the cause-effect relationship. Consider the entire context, avoid making incorrect assumptions or overly simplifying complex circumstances, and use this detailed analysis to accurately answer questions regarding both direct and indirect causal attribution. Always consider the broader context before making a decision, and recognize both direct and sequential causes, even when they might not appear causal on first glance.",
+            "reward": 0.56,
+            "test_metric": -1.0
+        },
+        {
+            "id": 6,
+            "depth": 2,
+            "parent": 2,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 1.8599999999999999,
+            "uct": 3.941386527894244,
+            "prompt": "Carefully examine the presented scenario, focusing on identifying the contributory cause related to a specified actor for the occurrence or outcome of an event. Understand that even multiple entities can contribute to an event, however, your task is to determine whether or not the specified entity was a cause. Avoid simplifying or ignoring minor details, answer the causation questions precisely, focusing on the actor's role in causing an event rather than the level of responsibility. Do not make assumptions, consider all the information provided, especially rules or norms shared in the scenario that might influence the actions and outcomes. With this mind, provide a direct answer to whether or not the actor caused the event, recalling that we are focusing on their contributory cause regardless of intentionality or fairness. At the end, indicate your answer option within <answer> and </answer> tags.",
+            "reward": 0.62,
+            "test_metric": -1.0
+        },
+        {
+            "id": 7,
+            "depth": 3,
+            "parent": 6,
+            "visited": 0,
+            "expand_times": 0,
+            "q": 0.46,
+            "uct": 0.0,
+            "prompt": "Your task is to meticulously perceive the details of the given scenario, aiming at understanding the contributory cause associated with a specified actor for the incidence or aftermath of an event. Bear in mind, a series of factors can play into the unfolding of an event, however, your key objective is to ascertain if the identified entity had a role in triggering the event. Refrain from oversimplifying or belittling minor details, cater to the causation questions accurately, placing importance on the actor's involvement in initiating the event rather than their degree of responsibility. Stay away from conjecturing, instead contemplate all the information presented, with special attention to given policies, standards or norms that might drive the actions and outcomes in the scenario. The actor's intention might not align with the actual consequences of their actions, differentiate between these nuances. Distinguish between temporal order and actual causality, and understand that an actor's contribution could have an effect regardless of other actors involved. Finally, provide a conclusive answer to whether the actor precipitated the event, keeping in focus that we are addressing their contributory cause regardless of intent or ethic. Wrap up your analysis by denoting your answer option within <answer> and </answer> tags.",
+            "reward": 0.46,
+            "test_metric": -1.0
+        },
+        {
+            "id": 8,
+            "depth": 3,
+            "parent": 6,
+            "visited": 0,
+            "expand_times": 0,
+            "q": 0.58,
+            "uct": 0.0,
+            "prompt": "Analyze the presented scenario meticulously to identify if the specified actor contributed to the occurrence or outcome of the event in question. Consider the involvement of multiple entities, however, your primary task is to pinpoint if the named actor was a contributory cause. While doing so, do not overlook minor details or oversimplify information. Make sure to answer the causation questions accurately, centering on the actor's role in causing the event and not on their level of responsibility. Other than just attributing an event to an actor, differentiate between intentional causation or unintentional side-effects. Do not make assumptions and take every piece of information provided into account, including any shared rules or norms in the scenario that may affect actions and outcomes. Remember, the aim is to determine if the mentioned individual or entity had a causative role in the event, irrespective of intentionality or fairness. Wrap your chosen answer option within <answer> and </answer> tags.",
+            "reward": 0.58,
+            "test_metric": -1.0
+        },
+        {
+            "id": 9,
+            "depth": 3,
+            "parent": 6,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 1.24,
+            "uct": 3.3213865278942443,
+            "prompt": "Closely scrutinize the given scenario, placing emphasis on determining whether the specified actor contributed in causing the outcome or event. Multiple entities may play a role in the occurrence of an event, yet your task is primarily to ascertain if the stated entity had a part in causing the event. Without disregarding minor details, answer the related causation questions accurately, concentrating on whether the actor's actions contributed to the event rather than the extent of their responsibility. Unconscious of intentionality or fairness, we are focusing on the actor's contributory cause. 'Intentionality' here specifies that the actor must have a deliberate plan or desire for the outcome to be so. An actor can cause an event directly or indirectly, even if they are not the primary cause. An actor's awareness of potential outcomes doesn't equate to their intentionality in causing them. Despite being a contributory cause, an actor might not be responsible for the outcome, especially if they are ignorant of certain rules or norms. Refrain from making assumptions and interpretations outside of the provided information, pay attention to all details, particularly rules or norms mentioned in the scenario that could influence the actions and possible outcomes. With these considerations in mind, determine whether or not the actor caused the event. Convey your answer by bracketing it within <answer> and </answer> tags.",
+            "reward": 0.64,
+            "test_metric": -1.0
+        },
+        {
+            "id": 10,
+            "depth": 4,
+            "parent": 9,
+            "visited": 1,
+            "expand_times": 0,
+            "q": 0.6,
+            "uct": 2.681386527894244,
+            "prompt": "Analyze the provided scenario meticulously, concentrating on whether the specified actor's actions, direct or indirect, had a contributing role in the event or outcome in question. Rather than debating the level of responsibility, you should focus on the role of the actor, underscoring that an actor can cause an event both directly and indirectly, knowingly or unknowingly, through action or inaction. 'Intentionality' here refers to the actor's explicit wish or plan for the outcome. While one or more entities might contribute to an occurrence, your primary goal is to discern if the specified entity was part of the sequence that led to the event. Always remember, an actor's foreknowledge of potential outcomes does not equate to their intentionality in causing them. Furthermore, being a contributing factor does not always make the actor responsible for the outcome, especially if they lack knowledge of certain rules or norms. Consider all information provided without making assumptions or interpretations outside of it. Give particular attention to any stated rules or norms that could have influenced the actor's actions or the potential outcomes. After sound consideration, ascertain whether or not the actor's action, inaction, or unawareness played a role in the causation of the event. Convey your answer by enclosing it within <answer> and </answer> tags.",
+            "reward": 0.6,
+            "test_metric": -1.0
+        },
+        {
+            "id": 11,
+            "depth": 4,
+            "parent": 9,
+            "visited": 0,
+            "expand_times": 0,
+            "q": 0.56,
+            "uct": 0.0,
+            "prompt": "Carefully analyze the provided scenario to determine if the designated actor contributed to the outcome or event, whether directly or indirectly. Note that more than one entity can contribute to an event; however, your focus should be on identifying if the designated actor played a part, regardless of the size of their contribution. Consider even the smallest, seemingly inconsequential details, as they can significantly influence the outcome. Focus on determining if the actor's actions contributed to the event, rather than evaluating the extent of their responsibility. Remember, 'intentionality' signifies the actor's deliberate plan or intent for the outcome to occur, not just their awareness of potential outcomes. Even unintentional actions can contribute to the event, and this does not absolve the actor of involvement if their actions had an impact. Take into account any mentioned rules or norms that might influence the actor's actions and the resulting outcomes. Do not read into the scenario beyond the provided information and avoid unjustified assumptions or interpretations. Based on these careful considerations, make a judgement on whether the actor contributed to causing the event. Illuminate your conclusion by enclosing it between <answer> and </answer> tags.",
+            "reward": 0.56,
+            "test_metric": -1.0
+        },
+        {
+            "id": 12,
+            "depth": 4,
+            "parent": 9,
+            "visited": 0,
+            "expand_times": 0,
+            "q": 0.6,
+            "uct": 0.0,
+            "prompt": "Carefully analyze the narrative presented, emphasizing the determination of whether the actor mentioned has influenced the event's outcome or occurrence. Acknowledge that an event's happening can involve multiple actors; however, your primary task is to assess whether the named actor played a role in its occurrence. Do not lose sight of subtle details; answer the causation inquiries accurately by concentrating specifically on whether the actor's actions had a bearing on the event, separate from the extent of their responsibility. Irrespective of intentionality or fairness, our focus is on the actor's contributory causation. Here, 'intentionality' signifies that the actor should have a conscious plan or desire for achieving the said outcome. Note that an actor can be a direct or indirect cause of an event without being its primary initiator. Also, an actor's awareness of potential consequences doesn't imply their intentionality in triggering them. Even when they contribute to causing an event, an actor may not be accountable for the outcome, especially if they are oblivious to certain rules or norms. Avoid making baseless presumptions and interpretations that go beyond the information provided. Attend to all details meticulously, with special attention to rules or norms mentioned in the scenario, which could sway the actions and potential outcomes. Considering these points, deduce whether or not the actor was a precipitating cause of the event. Document your conclusion within <answer> and </answer> tags, ensuring it stems from an unbiased evaluation of the provided evidence.",
+            "reward": 0.6,
+            "test_metric": -1.0
+        }
+    ],
+    "best_q_path": [
+        {
+            "id": 0,
+            "depth": 0,
+            "parent": -1,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 3.12,
+            "uct": 3.12,
+            "prompt": "Answer questions about causal attribution",
+            "reward": 0.6,
+            "test_metric": -1.0
+        },
+        {
+            "id": 2,
+            "depth": 1,
+            "parent": 0,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 2.52,
+            "uct": 4.601386527894244,
+            "prompt": "Analyze the provided scenario with attention to detail, to identify the primary and direct cause for the stated event or outcome. Distinguish the significant information that directly relates to the cause of the event or the outcome. Without simplifying or side-lining secondary details, correctly answer questions about the direct causal attribution. Avoid incorrect assumptions and ensure the consideration of the entire context before making a decision.",
+            "reward": 0.66,
+            "test_metric": -1.0
+        },
+        {
+            "id": 6,
+            "depth": 2,
+            "parent": 2,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 1.8599999999999999,
+            "uct": 3.941386527894244,
+            "prompt": "Carefully examine the presented scenario, focusing on identifying the contributory cause related to a specified actor for the occurrence or outcome of an event. Understand that even multiple entities can contribute to an event, however, your task is to determine whether or not the specified entity was a cause. Avoid simplifying or ignoring minor details, answer the causation questions precisely, focusing on the actor's role in causing an event rather than the level of responsibility. Do not make assumptions, consider all the information provided, especially rules or norms shared in the scenario that might influence the actions and outcomes. With this mind, provide a direct answer to whether or not the actor caused the event, recalling that we are focusing on their contributory cause regardless of intentionality or fairness. At the end, indicate your answer option within <answer> and </answer> tags.",
+            "reward": 0.62,
+            "test_metric": -1.0
+        },
+        {
+            "id": 9,
+            "depth": 3,
+            "parent": 6,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 1.24,
+            "uct": 3.3213865278942443,
+            "prompt": "Closely scrutinize the given scenario, placing emphasis on determining whether the specified actor contributed in causing the outcome or event. Multiple entities may play a role in the occurrence of an event, yet your task is primarily to ascertain if the stated entity had a part in causing the event. Without disregarding minor details, answer the related causation questions accurately, concentrating on whether the actor's actions contributed to the event rather than the extent of their responsibility. Unconscious of intentionality or fairness, we are focusing on the actor's contributory cause. 'Intentionality' here specifies that the actor must have a deliberate plan or desire for the outcome to be so. An actor can cause an event directly or indirectly, even if they are not the primary cause. An actor's awareness of potential outcomes doesn't equate to their intentionality in causing them. Despite being a contributory cause, an actor might not be responsible for the outcome, especially if they are ignorant of certain rules or norms. Refrain from making assumptions and interpretations outside of the provided information, pay attention to all details, particularly rules or norms mentioned in the scenario that could influence the actions and possible outcomes. With these considerations in mind, determine whether or not the actor caused the event. Convey your answer by bracketing it within <answer> and </answer> tags.",
+            "reward": 0.64,
+            "test_metric": -1.0
+        },
+        {
+            "id": 10,
+            "depth": 4,
+            "parent": 9,
+            "visited": 1,
+            "expand_times": 0,
+            "q": 0.6,
+            "uct": 2.681386527894244,
+            "prompt": "Analyze the provided scenario meticulously, concentrating on whether the specified actor's actions, direct or indirect, had a contributing role in the event or outcome in question. Rather than debating the level of responsibility, you should focus on the role of the actor, underscoring that an actor can cause an event both directly and indirectly, knowingly or unknowingly, through action or inaction. 'Intentionality' here refers to the actor's explicit wish or plan for the outcome. While one or more entities might contribute to an occurrence, your primary goal is to discern if the specified entity was part of the sequence that led to the event. Always remember, an actor's foreknowledge of potential outcomes does not equate to their intentionality in causing them. Furthermore, being a contributing factor does not always make the actor responsible for the outcome, especially if they lack knowledge of certain rules or norms. Consider all information provided without making assumptions or interpretations outside of it. Give particular attention to any stated rules or norms that could have influenced the actor's actions or the potential outcomes. After sound consideration, ascertain whether or not the actor's action, inaction, or unawareness played a role in the causation of the event. Convey your answer by enclosing it within <answer> and </answer> tags.",
+            "reward": 0.6,
+            "test_metric": -1.0
+        }
+    ],
+    "best_reward_path": [
+        {
+            "id": 0,
+            "depth": 0,
+            "parent": -1,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 3.12,
+            "uct": 3.12,
+            "prompt": "Answer questions about causal attribution",
+            "reward": 0.6,
+            "test_metric": -1.0
+        },
+        {
+            "id": 2,
+            "depth": 1,
+            "parent": 0,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 2.52,
+            "uct": 4.601386527894244,
+            "prompt": "Analyze the provided scenario with attention to detail, to identify the primary and direct cause for the stated event or outcome. Distinguish the significant information that directly relates to the cause of the event or the outcome. Without simplifying or side-lining secondary details, correctly answer questions about the direct causal attribution. Avoid incorrect assumptions and ensure the consideration of the entire context before making a decision.",
+            "reward": 0.66,
+            "test_metric": -1.0
+        },
+        {
+            "id": 6,
+            "depth": 2,
+            "parent": 2,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 1.8599999999999999,
+            "uct": 3.941386527894244,
+            "prompt": "Carefully examine the presented scenario, focusing on identifying the contributory cause related to a specified actor for the occurrence or outcome of an event. Understand that even multiple entities can contribute to an event, however, your task is to determine whether or not the specified entity was a cause. Avoid simplifying or ignoring minor details, answer the causation questions precisely, focusing on the actor's role in causing an event rather than the level of responsibility. Do not make assumptions, consider all the information provided, especially rules or norms shared in the scenario that might influence the actions and outcomes. With this mind, provide a direct answer to whether or not the actor caused the event, recalling that we are focusing on their contributory cause regardless of intentionality or fairness. At the end, indicate your answer option within <answer> and </answer> tags.",
+            "reward": 0.62,
+            "test_metric": -1.0
+        },
+        {
+            "id": 9,
+            "depth": 3,
+            "parent": 6,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 1.24,
+            "uct": 3.3213865278942443,
+            "prompt": "Closely scrutinize the given scenario, placing emphasis on determining whether the specified actor contributed in causing the outcome or event. Multiple entities may play a role in the occurrence of an event, yet your task is primarily to ascertain if the stated entity had a part in causing the event. Without disregarding minor details, answer the related causation questions accurately, concentrating on whether the actor's actions contributed to the event rather than the extent of their responsibility. Unconscious of intentionality or fairness, we are focusing on the actor's contributory cause. 'Intentionality' here specifies that the actor must have a deliberate plan or desire for the outcome to be so. An actor can cause an event directly or indirectly, even if they are not the primary cause. An actor's awareness of potential outcomes doesn't equate to their intentionality in causing them. Despite being a contributory cause, an actor might not be responsible for the outcome, especially if they are ignorant of certain rules or norms. Refrain from making assumptions and interpretations outside of the provided information, pay attention to all details, particularly rules or norms mentioned in the scenario that could influence the actions and possible outcomes. With these considerations in mind, determine whether or not the actor caused the event. Convey your answer by bracketing it within <answer> and </answer> tags.",
+            "reward": 0.64,
+            "test_metric": -1.0
+        },
+        {
+            "id": 10,
+            "depth": 4,
+            "parent": 9,
+            "visited": 1,
+            "expand_times": 0,
+            "q": 0.6,
+            "uct": 2.681386527894244,
+            "prompt": "Analyze the provided scenario meticulously, concentrating on whether the specified actor's actions, direct or indirect, had a contributing role in the event or outcome in question. Rather than debating the level of responsibility, you should focus on the role of the actor, underscoring that an actor can cause an event both directly and indirectly, knowingly or unknowingly, through action or inaction. 'Intentionality' here refers to the actor's explicit wish or plan for the outcome. While one or more entities might contribute to an occurrence, your primary goal is to discern if the specified entity was part of the sequence that led to the event. Always remember, an actor's foreknowledge of potential outcomes does not equate to their intentionality in causing them. Furthermore, being a contributing factor does not always make the actor responsible for the outcome, especially if they lack knowledge of certain rules or norms. Consider all information provided without making assumptions or interpretations outside of it. Give particular attention to any stated rules or norms that could have influenced the actor's actions or the potential outcomes. After sound consideration, ascertain whether or not the actor's action, inaction, or unawareness played a role in the causation of the event. Convey your answer by enclosing it within <answer> and </answer> tags.",
+            "reward": 0.6,
+            "test_metric": -1.0
+        }
+    ],
+    "top_k_reward_nodes": [
+        {
+            "id": 2,
+            "depth": 1,
+            "parent": 0,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 2.52,
+            "uct": 4.601386527894244,
+            "prompt": "Analyze the provided scenario with attention to detail, to identify the primary and direct cause for the stated event or outcome. Distinguish the significant information that directly relates to the cause of the event or the outcome. Without simplifying or side-lining secondary details, correctly answer questions about the direct causal attribution. Avoid incorrect assumptions and ensure the consideration of the entire context before making a decision.",
+            "reward": 0.66,
+            "test_metric": -1.0
+        }
+    ],
+    "best_reward_path_last_node": [
+        {
+            "id": 10,
+            "depth": 4,
+            "parent": 9,
+            "visited": 1,
+            "expand_times": 0,
+            "q": 0.6,
+            "uct": 2.681386527894244,
+            "prompt": "Analyze the provided scenario meticulously, concentrating on whether the specified actor's actions, direct or indirect, had a contributing role in the event or outcome in question. Rather than debating the level of responsibility, you should focus on the role of the actor, underscoring that an actor can cause an event both directly and indirectly, knowingly or unknowingly, through action or inaction. 'Intentionality' here refers to the actor's explicit wish or plan for the outcome. While one or more entities might contribute to an occurrence, your primary goal is to discern if the specified entity was part of the sequence that led to the event. Always remember, an actor's foreknowledge of potential outcomes does not equate to their intentionality in causing them. Furthermore, being a contributing factor does not always make the actor responsible for the outcome, especially if they lack knowledge of certain rules or norms. Consider all information provided without making assumptions or interpretations outside of it. Give particular attention to any stated rules or norms that could have influenced the actor's actions or the potential outcomes. After sound consideration, ascertain whether or not the actor's action, inaction, or unawareness played a role in the causation of the event. Convey your answer by enclosing it within <answer> and </answer> tags.",
+            "reward": 0.6,
+            "test_metric": -1.0
+        }
+    ],
+    "best_reward_path_selected_node": [
+        {
+            "id": 2,
+            "depth": 1,
+            "parent": 0,
+            "visited": 1,
+            "expand_times": 1,
+            "q": 2.52,
+            "uct": 4.601386527894244,
+            "prompt": "Analyze the provided scenario with attention to detail, to identify the primary and direct cause for the stated event or outcome. Distinguish the significant information that directly relates to the cause of the event or the outcome. Without simplifying or side-lining secondary details, correctly answer questions about the direct causal attribution. Avoid incorrect assumptions and ensure the consideration of the entire context before making a decision.",
+            "reward": 0.66,
+            "test_metric": -1.0
+        }
+    ]
+}

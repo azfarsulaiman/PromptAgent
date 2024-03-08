@@ -26,11 +26,11 @@ def config():
     parser.add_argument('--pred_model', type=str, default='gpt-3.5-turbo')
     parser.add_argument('--temperature', type=float, default=0)
     
-    parser.add_argument('--log_dir', type=str, default='logs/', help='Log directory.')
+    parser.add_argument('--log_dir', type=str, default='test_log/', help='Log directory.')
     parser.add_argument('--log_examples', type=str2bool, default=True)
     parser.add_argument('--data_dir', type=str, default=None)
     
-    parser.add_argument('--api_key', type=str, default=None, help='OpenAI API key or PaLM2 API key')
+    parser.add_argument('--api_key', type=str, default="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", help='OpenAI API key or PaLM2 API key')
     args = parser.parse_args()
 
     args = vars(args)
