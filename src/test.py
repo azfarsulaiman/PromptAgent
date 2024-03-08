@@ -30,7 +30,7 @@ def config():
     parser.add_argument('--log_examples', type=str2bool, default=True)
     parser.add_argument('--data_dir', type=str, default=None)
     
-    parser.add_argument('--api_key', type=str, default="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", help='OpenAI API key or PaLM2 API key')
+    parser.add_argument('--api_key', type=str, default=os.getenv("OPENAI_API_KEY"), help='OpenAI API key or PaLM2 API key')
     args = parser.parse_args()
 
     args = vars(args)
