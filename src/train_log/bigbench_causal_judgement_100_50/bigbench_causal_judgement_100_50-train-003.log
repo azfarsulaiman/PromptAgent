@@ -7,7 +7,7 @@ post_instruction : False
 seed : 42
 log_dir : train_log/bigbench_causal_judgement_100_50
 data_dir : ../datasets/causal_judgement.json
-task : <tasks.bigbench.CustomTask object at 0x131913fe0>
+task : <tasks.bigbench.CustomTask object at 0x100689b80>
 ----------------- World Model --------------------------
 pred_model : gpt-3.5-turbo
 pred_temperature : 0.0
@@ -19,7 +19,7 @@ train_batch_size : 5
 test_batch_size : 1
 eval_batch_size : 1
 -------------------- MCTS -----------------------
-world_model : <prompt_optim_agent.world_model.world_model.WorldModel object at 0x1319288f0>
+world_model : <prompt_optim_agent.world_model.world_model.WorldModel object at 0x1282140b0>
 expand_width : 3
 depth_limit : 5
 w_exp : 2.5
