@@ -39,6 +39,7 @@ class MCTSNode(Generic[State, Action]):
         self.children: 'Optional[list[MCTSNode]]' = []
         self.cum_rewards: list[float] = []
         self.reward = 0.0
+        self.testreward = 0.0
         self.test_metric = -1.0
         self.uct = 0.0
         
@@ -56,6 +57,8 @@ class MCTSNode(Generic[State, Action]):
     def cal_reward(self):
         return self.reward
     
+    def cal_testreward(self):
+        return self.testreward
     
     @property
     def Q(self) -> float:
@@ -214,6 +217,7 @@ class MCTS(SearchAlgo, Generic[State, Action]):
             for child_node in children: # There could be multiple children in one optim step (num_new_prompts>1)
                 self.world_model.evaluate_child_node(node=child_node)
                 child_node.reward = child_node.cal_reward()
+                child_node.testreward = child_node.cal_testreward()
                 child_node.is_terminal = self.is_terminal_node(child_node)
         
             self.nodes.extend(children)
