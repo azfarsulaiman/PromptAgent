@@ -56,6 +56,7 @@ class MCTSNode(Generic[State, Action]):
     def cal_reward(self):
         return self.reward
     
+    
     @property
     def Q(self) -> float:
         if len(self.cum_rewards) == 0:
