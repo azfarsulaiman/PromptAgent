@@ -112,9 +112,10 @@ def gpt_chat_completion(**kwargs):
             return openai.ChatCompletion.create(**kwargs)
         except openai.error.OpenAIError:
             print(openai.error.OpenAIError, f' Sleeping {backoff_time} seconds...')
+            print(openai.error.OpenAIError)
             time.sleep(backoff_time)
             backoff_time *= 1.5
-
+    
 def gpt_completion(**kwargs):
     backoff_time = 1
     while True:
