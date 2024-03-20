@@ -48,6 +48,14 @@ def get_optimized_prompt(data_json_path):
         best_prompt = data['best_reward_path_selected_node'][0]['prompt'] if data['best_reward_path_selected_node'] else ''
     return best_prompt
 
+data_splits = {
+    "bigbench_penguins": {"train": 70, "test": 79},
+    "bigbench_geometry": {"train": 150, "test": 200},
+    "bigbench_epistemic": {"train": 500, "test": 500},
+    "bigbench_object_counting": {"train": 300, "test": 500},
+    "bigbench_temporal": {"train": 300, "test": 500},
+    "bigbench_causal_judgement": {"train": 90, "test": 100}
+}
 datasets = ["causal_judgement.json", "epistemic.json", "geometric_shapes.json",
             "object_counting.json", "penguins_in_a_table.json", "temporal_sequences.json"]
 descriptions = ["Answer questions about causal attribution", 
@@ -56,20 +64,35 @@ descriptions = ["Answer questions about causal attribution",
                 "Questions that involve enumerating objects of different types and asking the model to count them", 
                 "Answer questions about penguins in a table", 
                 "Answer questions about temporal sequences"]
-train_size = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
-eval_size = [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
+
+#make a dictionary here based on the paper and run the train size multiple for each respective dataset
+#train_size = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
+eval_size = 50
+training_percentages = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
 log_dir = "train_log/"
 log_test_dir = "test_log/"
 
 # Running subprocesses and collecting data for both training and testing
 for i, dataset in enumerate(datasets):
     description = descriptions[i]
+    dataset_key = dataset.replace('.json', '').replace('_', ' ').lower()
+    total_train_size = data_splits.get(dataset_key, {}).get("train", 0)
+    total_test_size = data_splits.get(dataset_key, {}).get("test", 0)
 
-    for train, eval in zip(train_size, eval_size):
-        data_path = f"../datasets/{dataset}"
-        train_log_file = f"log_{os.path.splitext(dataset)[0]}_{train}.log" #Check the file names here and the name format is different here
-        test_log_file = f"log_test_{os.path.splitext(dataset)[0]}_{train}.log"
-        json_file_path = os.path.join(log_dir, f"data_{dataset}_{train}.json")
+    for percent in training_percentages:
+        train_size = int((percent / 100) * total_train_size)
+        test_size = total_test_size
+        
+        train_log_file = f"log_{os.path.splitext(dataset)[0]}_{train_size}.log"
+        test_log_file = f"log_test_{os.path.splitext(dataset)[0]}_{test_size}.log"
+        json_file_path = os.path.join(log_dir, f"data_{dataset}_{train_size}.json")
+        data_path = f"../datasets/{dataset}"       
+
+#    for train, eval in zip(train_size, eval_size):
+#       data_path = f"../datasets/{dataset}"
+#        train_log_file = f"log_{os.path.splitext(dataset)[0]}_{train}.log" #Check the file names here and the name format is different here
+#        test_log_file = f"log_test_{os.path.splitext(dataset)[0]}_{train}.log"
+#        json_file_path = os.path.join(log_dir, f"data_{dataset}_{train}.json")
 
         if not os.path.exists(data_path):
             print(f"File not found: {data_path}")
@@ -77,7 +100,7 @@ for i, dataset in enumerate(datasets):
 
         subprocess.run(
             f"python main.py --task_name bigbench --search_algo mcts --batch_size 5 --depth_limit 5 "
-            f"--train_size {train} --eval_size {eval} --test_size 0 --seed 42 --train_shuffle True "
+            f"--train_size {train_size} --eval_size {eval_size} --test_size 0 --seed 42 --train_shuffle True "
             f"--iteration_num 10 --expand_width 3 --post_instruction False --pred_model gpt-3.5-turbo "
             f"--optim_model gpt-4 --log_dir {log_dir} --log_file {train_log_file} --data_dir {data_path} --init_prompt '{description}' --api_key 'OPENAI_API_KEY'", # Make sure the main.py writes the trainiing log from main.py. Check for each dataset whether it writes to the intended log. If there are any empty log files. 
             shell=True)
@@ -91,7 +114,7 @@ for i, dataset in enumerate(datasets):
 
         subprocess.run(
             f"python test.py --task_name bigbench --eval_prompt '{optimized_prompt}' "
-            f"--train_size {train} --eval_size {eval} --test_size 79 --seed 42 --pred_model 'gpt-3.5-turbo' --api_key 'OPENAI_API_KEY'  "
+            f"--train_size {train_size} --eval_size {eval_size} --test_size {test_size} --seed 42 --pred_model 'gpt-3.5-turbo' --api_key 'OPENAI_API_KEY'  "
             f"--log_dir {log_test_dir} --log_file {test_log_file} --data_dir '{data_path}'", shell=True)
         
         if os.path.exists(train_log_file):
@@ -109,4 +132,4 @@ for i, dataset in enumerate(datasets):
         train_rewards = parse_log_file(train_log_file)
         test_metric = parse_test_log_file(test_log_file)
 
-        plot_convergence_for_size(train, train_rewards, test_metric)
+        plot_convergence_for_size(train_size, train_rewards, test_metric)
