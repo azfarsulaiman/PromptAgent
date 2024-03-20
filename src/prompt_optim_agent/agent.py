@@ -25,6 +25,7 @@ class BaseAgent():
                  train_shuffle: bool,
                  post_instruction: bool,
                  log_dir: str,
+                 log_file: str,
                  data_dir: str,
                  
                  expand_width: int,
@@ -75,8 +76,10 @@ class BaseAgent():
         self.seed = seed
 
         self.log_dir = log_dir
+        self.log_file = log_file
         self.data_dir = data_dir
-        
+        print("Creating base agent")
+        print(f"Current log dir: {log_dir}, log file: {log_file}")
         self.task = get_task(task_name)(train_size=train_size, 
                                         eval_size=eval_size,
                                         test_size=test_size, 
@@ -90,7 +93,7 @@ class BaseAgent():
         exp_name = f'{get_pacific_time().strftime("%Y%m%d_%H%M%S")}-{task_name}-algo_{search_algo}-batch_{batch_size}-train_{train_size}'
         exp_name = f"{task_name}_{train_size}_{eval_size}"
         self.log_dir = os.path.join(log_dir, exp_name)
-        self.logger = create_logger(self.log_dir, f'{exp_name}', log_mode='train')
+        self.logger = create_logger(self.log_dir, self.log_file, log_mode='train')
         self.logger.info(exp_name)
         self.log_vars()
 

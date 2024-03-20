@@ -1,3 +1,5 @@
+
+"""
 import os
 import json
 import subprocess
@@ -25,7 +27,7 @@ for i, dataset in enumerate(datasets):
 
 
 
-"""
+
 import os
 import json
 import subprocess
@@ -152,7 +154,7 @@ plot_convergence(all_data)
 
 #Newer code that worked but slept
 """
-
+"""
 import os
 import subprocess
 import matplotlib.pyplot as plt
@@ -237,3 +239,15 @@ for i, dataset in enumerate(datasets):
 
 
 """
+import os
+import json
+import subprocess
+
+subprocess.run(
+
+ f"python main.py --task_name bigbench --search_algo mcts --batch_size 5 --depth_limit 5 "
+            f"--train_size 70 --eval_size 50 --test_size 0 --seed 42 --train_shuffle True "
+            f"--iteration_num 10 --expand_width 3 --post_instruction False --pred_model gpt-3.5-turbo "
+            f"--optim_model gpt-4 --log_dir logs/ --data_dir ../datasets/causal_judgement.json --init_prompt 'Answer questions about causal attribution' --api_key 'OPENAI_API_KEY'",
+            shell=True
+)

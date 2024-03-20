@@ -59,6 +59,7 @@ descriptions = ["Answer questions about causal attribution",
 train_size = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
 eval_size = [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
 log_dir = "train_log/"
+log_test_dir = "test_log/"
 
 # Running subprocesses and collecting data for both training and testing
 for i, dataset in enumerate(datasets):
@@ -66,8 +67,8 @@ for i, dataset in enumerate(datasets):
 
     for train, eval in zip(train_size, eval_size):
         data_path = f"../datasets/{dataset}"
-        train_log_file = os.path.join(log_dir, f"log_{dataset}_{train}.log") #Check the file names here and the name format is different here
-        test_log_file = os.path.join(log_dir, f"test_log_{dataset}_{train}.log")
+        train_log_file = f"log_{os.path.splitext(dataset)[0]}_{train}.log" #Check the file names here and the name format is different here
+        test_log_file = f"log_test_{os.path.splitext(dataset)[0]}_{train}.log"
         json_file_path = os.path.join(log_dir, f"data_{dataset}_{train}.json")
 
         if not os.path.exists(data_path):
@@ -78,7 +79,7 @@ for i, dataset in enumerate(datasets):
             f"python main.py --task_name bigbench --search_algo mcts --batch_size 5 --depth_limit 5 "
             f"--train_size {train} --eval_size {eval} --test_size 0 --seed 42 --train_shuffle True "
             f"--iteration_num 10 --expand_width 3 --post_instruction False --pred_model gpt-3.5-turbo "
-            f"--optim_model gpt-4 --log_dir {log_dir} --data_dir {data_path} --init_prompt '{description}' --api_key 'OPENAI_API_KEY'", # Make sure the main.py writes the trainiing log from main.py. Check for each dataset whether it writes to the intended log. If there are any empty log files. 
+            f"--optim_model gpt-4 --log_dir {log_dir} --log_file {train_log_file} --data_dir {data_path} --init_prompt '{description}' --api_key 'OPENAI_API_KEY'", # Make sure the main.py writes the trainiing log from main.py. Check for each dataset whether it writes to the intended log. If there are any empty log files. 
             shell=True)
 #
         # Extract optimized prompt from the specific data.json file for each training set
@@ -91,7 +92,7 @@ for i, dataset in enumerate(datasets):
         subprocess.run(
             f"python test.py --task_name bigbench --eval_prompt '{optimized_prompt}' "
             f"--train_size {train} --eval_size {eval} --test_size 79 --seed 42 --pred_model 'gpt-3.5-turbo' --api_key 'OPENAI_API_KEY'  "
-            f"--data_dir '{data_path}'", shell=True)
+            f"--log_dir {log_test_dir} --log_file {test_log_file} --data_dir '{data_path}'", shell=True)
         
         if os.path.exists(train_log_file):
             train_rewards = parse_log_file(train_log_file)

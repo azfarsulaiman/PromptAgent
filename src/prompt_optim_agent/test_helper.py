@@ -75,7 +75,7 @@ def eval(
     
     pbar = tqdm(test_dataloader, leave=False)
     count = 0
-    for batch in pbar:
+    for batch in pbar: # Add sleep after each batch to delay running the API between batches
         batch_prompts = build_forward_prompts_func(batch['question'], eval_prompt)
         responses = batch_forward_func(batch_prompts, model=pred_model, temperature=temperature)
         preds = task.batch_clean_responses(responses)

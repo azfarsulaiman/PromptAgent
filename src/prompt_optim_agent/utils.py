@@ -66,6 +66,8 @@ def batch_forward_chatcompletion(batch_prompts, model='gpt-3.5-turbo', temperatu
     responses = []
     for prompt in batch_prompts:
         messages = [{"role": "user", "content": prompt},]
+        # add sleep time to avoid rate limit
+        time.sleep(10)
         response = gpt_chat_completion(messages=messages, model=model, temperature=temperature)
         responses.append(response['choices'][0]['message']['content'].strip())
     return responses
