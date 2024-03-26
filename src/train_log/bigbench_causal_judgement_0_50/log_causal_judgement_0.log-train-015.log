@@ -1,0 +1,11 @@
+bigbench_causal_judgement_0_50
+task_name : bigbench
+train_size : 0
+eval_size : 50
+test_size : 0
+post_instruction : False
+seed : 42
+log_dir : train_log/bigbench_causal_judgement_0_50
+log_file : log_causal_judgement_0.log
+data_dir : ../datasets/causal_judgement.json
+task : <tasks.bigbench.CustomTask object at 0x160197800>

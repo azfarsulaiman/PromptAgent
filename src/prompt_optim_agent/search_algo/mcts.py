@@ -221,7 +221,7 @@ class MCTS(SearchAlgo, Generic[State, Action]):
         
         if self.log:
             for child in node.children:
-                self.logger.info(f'child_node {child.id} (reward:{child.reward:.4f}, reward: {child.reward:.4f})')
+                self.logger.info(f'child_node {child.id} (reward:{child.reward:.4f})')
         
     
     def _simulate(self, path: list[MCTSNode]):

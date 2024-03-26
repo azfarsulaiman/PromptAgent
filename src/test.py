@@ -28,7 +28,6 @@ def config():
     parser.add_argument('--temperature', type=float, default=0)
     
     parser.add_argument('--log_dir', type=str, default='test_log/', help='Log directory.')
-    parser.add_argument('--log_file', type=str, default='test_log_file/', help='Log file.')
     parser.add_argument('--log_examples', type=str2bool, default=True)
     parser.add_argument('--data_dir', type=str, default=None)
     
