@@ -106,6 +106,7 @@ class WorldModel(Generic[State, Action]):
         """
         node = MCTSNode(prompt=init_prompt, action=None, parent=None)
         node.reward = self._reward_type_helper(self.evaluate_prompt(prompt=node.prompt)["metric"])
+        node.test_reward = self._reward_type_helper(self.test_prompt(prompt=node.prompt))
         return node
     
     def step(self, node:MCTSNode, batch):
@@ -160,6 +161,13 @@ class WorldModel(Generic[State, Action]):
             acc = np.mean(correct)
         )
         return evaludate_output
+
+    def test_child_node(self, node:MCTSNode):
+        """
+        Evaluate the given node on eval_dataloader to calculate the reward.
+        """
+        metric, _ = self.test_prompt(prompt=node.prompt)
+        node.test_reward = self._reward_type_helper(metric)
     
     def test_prompt(self, prompt):
         """

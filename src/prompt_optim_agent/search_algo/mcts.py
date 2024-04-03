@@ -55,7 +55,9 @@ class MCTSNode(Generic[State, Action]):
     
     def cal_reward(self):
         return self.reward
-    
+
+    def cal_test_reward(self):
+        return self.test_reward
     
     @property
     def Q(self) -> float:
@@ -199,7 +201,7 @@ class MCTS(SearchAlgo, Generic[State, Action]):
             node.is_terminal = True
             return
         
-        if self.log: self.logger.info(f"Expanding: node: {node.id}, depth {node.depth}, reward: {node.reward:.4f}")
+        if self.log: self.logger.info(f"Expanding: node: {node.id}, depth {node.depth}, reward: {node.reward:.4f}, test_reward: {node.test_reward:.4f}")
         
         i = 0
         node.expand_times += 1
@@ -213,7 +215,9 @@ class MCTS(SearchAlgo, Generic[State, Action]):
             i += 1
             for child_node in children: # There could be multiple children in one optim step (num_new_prompts>1)
                 self.world_model.evaluate_child_node(node=child_node)
+                self.world_model.test_child_node(node=child_node)
                 child_node.reward = child_node.cal_reward()
+                child_node.test_reward = child_node.cal_test_reward()
                 child_node.is_terminal = self.is_terminal_node(child_node)
         
             self.nodes.extend(children)
@@ -221,7 +225,7 @@ class MCTS(SearchAlgo, Generic[State, Action]):
         
         if self.log:
             for child in node.children:
-                self.logger.info(f'child_node {child.id} (reward:{child.reward:.4f})')
+                self.logger.info(f'child_node {child.id} (reward:{child.reward:.4f}, test_reward: {child.test_reward:.4f})')
         
     
     def _simulate(self, path: list[MCTSNode]):
