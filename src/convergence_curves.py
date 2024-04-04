@@ -1,3 +1,10 @@
+import os
+import json
+import subprocess
+
+datasets = ["causal_judgement.json", "epistemic.json", "geometric_shapes.json","object_counting.json", "penguins_in_a_table.json","temporal_sequences.json"]
+
+
 
 """
 import os
@@ -5,7 +12,7 @@ import json
 import subprocess
 
 datasets = ["causal_judgement.json", "epistemic.json", "geometric_shapes.json","object_counting.json", "penguins_in_a_table.jsoxn","temporal_sequences.json"]
-descriptions = ["Answer questions about causal attribution", "Determine whether one sentence entails the next", "Name geometric shapes from their SVG paths", "Questions that involve enumerating objects of different types and asking the model to count them", "Answer questions about penguins in a table", "Answer questions about temporal sequences"]
+    descriptions = ["Answer questions about causal attribution", "Determine whether one sentence entails the next", "Name geometric shapes from their SVG paths", "Questions that involve enumerating objects of different types and asking the model to count them", "Answer questions about penguins in a table", "Answer questions about temporal sequences"]
 
 train_size = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
 eval_size = [50, 50, 50, 50, 50, 50, 50]
