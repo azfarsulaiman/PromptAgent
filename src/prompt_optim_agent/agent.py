@@ -26,8 +26,7 @@ class BaseAgent():
                  post_instruction: bool,
                  log_dir: str,
                  log_file: str,
-                 data_dir: str,
-                 
+                 data_dir: str,          
                  expand_width: int,
                  num_new_prompts: int,
                  min_depth:int,
@@ -121,6 +120,8 @@ class BaseAgent():
             w_exp=w_exp,
             beam_width=beam_width,
             )
+        
+        print("Completed initialization")
         
     def run(self, init_state, iteration_num):
         """

@@ -49,12 +49,12 @@ def get_optimized_prompt(data_json_path):
     return best_prompt
 
 data_splits = {
-    "bigbench_penguins": {"train": 70, "test": 79},
-    "bigbench_geometry": {"train": 150, "test": 200},
-    "bigbench_epistemic": {"train": 500, "test": 500},
-    "bigbench_object_counting": {"train": 300, "test": 500},
-    "bigbench_temporal": {"train": 300, "test": 500},
-    "bigbench_causal_judgement": {"train": 90, "test": 100}
+    "penguins_in_a_table": {"train": 70, "test": 79},
+    "geometric_shapes": {"train": 150, "test": 200},
+    "epistemic": {"train": 500, "test": 500},
+    "object_counting": {"train": 300, "test": 500},
+    "temporal_sequences": {"train": 300, "test": 500},
+    "causal_judgement": {"train": 90, "test": 100}
 }
 datasets = ["causal_judgement.json", "epistemic.json", "geometric_shapes.json",
             "object_counting.json", "penguins_in_a_table.json", "temporal_sequences.json"]
@@ -69,15 +69,17 @@ descriptions = ["Answer questions about causal attribution",
 #train_size = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
 eval_size = 50
 training_percentages = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
-log_dir = "train_log/"
-log_test_dir = "test_log/"
+log_dir = "../train_log/"
+log_test_dir = "../test_log/"
 
 # Running subprocesses and collecting data for both training and testing
 for i, dataset in enumerate(datasets):
     description = descriptions[i]
-    dataset_key = dataset.replace('.json', '').replace('_', ' ').lower()
-    total_train_size = data_splits.get(dataset_key, {}).get("train", 0)
-    total_test_size = data_splits.get(dataset_key, {}).get("test", 0)
+    # dataset_key = dataset.replace('.json', '').replace('_', ' ').lower()
+    total_train_size = data_splits[dataset.split('.')[0]]['train']
+    total_test_size = data_splits[dataset.split('.')[0]]['test']
+    # total_train_size = data_splits.get(dataset_key, {}).get("train", 0)
+    # total_test_size = data_splits.get(dataset_key, {}).get("test", 0)
 
     for percent in training_percentages:
         train_size = int((percent / 100) * total_train_size)
@@ -102,7 +104,7 @@ for i, dataset in enumerate(datasets):
             f"python main.py --task_name bigbench --search_algo mcts --batch_size 5 --depth_limit 5 "
             f"--train_size {train_size} --eval_size {eval_size} --test_size 0 --seed 42 --train_shuffle True "
             f"--iteration_num 10 --expand_width 3 --post_instruction False --pred_model gpt-3.5-turbo "
-            f"--optim_model gpt-4 --log_dir {log_dir} --data_dir {data_path} --init_prompt '{description}' --api_key 'OPENAI_API_KEY'", # Make sure the main.py writes the trainiing log from main.py. Check for each dataset whether it writes to the intended log. If there are any empty log files. 
+            f"--optim_model gpt-4 --log_dir {log_dir} --log_file {train_log_file} --data_dir {data_path} --init_prompt '{description}' --api_key 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", # Make sure the main.py writes the trainiing log from main.py. Check for each dataset whether it writes to the intended log. If there are any empty log files. 
             shell=True)
 #
         # Extract optimized prompt from the specific data.json file for each training set
@@ -114,7 +116,7 @@ for i, dataset in enumerate(datasets):
 
         subprocess.run(
             f"python test.py --task_name bigbench --eval_prompt '{optimized_prompt}' "
-            f"--train_size {train_size} --eval_size {eval_size} --test_size {test_size} --seed 42 --pred_model 'gpt-3.5-turbo' --api_key 'OPENAI_API_KEY'  "
+            f"--train_size {train_size} --eval_size {eval_size} --test_size {test_size} --seed 42 --pred_model 'gpt-3.5-turbo' --api_key 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 --log_file {test_log_file} "
             f"--log_dir {log_test_dir} --data_dir '{data_path}'", shell=True)
         
         if os.path.exists(train_log_file):

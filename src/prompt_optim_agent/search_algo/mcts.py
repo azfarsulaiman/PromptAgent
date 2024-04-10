@@ -291,11 +291,15 @@ class MCTS(SearchAlgo, Generic[State, Action]):
         return path, cum_rewards
 
     def search(self, init_state: str, iteration_num: int =None):
+        print("Yes MCTS Search is here")
         if iteration_num is not None:
             self.iteration_num = iteration_num
         
+        print("Running block")
         self.root = self.world_model.build_root(init_state)
+        print("Running 1")
         self.root.reward = self.root.cal_reward()
+        print("Running 2")
         self.nodes.append(self.root)
         
         if self.min_threshold == 0:
