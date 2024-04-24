@@ -37,7 +37,7 @@ for file in files:
     print(f"Dataset path: {dataset_path}, Train size: {this_train_size}, Eval size: {this_eval_size}, Optimized prompt: {optimized_prompt}")
     subprocess.run(
         f"python test.py --task_name bigbench --eval_prompt '{optimized_prompt}' "
-        f"--train_size {this_train_size} --eval_size {this_eval_size} --test_size 0 --seed 42 --pred_model 'gpt-3.5-turbo' --api_key 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 --log_file {test_log_file} "
+        f"--train_size {this_train_size} --eval_size {this_eval_size} --test_size 0 --seed 42 --pred_model 'gpt-3.5-turbo' --api_key OPENAI_API_KEY --log_file {test_log_file} "
         f"--log_dir {test_log_dir} --data_dir '{dataset_path}'", shell=True)
     
 
