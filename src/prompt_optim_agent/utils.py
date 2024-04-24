@@ -6,7 +6,7 @@ from glob import glob
 import google.generativeai as palm
 from datetime import datetime
 import pytz
-
+import replicate 
 # Supported models
 CHAT_COMPLETION_MODELS = ['gpt-3.5-turbo', 'gpt-3.5-turbo-0301', 'gpt-4', 'gpt-4-0314']
 COMPLETION_MODELS =  ['text-davinci-003', 'text-davinci-002','code-davinci-002']
@@ -127,3 +127,23 @@ def gpt_completion(**kwargs):
             time.sleep(backoff_time)
             backoff_time *= 1.5
 
+def replicate_mixtral(**kwargs):
+    backoff_time = 1
+
+    input = {
+    "top_k": 50,
+    "top_p": 0.9,
+    "prompt": "I have to peel 10+ heads of garlic. What's the best way to all the cloves out of a head of garlic?",
+    "temperature": 0.6,
+    "max_new_tokens": 512,
+    "prompt_template": "<s>[INST] {prompt} [/INST] "
+    }
+    for event in replicate.stream("mistralai/mistral-7b-instruct-v0.2",  input=input ):
+        return event
+    # while True:
+    #     try:
+    #         return palm.replicate_mixtral(**kwargs)
+    #     except:
+    #         print(f' Sleeping {backoff_time} seconds...')
+    #         time.sleep(backoff_time)
+    #         backoff_time *= 1.5

@@ -1,86 +1,12 @@
 import os
 import json
 import subprocess
-
-datasets = ["causal_judgement.json", "epistemic.json", "geometric_shapes.json","object_counting.json", "penguins_in_a_table.json","temporal_sequences.json"]
-
-
-
-"""
-import os
-import json
-import subprocess
-
-datasets = ["causal_judgement.json", "epistemic.json", "geometric_shapes.json","object_counting.json", "penguins_in_a_table.jsoxn","temporal_sequences.json"]
-    descriptions = ["Answer questions about causal attribution", "Determine whether one sentence entails the next", "Name geometric shapes from their SVG paths", "Questions that involve enumerating objects of different types and asking the model to count them", "Answer questions about penguins in a table", "Answer questions about temporal sequences"]
-
-train_size = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
-eval_size = [50, 50, 50, 50, 50, 50, 50]
-
-print(datasets)
-
-# Outer loop: iterate over datasets and descriptions
-for i, dataset in enumerate(datasets):
-    description = descriptions[i]
-
-    # Inner loop: iterate over each train_size
-    for train in train_size:
-        subprocess.run(f"src/main.py --task_name bigbench --search_algo mcts --batch_size 5 --depth_limit 5 --train_size {train} --eval_size {eval_size[0]} --test_size 0 --seed 42 --train_shuffle True --iteration_num 1 --expand_width 3 --post_instruction False --pred_model gpt-3.5-turbo --optim_model gpt-4 --log_dir train_log/ --data_dir datasets/{dataset} --init_prompt '{description}'", shell=True)
-
-# The subprocess.run command for 'penguins_in_a_table.json' remains as it is, unless it also needs to be looped over different parameters
-
-#subprocess.run("python src/test.py --task_name bigbench --prompt_file '/Users/azfar/Documents/MIT/FutureTech/FutureTech/Thesis/PromptAgpwd
-# ent/logs/20240303_162844-bigbench_penguins_in_a_table-algo_mcts-batch_5-train_10/20240303_162844-bigbench_penguins_in_a_table-algo_mcts-batch_5-train_10-train-000.log' --train_size 70 --eval_size 50 --test_size 79 --seed 42 --pred_model 'gpt-3.5-turbo' --data_dir 'datasets/penguins_in_a_table.json'", shell=True)
-
-
-
-
-import os
-import json
-import subprocess
-
-datasets = ["causal_judgement.json", "epistemic.json", "geometric_shapes.json","object_counting.json", "penguins_in_a_table.json","temporal_sequences.json"]
-descriptions = ["Answer questions about causal attribution", "Determine whether one sentence entails the next", "Name geometric shapes from their SVG paths", "Questions that involve enumerating objects of different types and asking the model to count them", "Answer questions about penguins in a table", "Answer questions about temporal sequences"]
-
-train_size = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
-eval_size = [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
-
-#print(datasets)
-#print(descriptions)
-#print(train_size)
-
-# Outer loop: iterate over datasets and descriptions
-# ...
-for i, dataset in enumerate(datasets):
-    description = descriptions[i]
-
-    for train in train_size:
-        data_path = f"../datasets/{dataset}"
-        print(f"Attempting to access dataset at: {data_path}")  # Debugging print statement
-
-        # Check if the file exists before running the subprocess
-        if not os.path.exists(data_path):
-            print(f"File not found: {data_path}")
-            continue
-
-        subprocess.run(f"python main.py --task_name bigbench --search_algo mcts --batch_size 5 --depth_limit 5 --train_size {train} --eval_size {eval_size[0]} --test_size 0 --seed 42 --train_shuffle True --iteration_num 1 --expand_width 3 --post_instruction False --pred_model gpt-3.5-turbo --optim_model gpt-3.5-turbo --log_dir train_log/ --data_dir {data_path} --init_prompt '{description}'", shell=True)
-
-
-# The subprocess.run command for 'penguins_in_a_table.json' remains as it is, unless it also needs to be looped over different parameters
-
-#subprocess.run("python src/test.py --task_name bigbench --prompt_file '/Users/azfar/Documents/MIT/FutureTech/FutureTech/Thesis/PromptAgent/logs/20240303_162844-bigbench_penguins_in_a_table-algo_mcts-batch_5-train_10/20240303_162844-bigbench_penguins_in_a_table-algo_mcts-batch_5-train_10-train-000.log' --train_size 70 --eval_size 50 --test_size 79 --seed 42 --pred_model 'gpt-3.5-turbo' --data_dir 'datasets/penguins_in_a_table.json'", shell=True)
-
-subprocess.run("python src/test.py --task_name bigbench --prompt_file '/data.json/best_reward_path_selected_node' --train_size 70 --eval_size 50 --test_size 79 --seed 42 --pred_model 'gpt-3.5-turbo' --data_dir 'datasets/penguins_in_a_table.json'", shell=True)
-"""
-#new code------------------     ---------------------------------------------------------  
-"""
-import os
-import subprocess
 import matplotlib.pyplot as plt
 import numpy as np
+from dotenv import load_dotenv
+
 
 def parse_log_file(log_file_path):
-
     rewards = []
     with open(log_file_path, 'r') as file:
         for line in file:
@@ -90,171 +16,146 @@ def parse_log_file(log_file_path):
                 return rewards
     return []
 
-def plot_convergence(all_data):
-   
-    plt.figure(figsize=(10, 6))
-    for train_size, data in all_data.items():
-        if data:
-            iterations = np.arange(len(data))
-            plt.plot(iterations, data, label=f'Train Size {train_size}')
-
-    plt.xlabel('Number of Iterations')
-    plt.ylabel('Reward')
-    plt.title('Convergence Curves for Different Training Sizes')
-    plt.legend()
-    plt.grid()
-    plt.show()
-
-datasets = ["causal_judgement.json", "epistemic.json", "geometric_shapes.json",
-            "object_counting.json", "penguins_in_a_table.json", "temporal_sequences.json"]
-descriptions = ["Answer questions about causal attribution", 
-                "Determine whether one sentence entails the next", 
-                "Name geometric shapes from their SVG paths", 
-                "Questions that involve enumerating objects of different types and asking the model to count them", 
-                "Answer questions about penguins in a table", 
-                "Answer questions about temporal sequences"]
-train_size = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
-eval_size = [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
-
-log_dir = "train_log/"
-all_data = {size: [] for size in train_size}
-
-# Running subprocesses and collecting data for both training and testing
-for i, dataset in enumerate(datasets):
-    description = descriptions[i]
-
-    for train, eval in zip(train_size, eval_size):
-        data_path = f"../datasets/{dataset}"
-        train_log_file = os.path.join(log_dir, f"log_{dataset}_{train}.log")
-        data_json_file = os.path.join(log_dir, f"data_{dataset}_{train}.json")  # JSON file with optimized prompt
-
-        if not os.path.exists(data_path):
-            print(f"File not found: {data_path}")
-            continue
-
-        # Running main.py for training
-        subprocess.run(
-            f"python src/main.py --task_name bigbench --search_algo mcts --batch_size 5 --depth_limit 5 "
-            f"--train_size {train} --eval_size {eval} --test_size 0 --seed 42 --train_shuffle True "
-            f"--iteration_num 10 --expand_width 3 --post_instruction False --pred_model gpt-3.5-turbo "
-            f"--optim_model gpt-4 --log_dir {log_dir} --data_dir {data_path} --init_prompt '{description}'", 
-            shell=True
-        )
-
-        # Running test.py for testing
-        subprocess.run(
-            f"python src/test.py --task_name {dataset} --prompt_file '{data_json_file}' "
-            f"--train_size {train} --eval_size {eval} --test_size 79 --seed 42 --pred_model 'gpt-3.5-turbo' "
-            f"--data_dir '{data_path}'", 
-            shell=True
-        )
-
-        # Parse log file for training results
-        train_rewards = parse_log_file(train_log_file)
-        all_data[train].extend(train_rewards)
-
-# Plotting the convergence curve for training results
-plot_convergence(all_data)
-
-
-
-
-#Newer code that worked but slept
-"""
-"""
-import os
-import subprocess
-import matplotlib.pyplot as plt
-import numpy as np
-
-def parse_log_file(log_file_path):
-    
-    #Parse a single log file to extract path rewards.
-
-    rewards = []
-    with open(log_file_path, 'r') as file:
+def parse_test_log_file(file_path):
+    metrics = {}
+    with open(file_path, 'r') as file:
         for line in file:
-            if 'path_reward' in line:
-                rewards_str = line.split(': ')[-1].strip()
-                rewards = [float(x) for x in rewards_str.strip('[]').split(',')]
-                return rewards
-    return []
+            # Parse lines with metrics, assuming format "key: value"
+            parts = line.strip().split(':', 1)  # Split at the first colon
+            if len(parts) == 2:
+                key, value = parts
+                try:
+                    metrics[key.strip()] = float(value.strip())
+                except ValueError:
+                    metrics[key.strip()] = value.strip()
+    return metrics
 
-def plot_convergence_for_size(train_size, rewards):
-    
-    #Plot the convergence curve for a given training size.
-    
-    plt.figure(figsize=(10, 6))
-    iterations = np.arange(len(rewards))
-    plt.plot(iterations, rewards, marker='o')
-    plt.xlabel('Number of Iterations')
-    plt.ylabel('Reward')
+def plot_convergence_for_size(train_size, train_rewards, test_metric):
+    fig, ax1 = plt.subplots(figsize=(10, 6))
+    ax1.set_xlabel('Number of Iterations')
+    ax1.set_ylabel('Reward', color='tab:blue')
+    ax1.plot(np.arange(len(train_rewards)), train_rewards, marker='o', color='tab:blue')
+    ax1.tick_params(axis='y', labelcolor='tab:blue')
+    ax2 = ax1.twinx()
+    ax2.set_ylabel('Test Metric', color='tab:orange')
+    ax2.bar(train_size, test_metric, color='tab:orange')
+    ax2.tick_params(axis='y', labelcolor='tab:orange')
     plt.title(f'Convergence Curve for Training Size {train_size}')
-    plt.grid()
+    fig.tight_layout()
     plt.show()
 
-datasets = ["causal_judgement.json", "epistemic.json", "geometric_shapes.json",
-            "object_counting.json", "penguins_in_a_table.json", "temporal_sequences.json"]
-descriptions = ["Answer questions about causal attribution", 
+def get_optimized_prompt(data_json_path):
+    with open(data_json_path, 'r') as file:
+        data = json.load(file)
+        best_prompt = data['best_reward_path_selected_node'][0]['prompt'] if data['best_reward_path_selected_node'] else ''
+    return best_prompt
+
+"""data_splits = {
+    "penguins_in_a_table": {"train": 70, "test": 79},
+    "geometric_shapes": {"train": 150, "test": 200},
+    "epistemic": {"train": 500, "test": 500},
+    "object_counting": {"train": 300, "test": 500},
+    "temporal_sequences": {"train": 300, "test": 500},
+    "causal_judgement": {"train": 90, "test": 100}
+}"""
+
+data_splits = {
+    "penguins_in_a_table": {"train": 70, "test": 79},
+    "geometric_shapes": {"train": 150, "test": 200},
+    "epistemic": {"train": 500, "test": 500},
+    "object_counting": {"train": 300, "test": 500},
+    "temporal_sequences": {"train": 300, "test": 500},
+}
+
+#datasets = ["causal_judgement.json", "epistemic.json", "geometric_shapes.json",
+#            "object_counting.json", "penguins_in_a_table.json", "temporal_sequences.json"]
+
+
+
+# datasets = ["object_counting.json"]
+# datasets = [ "penguins_in_a_table.json"]
+# datasets = ["temporal_sequences.json"]
+datasets = ["geometric_shapes.json"]
+
+descriptions = [ "Name geometric shapes from their SVG paths", 
+                "Answer questions about causal attribution", 
                 "Determine whether one sentence entails the next", 
-                "Name geometric shapes from their SVG paths", 
                 "Questions that involve enumerating objects of different types and asking the model to count them", 
                 "Answer questions about penguins in a table", 
                 "Answer questions about temporal sequences"]
-train_size = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
-eval_size = [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
 
-log_dir = "train_log/"
+#make a dictionary here based on the paper and run the train size multiple for each respective dataset
+#train_size = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
+eval_size = 50
+training_percentages = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
+#training_percentages = [15, 10, 5, 1]
+#training_percentages = [10, 5, 1]
+
+log_dir = "../train_log/"
+log_test_dir = "../test_log/"
 
 # Running subprocesses and collecting data for both training and testing
 for i, dataset in enumerate(datasets):
     description = descriptions[i]
+    # dataset_key = dataset.replace('.json', '').replace('_', ' ').lower()
+    total_train_size = data_splits[dataset.split('.')[0]]['train']
+    total_test_size = data_splits[dataset.split('.')[0]]['test']
+    # total_train_size = data_splits.get(dataset_key, {}).get("train", 0)
+    # total_test_size = data_splits.get(dataset_key, {}).get("test", 0)
 
-    for train, eval in zip(train_size, eval_size):
-        data_path = f"../datasets/{dataset}"
-        train_log_file = os.path.join(log_dir, f"log_{dataset}_{train}.log")
-        test_log_file = os.path.join(log_dir, f"test_log_{dataset}_{train}.log")  # Placeholder for test log file
+    for percent in training_percentages:
+        train_size = int((percent / 100) * total_train_size)
+        test_size = total_test_size
+        
+        train_log_file = f"log_{os.path.splitext(dataset)[0]}_{train_size}.log"
+        test_log_file = f"log_test_{os.path.splitext(dataset)[0]}_{test_size}.log"
+        json_file_path = os.path.join(log_dir, f"data_{dataset}_{train_size}.json")
+        data_path = f"../datasets/{dataset}"       
+
+#    for train, eval in zip(train_size, eval_size):
+#       data_path = f"../datasets/{dataset}"
+#        train_log_file = f"log_{os.path.splitext(dataset)[0]}_{train}.log" #Check the file names here and the name format is different here
+#        test_log_file = f"log_test_{os.path.splitext(dataset)[0]}_{train}.log"
+#        json_file_path = os.path.join(log_dir, f"data_{dataset}_{train}.json")
 
         if not os.path.exists(data_path):
             print(f"File not found: {data_path}")
             continue
 
-        # Running main.py for training
+        ## Changing task name to object_counting for object_counting dataset
+
         subprocess.run(
             f"python main.py --task_name bigbench --search_algo mcts --batch_size 5 --depth_limit 5 "
-            f"--train_size {train} --eval_size {eval} --test_size 0 --seed 42 --train_shuffle True "
+            f"--train_size {train_size} --eval_size {eval_size} --test_size 0 --seed 42 --train_shuffle True "
             f"--iteration_num 10 --expand_width 3 --post_instruction False --pred_model gpt-3.5-turbo "
-            f"--optim_model gpt-4 --log_dir {log_dir} --data_dir {data_path} --init_prompt '{description}' --api_key 'OPENAI_API_KEY'", 
-            shell=True
-        )
+            f"--optim_model gpt-4 --log_dir {log_dir} --log_file {train_log_file} --data_dir {data_path} --init_prompt '{description}' --api_key r8_0Y78CHZuGz7puJCmMHxKJusLhAb0P8v3QXkFd", # Make sure the main.py writes the trainiing log from main.py. Check for each dataset whether it writes to the intended log. If there are any empty log files. 
+            shell=True)
+#
+        # Extract optimized prompt from the specific data.json file for each training set
+        if os.path.exists(json_file_path):
+            optimized_prompt = get_optimized_prompt(json_file_path)
+        else:
+            print(f"JSON file not found: {json_file_path}")
+            continue
 
-        # Running test.py for testing
         subprocess.run(
-            f"python test.py --task_name bigbench --prompt_file '{test_log_file}' "
-            f"--train_size {train} --eval_size {eval} --test_size 79 --seed 42 --pred_model 'gpt-3.5-turbo' --api_key 'OPENAI_API_KEY'"
-            f"--data_dir '{data_path}'", 
-            shell=True
-        )
+            f"python test.py --task_name bigbench --eval_prompt '{optimized_prompt}' "
+            f"--train_size {train_size} --eval_size {eval_size} --test_size {test_size} --seed 42 --pred_model 'gpt-3.5-turbo' --api_key r8_0Y78CHZuGz7puJCmMHxKJusLhAb0P8v3QXkFd --log_file {test_log_file} "
+            f"--log_dir {log_test_dir} --data_dir '{data_path}'", shell=True)
+        
+        if os.path.exists(train_log_file):
+            train_rewards = parse_log_file(train_log_file)
+        else:
+            print(f"Training log file not found: {train_log_file}")
+            continue
 
-       # Parse log files for training and testing results
+        if os.path.exists(test_log_file):
+            test_metric = parse_test_log_file(test_log_file)
+        else:
+            print(f"Test log file not found: {test_log_file}")
+            continue
+
         train_rewards = parse_log_file(train_log_file)
         test_metric = parse_test_log_file(test_log_file)
 
-        # Plotting the convergence curve and test results for this training size
-        plot_convergence_for_size(train, train_rewards, test_metric)
-
-
-
-"""
-import os
-import json
-import subprocess
-
-subprocess.run(
-
- f"python main.py --task_name bigbench --search_algo mcts --batch_size 5 --depth_limit 5 "
-            f"--train_size 70 --eval_size 50 --test_size 0 --seed 42 --train_shuffle True "
-            f"--iteration_num 10 --expand_width 3 --post_instruction False --pred_model gpt-3.5-turbo "
-            f"--optim_model gpt-4 --log_dir logs/ --data_dir ../datasets/causal_judgement.json --init_prompt 'Answer questions about causal attribution' --api_key 'OPENAI_API_KEY'",
-            shell=True
-)
+        plot_convergence_for_size(train_size, train_rewards, test_metric)
