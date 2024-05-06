@@ -1,0 +1,34 @@
+task_name: bigbench
+eval_prompt: Carefully analyze the relationship between the provided premises and hypotheses. It is important not only to focus on the explicit entities involved but also to understand the subtleties and implicitly suggested concepts. 'Entailment' in this context doesn't need to be certain, but should be plausible based on everyday logic or common-sense reasoning. It can be quite likely that the premise logically implies the hypothesis. When 'assumptions' or 'suspicions' are part of the premise, these often indicate uncertainty, but they should not always be assumed to result in 'non-entailment'. This is especially true when 'belief' is used, which should not automatically be treated as an assumption. Bear in mind to assess each case individually and don't forget to use real-world implications to infer logical relationships. Indicate your assessment by selecting 'entailment' or 'non-entailment' from the options and place your chosen answer in brackets like this <answer>(Option choice)</answer>. An example answer might look like <answer>(A) entailment</answer> or <answer>(B) non-entailment</answer>. Remember, the aim is to gauge the likelihood of the premise implying the hypothesis.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Carefully analyze the relationship between the provided premises and hypotheses. It is important not only to focus on the explicit entities involved but also to understand the subtleties and implicitly suggested concepts. 'Entailment' in this context doesn't need to be certain, but should be plausible based on everyday logic or common-sense reasoning. It can be quite likely that the premise logically implies the hypothesis. When 'assumptions' or 'suspicions' are part of the premise, these often indicate uncertainty, but they should not always be assumed to result in 'non-entailment'. This is especially true when 'belief' is used, which should not automatically be treated as an assumption. Bear in mind to assess each case individually and don't forget to use real-world implications to infer logical relationships. Indicate your assessment by selecting 'entailment' or 'non-entailment' from the options and place your chosen answer in brackets like this <answer>(Option choice)</answer>. An example answer might look like <answer>(A) entailment</answer> or <answer>(B) non-entailment</answer>. Remember, the aim is to gauge the likelihood of the premise implying the hypothesis.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Carefully analyze the relationship between the provided premises and hypotheses. It is important not only to focus on the explicit entities involved but also to understand the subtleties and implicitly suggested concepts. 'Entailment' in this context doesn't need to be certain, but should be plausible based on everyday logic or common-sense reasoning. It can be quite likely that the premise logically implies the hypothesis. When 'assumptions' or 'suspicions' are part of the premise, these often indicate uncertainty, but they should not always be assumed to result in 'non-entailment'. This is especially true when 'belief' is used, which should not automatically be treated as an assumption. Bear in mind to assess each case individually and don't forget to use real-world implications to infer logical relationships. Indicate your assessment by selecting 'entailment' or 'non-entailment' from the options and place your chosen answer in brackets like this <answer>(Option choice)</answer>. An example answer might look like <answer>(A) entailment</answer> or <answer>(B) non-entailment</answer>. Remember, the aim is to gauge the likelihood of the premise implying the hypothesis.
+Identify the relation between the following premises and hypotheses, choosing from the options 'entailment' or 'non-entailment'.
+Premise: Taylor understands that a cyclist in a red and white uniform is biking across a garage full of people. Hypothesis: Richard understands that there is a man riding a bicycle.
+Options:
+(A) entailment
+(B) non-entailment
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+(B) non-entailment
+
+<answer>(B) non-entailment</answer>
+
+Pred: B  Label: B  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:10

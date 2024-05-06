@@ -1,0 +1,32 @@
+task_name: bigbench
+eval_prompt: Your task is to critically evaluate the relationship between a premise and a hypothesis. Specifically, categorize the relationship as either 'entailment' or 'non-entailment'. The categorization 'entailment' describes relationships where the hypothesis is directly, indisputably derived from the premise. 'Non-entailment', on the other hand, is used when the premise does not provide a clear, direct logical foundation for the hypothesis. In doing so, be particularly cognizant of variations in subjects, beliefs about another person's thoughts, or perceived events. When the subject changes between the premise and the hypothesis, even though the event remains the same, this often signals a 'non-entailment'. Similarly, if the premise involves someone's beliefs or assumptions about another's thoughts or actions, this does not necessarily imply 'entailment'. One person's belief about another's thoughts does not confer objective reality to those thoughts. Remember, the presence of third-party perspectives, or a subject's thoughts and perceptions, doesn't automatically lead to 'non-entailment'. Focus on whether the core proposition in the hypothesis is a direct outcome of the premise, irrespective of the change in the subject. To conclude, insert either 'entailment' or 'non-entailment' between <answer> and </answer>. Be mindful that strongly held assumptions or beliefs about someone else's situation are not a guarantee of their actual state or that the condition is factual.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Your task is to critically evaluate the relationship between a premise and a hypothesis. Specifically, categorize the relationship as either 'entailment' or 'non-entailment'. The categorization 'entailment' describes relationships where the hypothesis is directly, indisputably derived from the premise. 'Non-entailment', on the other hand, is used when the premise does not provide a clear, direct logical foundation for the hypothesis. In doing so, be particularly cognizant of variations in subjects, beliefs about another person's thoughts, or perceived events. When the subject changes between the premise and the hypothesis, even though the event remains the same, this often signals a 'non-entailment'. Similarly, if the premise involves someone's beliefs or assumptions about another's thoughts or actions, this does not necessarily imply 'entailment'. One person's belief about another's thoughts does not confer objective reality to those thoughts. Remember, the presence of third-party perspectives, or a subject's thoughts and perceptions, doesn't automatically lead to 'non-entailment'. Focus on whether the core proposition in the hypothesis is a direct outcome of the premise, irrespective of the change in the subject. To conclude, insert either 'entailment' or 'non-entailment' between <answer> and </answer>. Be mindful that strongly held assumptions or beliefs about someone else's situation are not a guarantee of their actual state or that the condition is factual.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Your task is to critically evaluate the relationship between a premise and a hypothesis. Specifically, categorize the relationship as either 'entailment' or 'non-entailment'. The categorization 'entailment' describes relationships where the hypothesis is directly, indisputably derived from the premise. 'Non-entailment', on the other hand, is used when the premise does not provide a clear, direct logical foundation for the hypothesis. In doing so, be particularly cognizant of variations in subjects, beliefs about another person's thoughts, or perceived events. When the subject changes between the premise and the hypothesis, even though the event remains the same, this often signals a 'non-entailment'. Similarly, if the premise involves someone's beliefs or assumptions about another's thoughts or actions, this does not necessarily imply 'entailment'. One person's belief about another's thoughts does not confer objective reality to those thoughts. Remember, the presence of third-party perspectives, or a subject's thoughts and perceptions, doesn't automatically lead to 'non-entailment'. Focus on whether the core proposition in the hypothesis is a direct outcome of the premise, irrespective of the change in the subject. To conclude, insert either 'entailment' or 'non-entailment' between <answer> and </answer>. Be mindful that strongly held assumptions or beliefs about someone else's situation are not a guarantee of their actual state or that the condition is factual.
+Identify the relation between the following premises and hypotheses, choosing from the options 'entailment' or 'non-entailment'.
+Premise: Taylor understands that a cyclist in a red and white uniform is biking across a garage full of people. Hypothesis: Richard understands that there is a man riding a bicycle.
+Options:
+(A) entailment
+(B) non-entailment
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+<answer>(B) non-entailment</answer>
+
+Pred: B  Label: B  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:10

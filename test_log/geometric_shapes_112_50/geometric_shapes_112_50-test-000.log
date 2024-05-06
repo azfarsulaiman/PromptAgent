@@ -1,0 +1,39 @@
+task_name: bigbench
+eval_prompt: You are supplied with an SVG path element which, when interpreted, forms a specific geometric shape. The structure of the shape is determined by the Move (M) and Line (L) commands contained in the path. It's essential to appraise and comprehend these commands in a holistic manner to identify the resultant shape. Remember, the number of lines alone doesn't define the shape, the way they connect and form angles also plays a crucial role. For instance, if we consider the SVG path <path d='M 31.84,9.21 L 39.79,23.26 L 46.03,19.73 L 38.09,5.68 M 38.09,5.68 L 31.84,9.21'/>, it would render a kite shape having 4 sides with two distinct pairs of adjacent sides.    Your assignment involves similar steps. Analyze the provided SVG path and guess the shape it forms using the following options:  (A) circle  (B) heptagon  (C) hexagon  (D) kite  (E) line  (F) octagon  (G) pentagon  (H) rectangle  (I) sector  (J) triangle  (K) trapezoid    Following the analysis, your answer should be formatted as follows: <answer>(X) YourAnswer </answer>, where 'X' signifies the relevant option letter.    Now, let's continue with the SVG path given to you: Enter your path here.    The possible shape options remain unaltered:  (A) circle  (B) heptagon  (C) hexagon  (D) kite  (E) line  (F) octagon  (G) pentagon  (H) rectangle  (I) sector  (J) triangle  (K) trapezoid    When you have decided, present your answer as follows: <answer>(X) YourAnswer </answer>. Note, your determination of the shape should not just be based on the number of lines but also consider their angles and connections.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+You are supplied with an SVG path element which, when interpreted, forms a specific geometric shape. The structure of the shape is determined by the Move (M) and Line (L) commands contained in the path. It's essential to appraise and comprehend these commands in a holistic manner to identify the resultant shape. Remember, the number of lines alone doesn't define the shape, the way they connect and form angles also plays a crucial role. For instance, if we consider the SVG path <path d='M 31.84,9.21 L 39.79,23.26 L 46.03,19.73 L 38.09,5.68 M 38.09,5.68 L 31.84,9.21'/>, it would render a kite shape having 4 sides with two distinct pairs of adjacent sides.    Your assignment involves similar steps. Analyze the provided SVG path and guess the shape it forms using the following options:  (A) circle  (B) heptagon  (C) hexagon  (D) kite  (E) line  (F) octagon  (G) pentagon  (H) rectangle  (I) sector  (J) triangle  (K) trapezoid    Following the analysis, your answer should be formatted as follows: <answer>(X) YourAnswer </answer>, where 'X' signifies the relevant option letter.    Now, let's continue with the SVG path given to you: Enter your path here.    The possible shape options remain unaltered:  (A) circle  (B) heptagon  (C) hexagon  (D) kite  (E) line  (F) octagon  (G) pentagon  (H) rectangle  (I) sector  (J) triangle  (K) trapezoid    When you have decided, present your answer as follows: <answer>(X) YourAnswer </answer>. Note, your determination of the shape should not just be based on the number of lines but also consider their angles and connections.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+You are supplied with an SVG path element which, when interpreted, forms a specific geometric shape. The structure of the shape is determined by the Move (M) and Line (L) commands contained in the path. It's essential to appraise and comprehend these commands in a holistic manner to identify the resultant shape. Remember, the number of lines alone doesn't define the shape, the way they connect and form angles also plays a crucial role. For instance, if we consider the SVG path <path d='M 31.84,9.21 L 39.79,23.26 L 46.03,19.73 L 38.09,5.68 M 38.09,5.68 L 31.84,9.21'/>, it would render a kite shape having 4 sides with two distinct pairs of adjacent sides.    Your assignment involves similar steps. Analyze the provided SVG path and guess the shape it forms using the following options:  (A) circle  (B) heptagon  (C) hexagon  (D) kite  (E) line  (F) octagon  (G) pentagon  (H) rectangle  (I) sector  (J) triangle  (K) trapezoid    Following the analysis, your answer should be formatted as follows: <answer>(X) YourAnswer </answer>, where 'X' signifies the relevant option letter.    Now, let's continue with the SVG path given to you: Enter your path here.    The possible shape options remain unaltered:  (A) circle  (B) heptagon  (C) hexagon  (D) kite  (E) line  (F) octagon  (G) pentagon  (H) rectangle  (I) sector  (J) triangle  (K) trapezoid    When you have decided, present your answer as follows: <answer>(X) YourAnswer </answer>. Note, your determination of the shape should not just be based on the number of lines but also consider their angles and connections.
+This SVG path element <path d="M 59.18,98.64 L 65.20,80.96 L 57.00,68.63 L 55.43,56.00 M 55.43,56.00 L 67.76,43.69 M 67.76,43.69 L 80.38,62.66 L 92.36,80.67 L 59.18,98.64"/> draws a 
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+<answer>(J) triangle</answer>
+
+Pred: J  Label: B  Correct: False
+Test Metric: 0.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 0.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:10

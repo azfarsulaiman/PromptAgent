@@ -1,0 +1,39 @@
+task_name: bigbench
+eval_prompt: You are tasked with identifying a geometric shape based on the characteristics provided in plain language. The potential shapes are: circle, heptagon, hexagon, kite, line, octagon, pentagon, rectangle, sector, or triangle. You will determine the shape by analyzing details such as the number of sides, vertices, and angles, among other traits. It is crucial to remember that this task prohibits the use of technical codes, SVG paths or any other similar complex formats. Your identification must be based solely on the straightforward descriptions provided, as the activity requires critical thinking rather than the literal deciphering of coded information. Once you have determined the shape, select the correct option from the list and frame your answer as follows: <answer>(option) shape name</answer>; for instance, if the shape is an octagon, your response should look like <answer>(F) octagon</answer>. Should the information given be inadequate for a definitive identification of the shape, you must relay this by responding with <need more information>. This will signal that the presented traits are insufficient to single out a specific shape from the options available.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+You are tasked with identifying a geometric shape based on the characteristics provided in plain language. The potential shapes are: circle, heptagon, hexagon, kite, line, octagon, pentagon, rectangle, sector, or triangle. You will determine the shape by analyzing details such as the number of sides, vertices, and angles, among other traits. It is crucial to remember that this task prohibits the use of technical codes, SVG paths or any other similar complex formats. Your identification must be based solely on the straightforward descriptions provided, as the activity requires critical thinking rather than the literal deciphering of coded information. Once you have determined the shape, select the correct option from the list and frame your answer as follows: <answer>(option) shape name</answer>; for instance, if the shape is an octagon, your response should look like <answer>(F) octagon</answer>. Should the information given be inadequate for a definitive identification of the shape, you must relay this by responding with <need more information>. This will signal that the presented traits are insufficient to single out a specific shape from the options available.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+You are tasked with identifying a geometric shape based on the characteristics provided in plain language. The potential shapes are: circle, heptagon, hexagon, kite, line, octagon, pentagon, rectangle, sector, or triangle. You will determine the shape by analyzing details such as the number of sides, vertices, and angles, among other traits. It is crucial to remember that this task prohibits the use of technical codes, SVG paths or any other similar complex formats. Your identification must be based solely on the straightforward descriptions provided, as the activity requires critical thinking rather than the literal deciphering of coded information. Once you have determined the shape, select the correct option from the list and frame your answer as follows: <answer>(option) shape name</answer>; for instance, if the shape is an octagon, your response should look like <answer>(F) octagon</answer>. Should the information given be inadequate for a definitive identification of the shape, you must relay this by responding with <need more information>. This will signal that the presented traits are insufficient to single out a specific shape from the options available.
+This SVG path element <path d="M 59.18,98.64 L 65.20,80.96 L 57.00,68.63 L 55.43,56.00 M 55.43,56.00 L 67.76,43.69 M 67.76,43.69 L 80.38,62.66 L 92.36,80.67 L 59.18,98.64"/> draws a 
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+<answer>(J) triangle</answer>
+
+Pred: J  Label: B  Correct: False
+Test Metric: 0.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 0.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:10

@@ -1,0 +1,34 @@
+task_name: bigbench
+eval_prompt: Assess the relationship between the given premises and hypotheses, considering both specific and general terms. If a specific term from the premise fits within a more general term from the hypothesis, this might indicate an 'entailment'. Analyze how the chosen words in the premise might fit into broader categories in the hypothesis and try not to overly emphasize terms indicating levels of certainty such as 'suspects' and 'recognizes'. Note that 'entailment' does not always require an exact match between the premise and the hypothesis, but rather a consistent pattern. Identify key sub-clauses within complex sentences and interpret their relationships. At the end of your response, choose between the provided options like (A) or (B) that best represents the relationship between the premise and hypothesis: 'entailment' or 'non-entailment'.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Assess the relationship between the given premises and hypotheses, considering both specific and general terms. If a specific term from the premise fits within a more general term from the hypothesis, this might indicate an 'entailment'. Analyze how the chosen words in the premise might fit into broader categories in the hypothesis and try not to overly emphasize terms indicating levels of certainty such as 'suspects' and 'recognizes'. Note that 'entailment' does not always require an exact match between the premise and the hypothesis, but rather a consistent pattern. Identify key sub-clauses within complex sentences and interpret their relationships. At the end of your response, choose between the provided options like (A) or (B) that best represents the relationship between the premise and hypothesis: 'entailment' or 'non-entailment'.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Assess the relationship between the given premises and hypotheses, considering both specific and general terms. If a specific term from the premise fits within a more general term from the hypothesis, this might indicate an 'entailment'. Analyze how the chosen words in the premise might fit into broader categories in the hypothesis and try not to overly emphasize terms indicating levels of certainty such as 'suspects' and 'recognizes'. Note that 'entailment' does not always require an exact match between the premise and the hypothesis, but rather a consistent pattern. Identify key sub-clauses within complex sentences and interpret their relationships. At the end of your response, choose between the provided options like (A) or (B) that best represents the relationship between the premise and hypothesis: 'entailment' or 'non-entailment'.
+Identify the relation between the following premises and hypotheses, choosing from the options 'entailment' or 'non-entailment'.
+Premise: Taylor understands that a cyclist in a red and white uniform is biking across a garage full of people. Hypothesis: Richard understands that there is a man riding a bicycle.
+Options:
+(A) entailment
+(B) non-entailment
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+The premise describes Taylor's understanding of a cyclist in a red and white uniform biking across a garage full of people. The hypothesis, on the other hand, mentions Richard's understanding of a man riding a bicycle. While the premise is more specific in terms of the cyclist's attire and the location, it can be seen as fitting within the broader category of a man riding a bicycle. Therefore, there is an entailment between the premise and the hypothesis.
+
+<answer>(A) entailment</answer>
+
+Pred: A  Label: B  Correct: False
+Test Metric: 0.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 0.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:12

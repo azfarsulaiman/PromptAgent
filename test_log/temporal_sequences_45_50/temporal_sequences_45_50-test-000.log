@@ -1,0 +1,56 @@
+task_name: bigbench
+eval_prompt: Given a person's itinerary for the day, including the list of activities and their specific times, identify a suitable time slot for a new, unspecified activity. This task has some critical constraints to consider:     1. A person cannot exist in two places at the same time, so the proposed time slot must not overlap with the times of any existing activities on the schedule.     2. It is essential to consider that transitions between locations also consume time, and such logistical aspects must be factored into your decision.     3. Pay attention to operational hours of the location where the new activity will occur. The proposed time slot must match the business hours of this location.     After considering all these constraints, cross-check the availability options and determine the time slot that does not overlap with prior commitments and is within the active hours of the location for the activity. Select the corresponding option as the suitable time for this new activity and present it within <answer> and </answer> brackets. Be sure to ensure your choice is logically consistent and doesn't contradict any constraints outlined in the individual's daily schedule.     Should the information be presented in a complex manner or include too many details, break down the information to identify the necessary constraints and timing before deciding on a corresponding option. This way, even if the problem seems significant and complex, you can approach it one step at a time, avoiding overlooking critical aspects.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Given a person's itinerary for the day, including the list of activities and their specific times, identify a suitable time slot for a new, unspecified activity. This task has some critical constraints to consider:     1. A person cannot exist in two places at the same time, so the proposed time slot must not overlap with the times of any existing activities on the schedule.     2. It is essential to consider that transitions between locations also consume time, and such logistical aspects must be factored into your decision.     3. Pay attention to operational hours of the location where the new activity will occur. The proposed time slot must match the business hours of this location.     After considering all these constraints, cross-check the availability options and determine the time slot that does not overlap with prior commitments and is within the active hours of the location for the activity. Select the corresponding option as the suitable time for this new activity and present it within <answer> and </answer> brackets. Be sure to ensure your choice is logically consistent and doesn't contradict any constraints outlined in the individual's daily schedule.     Should the information be presented in a complex manner or include too many details, break down the information to identify the necessary constraints and timing before deciding on a corresponding option. This way, even if the problem seems significant and complex, you can approach it one step at a time, avoiding overlooking critical aspects.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Given a person's itinerary for the day, including the list of activities and their specific times, identify a suitable time slot for a new, unspecified activity. This task has some critical constraints to consider:     1. A person cannot exist in two places at the same time, so the proposed time slot must not overlap with the times of any existing activities on the schedule.     2. It is essential to consider that transitions between locations also consume time, and such logistical aspects must be factored into your decision.     3. Pay attention to operational hours of the location where the new activity will occur. The proposed time slot must match the business hours of this location.     After considering all these constraints, cross-check the availability options and determine the time slot that does not overlap with prior commitments and is within the active hours of the location for the activity. Select the corresponding option as the suitable time for this new activity and present it within <answer> and </answer> brackets. Be sure to ensure your choice is logically consistent and doesn't contradict any constraints outlined in the individual's daily schedule.     Should the information be presented in a complex manner or include too many details, break down the information to identify the necessary constraints and timing before deciding on a corresponding option. This way, even if the problem seems significant and complex, you can approach it one step at a time, avoiding overlooking critical aspects.
+Today, Susan went to the gas station. Between what times could they have gone?
+We know that: 
+Susan woke up at 7am.
+Leslie saw Susan playing tennis at the tennis court from 7am to 8am.
+Steven saw Susan driving to the water park from 1pm to 2pm.
+Thomas saw Susan buying lunch at the deli from 2pm to 7pm.
+The gas station was closed after 7pm.
+Between what times could Susan have gone to the gas station?
+Options:
+(A) 8am to 1pm
+(B) 2pm to 7pm
+(C) 1pm to 2pm
+(D) 7am to 8am
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+To determine the suitable time slot for Susan to have gone to the gas station, we need to find a time period that does not overlap with any of her prior commitments and falls within the operational hours of the gas station.
+
+From the given schedule:
+- Susan played tennis from 7am to 8am.
+- Susan drove to the water park from 1pm to 2pm.
+- Susan bought lunch at the deli from 2pm to 7pm.
+- The gas station was closed after 7pm.
+
+Considering the constraints:
+- The gas station was closed after 7pm, so Susan could not have gone after 7pm.
+- Susan was playing tennis from 7am to 8am, so she could not have gone during that time.
+- Susan was driving to the water park from 1pm to 2pm, so she could not have gone during that time.
+- Susan was buying lunch at the deli from 2pm to 7pm, so she could not have gone during that time.
+
+Therefore, the only available time slot for Susan to have gone to the gas station is between 8am to 1pm.
+
+Therefore, the suitable time for Susan to have gone to the gas station is <answer>(A) 8am to 1pm</answer>.
+
+Pred: A  Label: A  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:14

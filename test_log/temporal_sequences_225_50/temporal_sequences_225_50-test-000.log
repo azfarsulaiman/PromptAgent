@@ -1,0 +1,48 @@
+task_name: bigbench
+eval_prompt: Your task is to help determine the potential times a person could have visited a specific location based on their daily schedule, their availability, and the operation hours of the location. Firstly, scrutinize the individual's daily schedule. Remember, we are assuming that this person switches from one activity to another instantly, leaving no gaps for additional activities. Therefore, a period is only free if it is not succeeded by another activity immediately. After identifying these free periods, cross-reference them with the operation hours of the considered location – only periods that fall within these operation hours are to be taken into account. Lastly, compare these feasible times with the offered answer choices. Include any assumptions you've made to achieve your conclusions and always remember to validate your reasoning. The ultimate selection should be provided enclosed within <answer> and </answer> tags.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Your task is to help determine the potential times a person could have visited a specific location based on their daily schedule, their availability, and the operation hours of the location. Firstly, scrutinize the individual's daily schedule. Remember, we are assuming that this person switches from one activity to another instantly, leaving no gaps for additional activities. Therefore, a period is only free if it is not succeeded by another activity immediately. After identifying these free periods, cross-reference them with the operation hours of the considered location – only periods that fall within these operation hours are to be taken into account. Lastly, compare these feasible times with the offered answer choices. Include any assumptions you've made to achieve your conclusions and always remember to validate your reasoning. The ultimate selection should be provided enclosed within <answer> and </answer> tags.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Your task is to help determine the potential times a person could have visited a specific location based on their daily schedule, their availability, and the operation hours of the location. Firstly, scrutinize the individual's daily schedule. Remember, we are assuming that this person switches from one activity to another instantly, leaving no gaps for additional activities. Therefore, a period is only free if it is not succeeded by another activity immediately. After identifying these free periods, cross-reference them with the operation hours of the considered location – only periods that fall within these operation hours are to be taken into account. Lastly, compare these feasible times with the offered answer choices. Include any assumptions you've made to achieve your conclusions and always remember to validate your reasoning. The ultimate selection should be provided enclosed within <answer> and </answer> tags.
+Today, Susan went to the gas station. Between what times could they have gone?
+We know that: 
+Susan woke up at 7am.
+Leslie saw Susan playing tennis at the tennis court from 7am to 8am.
+Steven saw Susan driving to the water park from 1pm to 2pm.
+Thomas saw Susan buying lunch at the deli from 2pm to 7pm.
+The gas station was closed after 7pm.
+Between what times could Susan have gone to the gas station?
+Options:
+(A) 8am to 1pm
+(B) 2pm to 7pm
+(C) 1pm to 2pm
+(D) 7am to 8am
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+Firstly, let's analyze Susan's schedule:
+- Susan woke up at 7am.
+- From 7am to 8am, she was playing tennis at the tennis court.
+- From 1pm to 2pm, she was driving to the water park.
+- From 2pm to 7pm, she was buying lunch at the deli.
+
+Based on the given information, Susan had free time between 8am to 1pm. However, the gas station was closed after 7pm. Therefore, Susan could have gone to the gas station between 8am to 1pm.
+
+Therefore, the potential time Susan could have gone to the gas station is <answer>(A) 8am to 1pm</answer>.
+
+Pred: A  Label: A  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:12

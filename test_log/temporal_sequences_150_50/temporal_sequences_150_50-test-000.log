@@ -1,0 +1,50 @@
+task_name: bigbench
+eval_prompt: Perform comprehensive analytical reasoning on the provided series of events, which incorporates timelines, locations, and activities. Analyze the details provided by tracking the individual’s reported presence at varying locations during diverse times, and also factor in the operational hours of these venues. It's imperative to bear in mind that a person cannot exist at two different places simultaneously hence, remove any times that clash with the noted locations of the individual. Maintain the order of the activities’ sequence, while also taking into consideration events that don’t align chronologically. When assessing potential answers, utilize systematic elimination tactics to ensure your selected answer doesn’t overlap with conflicting times or occurrences. Vigilantly cross-reference each option against the chronicle of events and limitations, while fulfilling the practical, physical, spatial, and temporal constraints for each scenario. You are to examine every aspect of the provided information to the minutest detail without neglecting probable scenarios within the timelines set. Following the identification of a plausible answer that doesn’t violate the spatial or temporal constraints of other events, place it within the <answer> and </answer> tags. This selected answer must align in harmony with the chronological and geographical scope insinuated by the scenario while maintaining compliance with the constraints of human location and mobility. A fundamental rule: avoid any form of conjecture or assumption that's not grounded in the given information. The task is strictly about honing in on the sole possible time slot for an event considering all the provided constraints, and isn't about guessing or assuming general human routines. This is a focused analysis to find the exact time slot where no other accounted-for activity took place.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Perform comprehensive analytical reasoning on the provided series of events, which incorporates timelines, locations, and activities. Analyze the details provided by tracking the individual’s reported presence at varying locations during diverse times, and also factor in the operational hours of these venues. It's imperative to bear in mind that a person cannot exist at two different places simultaneously hence, remove any times that clash with the noted locations of the individual. Maintain the order of the activities’ sequence, while also taking into consideration events that don’t align chronologically. When assessing potential answers, utilize systematic elimination tactics to ensure your selected answer doesn’t overlap with conflicting times or occurrences. Vigilantly cross-reference each option against the chronicle of events and limitations, while fulfilling the practical, physical, spatial, and temporal constraints for each scenario. You are to examine every aspect of the provided information to the minutest detail without neglecting probable scenarios within the timelines set. Following the identification of a plausible answer that doesn’t violate the spatial or temporal constraints of other events, place it within the <answer> and </answer> tags. This selected answer must align in harmony with the chronological and geographical scope insinuated by the scenario while maintaining compliance with the constraints of human location and mobility. A fundamental rule: avoid any form of conjecture or assumption that's not grounded in the given information. The task is strictly about honing in on the sole possible time slot for an event considering all the provided constraints, and isn't about guessing or assuming general human routines. This is a focused analysis to find the exact time slot where no other accounted-for activity took place.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Perform comprehensive analytical reasoning on the provided series of events, which incorporates timelines, locations, and activities. Analyze the details provided by tracking the individual’s reported presence at varying locations during diverse times, and also factor in the operational hours of these venues. It's imperative to bear in mind that a person cannot exist at two different places simultaneously hence, remove any times that clash with the noted locations of the individual. Maintain the order of the activities’ sequence, while also taking into consideration events that don’t align chronologically. When assessing potential answers, utilize systematic elimination tactics to ensure your selected answer doesn’t overlap with conflicting times or occurrences. Vigilantly cross-reference each option against the chronicle of events and limitations, while fulfilling the practical, physical, spatial, and temporal constraints for each scenario. You are to examine every aspect of the provided information to the minutest detail without neglecting probable scenarios within the timelines set. Following the identification of a plausible answer that doesn’t violate the spatial or temporal constraints of other events, place it within the <answer> and </answer> tags. This selected answer must align in harmony with the chronological and geographical scope insinuated by the scenario while maintaining compliance with the constraints of human location and mobility. A fundamental rule: avoid any form of conjecture or assumption that's not grounded in the given information. The task is strictly about honing in on the sole possible time slot for an event considering all the provided constraints, and isn't about guessing or assuming general human routines. This is a focused analysis to find the exact time slot where no other accounted-for activity took place.
+Today, Susan went to the gas station. Between what times could they have gone?
+We know that: 
+Susan woke up at 7am.
+Leslie saw Susan playing tennis at the tennis court from 7am to 8am.
+Steven saw Susan driving to the water park from 1pm to 2pm.
+Thomas saw Susan buying lunch at the deli from 2pm to 7pm.
+The gas station was closed after 7pm.
+Between what times could Susan have gone to the gas station?
+Options:
+(A) 8am to 1pm
+(B) 2pm to 7pm
+(C) 1pm to 2pm
+(D) 7am to 8am
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+To determine the possible time slot for Susan to have gone to the gas station, we need to consider the timeline of events and the operational hours of the gas station.
+
+- Susan woke up at 7am.
+- Leslie saw Susan playing tennis at the tennis court from 7am to 8am.
+- Steven saw Susan driving to the water park from 1pm to 2pm.
+- Thomas saw Susan buying lunch at the deli from 2pm to 7pm.
+- The gas station was closed after 7pm.
+
+Based on the given information, Susan could have gone to the gas station between 8am to 1pm, as this is the only time slot available before the gas station closed at 7pm.
+
+Therefore, the answer is: <answer>(A) 8am to 1pm</answer>
+
+Pred: A  Label: A  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:13

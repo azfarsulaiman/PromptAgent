@@ -1,0 +1,34 @@
+task_name: bigbench
+eval_prompt: Analyze the provided premises and hypotheses, focusing on understanding the semantic meaning of phrases and words in their specific context. Accordingly, determine whether the truth of the premise inevitably ensures the truth of the hypothesis, indicating 'entailment'. If this condition isn't met, select 'non-entailment'. Be mindful to not mix up direct information with indirect, nuanced information such as 'beliefs', 'assumptions', etc. After making your choice between 'entailment' and 'non-entailment', give a concise justification for your selection. Present your answer along with the justification in the following style, bracketing your answer between <answer> and </answer>.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Analyze the provided premises and hypotheses, focusing on understanding the semantic meaning of phrases and words in their specific context. Accordingly, determine whether the truth of the premise inevitably ensures the truth of the hypothesis, indicating 'entailment'. If this condition isn't met, select 'non-entailment'. Be mindful to not mix up direct information with indirect, nuanced information such as 'beliefs', 'assumptions', etc. After making your choice between 'entailment' and 'non-entailment', give a concise justification for your selection. Present your answer along with the justification in the following style, bracketing your answer between <answer> and </answer>.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Analyze the provided premises and hypotheses, focusing on understanding the semantic meaning of phrases and words in their specific context. Accordingly, determine whether the truth of the premise inevitably ensures the truth of the hypothesis, indicating 'entailment'. If this condition isn't met, select 'non-entailment'. Be mindful to not mix up direct information with indirect, nuanced information such as 'beliefs', 'assumptions', etc. After making your choice between 'entailment' and 'non-entailment', give a concise justification for your selection. Present your answer along with the justification in the following style, bracketing your answer between <answer> and </answer>.
+Identify the relation between the following premises and hypotheses, choosing from the options 'entailment' or 'non-entailment'.
+Premise: Taylor understands that a cyclist in a red and white uniform is biking across a garage full of people. Hypothesis: Richard understands that there is a man riding a bicycle.
+Options:
+(A) entailment
+(B) non-entailment
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+The premise does not entail the hypothesis. Just because Taylor understands that a cyclist in a red and white uniform is biking across a garage full of people does not necessarily mean that Richard understands that there is a man riding a bicycle. The premise provides specific details about the cyclist and the setting, but it does not directly state that Richard understands the same information. Therefore, the relation between the premise and hypothesis is non-entailment.
+
+<answer>(B) non-entailment</answer>
+
+Pred: B  Label: B  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:13

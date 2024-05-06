@@ -1,0 +1,34 @@
+task_name: bigbench
+eval_prompt: Thoroughly analyze and respond to inquiries concerning actual causation, differentiating it clearly from mere correlation. Be mindful of scenarios where the outcome may be over-determined by multiple factors, each acting individually or collectively, capable of resulting in the given consequence. Consciously consider all necessary and sufficient conditions that could impact the outcome, even if they don't directly trigger the event. Even though focusing on the chronology of events is important, avoid relying solely on it to identify causation. Instead, incorporate an understanding of existing rules, policies, and violations within the scenario. Distinguish between factors that might directly cause an outcome, and those that merely make the outcome possible. During ambiguity, apply meticulous discernment to demarcate correlation and causation. Evaluate the depth of knowledge and the actor's intention behind each action. If the outcome is a product of a collective action, consider individual contributions as causative, even if they act independently. Avoid generalization and treat each scenario as unique and distinct. Your responses should discriminate correlation from causation, while identifying, assessing, and describing the distinct individual or combined factors having a direct influence on the outcome within the given context. Remember that when multiple independent factors fulfill the 'sufficient condition', regard each factor as a possible cause.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Thoroughly analyze and respond to inquiries concerning actual causation, differentiating it clearly from mere correlation. Be mindful of scenarios where the outcome may be over-determined by multiple factors, each acting individually or collectively, capable of resulting in the given consequence. Consciously consider all necessary and sufficient conditions that could impact the outcome, even if they don't directly trigger the event. Even though focusing on the chronology of events is important, avoid relying solely on it to identify causation. Instead, incorporate an understanding of existing rules, policies, and violations within the scenario. Distinguish between factors that might directly cause an outcome, and those that merely make the outcome possible. During ambiguity, apply meticulous discernment to demarcate correlation and causation. Evaluate the depth of knowledge and the actor's intention behind each action. If the outcome is a product of a collective action, consider individual contributions as causative, even if they act independently. Avoid generalization and treat each scenario as unique and distinct. Your responses should discriminate correlation from causation, while identifying, assessing, and describing the distinct individual or combined factors having a direct influence on the outcome within the given context. Remember that when multiple independent factors fulfill the 'sufficient condition', regard each factor as a possible cause.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Thoroughly analyze and respond to inquiries concerning actual causation, differentiating it clearly from mere correlation. Be mindful of scenarios where the outcome may be over-determined by multiple factors, each acting individually or collectively, capable of resulting in the given consequence. Consciously consider all necessary and sufficient conditions that could impact the outcome, even if they don't directly trigger the event. Even though focusing on the chronology of events is important, avoid relying solely on it to identify causation. Instead, incorporate an understanding of existing rules, policies, and violations within the scenario. Distinguish between factors that might directly cause an outcome, and those that merely make the outcome possible. During ambiguity, apply meticulous discernment to demarcate correlation and causation. Evaluate the depth of knowledge and the actor's intention behind each action. If the outcome is a product of a collective action, consider individual contributions as causative, even if they act independently. Avoid generalization and treat each scenario as unique and distinct. Your responses should discriminate correlation from causation, while identifying, assessing, and describing the distinct individual or combined factors having a direct influence on the outcome within the given context. Remember that when multiple independent factors fulfill the 'sufficient condition', regard each factor as a possible cause.
+How would a typical person answer each of the following questions about causation?
+Lauren and Jane work for the same company. They each need to use a computer for work sometimes. Unfortunately, the computer isn't very powerful. If two people are logged on at the same time, it usually crashes. So the company decided to institute an official policy. It declared that Lauren would be the only one permitted to use the computer in the mornings and that Jane would be the only one permitted to use the computer in the afternoons. As expected, Lauren logged on the computer the next day at 9:00 am. But Jane decided to disobey the official policy. She also logged on at 9:00 am. The computer crashed immediately. Did Jane cause the computer to crash?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+In this scenario, Jane's decision to disobey the official policy and log on to the computer at the same time as Lauren directly led to the computer crashing. The policy was put in place specifically to prevent such a situation from occurring, as the computer is not powerful enough to handle two users simultaneously. Therefore, Jane's actions can be identified as a direct cause of the computer crashing.
+
+<answer>(A) Yes</answer>
+
+Pred: A  Label: A  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:11

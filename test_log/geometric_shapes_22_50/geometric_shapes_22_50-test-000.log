@@ -1,0 +1,41 @@
+task_name: bigbench
+eval_prompt: Using the SVG path commands provided, figure out the geometric shape that is being created. To correctly determine the shape, consider essential features such as the number of sides, angles between those sides, length and positioning of each line. It's crucial to remember that the SVG path commands guide to a cumulative shape rather than disjointed lines. Don't be misled by superficially similar figures – there's a key difference, for instance, between a circle (all points equidistant from the center) and an ellipse (two distinct points [foci] such that for all points on the ellipse, the sum of the distances to the foci is a constant). Similarly, be aware of distinctive features of other geometric shapes. Once you've studied the SVG code and the properties of different shapes, match it with one of the given options. Conclude your response by directly providing the option letter. For instance, if you determine the shape is a circle and the corresponding option for circle is (A), you should frame your answer like this: <answer>(A)</answer>.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Using the SVG path commands provided, figure out the geometric shape that is being created. To correctly determine the shape, consider essential features such as the number of sides, angles between those sides, length and positioning of each line. It's crucial to remember that the SVG path commands guide to a cumulative shape rather than disjointed lines. Don't be misled by superficially similar figures – there's a key difference, for instance, between a circle (all points equidistant from the center) and an ellipse (two distinct points [foci] such that for all points on the ellipse, the sum of the distances to the foci is a constant). Similarly, be aware of distinctive features of other geometric shapes. Once you've studied the SVG code and the properties of different shapes, match it with one of the given options. Conclude your response by directly providing the option letter. For instance, if you determine the shape is a circle and the corresponding option for circle is (A), you should frame your answer like this: <answer>(A)</answer>.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Using the SVG path commands provided, figure out the geometric shape that is being created. To correctly determine the shape, consider essential features such as the number of sides, angles between those sides, length and positioning of each line. It's crucial to remember that the SVG path commands guide to a cumulative shape rather than disjointed lines. Don't be misled by superficially similar figures – there's a key difference, for instance, between a circle (all points equidistant from the center) and an ellipse (two distinct points [foci] such that for all points on the ellipse, the sum of the distances to the foci is a constant). Similarly, be aware of distinctive features of other geometric shapes. Once you've studied the SVG code and the properties of different shapes, match it with one of the given options. Conclude your response by directly providing the option letter. For instance, if you determine the shape is a circle and the corresponding option for circle is (A), you should frame your answer like this: <answer>(A)</answer>.
+This SVG path element <path d="M 59.18,98.64 L 65.20,80.96 L 57.00,68.63 L 55.43,56.00 M 55.43,56.00 L 67.76,43.69 M 67.76,43.69 L 80.38,62.66 L 92.36,80.67 L 59.18,98.64"/> draws a 
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+The SVG path element provided creates a kite shape. 
+
+<answer>(D)</answer>
+
+Pred: D  Label: B  Correct: False
+Test Metric: 0.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 0.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:10

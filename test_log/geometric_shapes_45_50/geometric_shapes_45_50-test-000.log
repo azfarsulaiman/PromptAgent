@@ -1,0 +1,39 @@
+task_name: bigbench
+eval_prompt: Based on the given SVG path data, assess and discern the geometric shape it depicts. Remember, this data describes a complete figure using various path commands 'M' (move to), 'L' (line to), 'H' (horizontal line to), 'V' (vertical line to), 'C' (cubic Bézier curve), 'S' (smooth cubic Bézier curve), 'Q' (quadratic Bézier curve), 'T' (smooth quadratic Bézier curve), 'A' (elliptical Arc that can construct a circular arc, a full circle, or an ellipse), and 'Z' (close path). The path commands collaboratively reveal a comprehensive geometric shape. It's imperative to note that a series of 'L' commands following 'M' command collaboratively form sides of a geometric shape until the next 'M' command is encountered. Also, keep in mind that the absence of 'Z' command might not essentially denote a line shape; it could also mean an open polygon. Shapes delineated by this data can range from simple to complex, including pentagons, hexagons, kites, or even circles. Utilize your understanding of different geometric patterns, their unique traits, such as the number of sides, angles, curvature, the inclusion or exclusion of arcs, etc., and correspond them with appropriate SVG commands to decide the correct answer amongst the provided options. Two or more 'A' commands may also imply a circle and not necessarily an ellipse. Lastly, highlight your chosen answer by placing it between <answer> and </answer>. Please list your chosen answer option in the final part of your response.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Based on the given SVG path data, assess and discern the geometric shape it depicts. Remember, this data describes a complete figure using various path commands 'M' (move to), 'L' (line to), 'H' (horizontal line to), 'V' (vertical line to), 'C' (cubic Bézier curve), 'S' (smooth cubic Bézier curve), 'Q' (quadratic Bézier curve), 'T' (smooth quadratic Bézier curve), 'A' (elliptical Arc that can construct a circular arc, a full circle, or an ellipse), and 'Z' (close path). The path commands collaboratively reveal a comprehensive geometric shape. It's imperative to note that a series of 'L' commands following 'M' command collaboratively form sides of a geometric shape until the next 'M' command is encountered. Also, keep in mind that the absence of 'Z' command might not essentially denote a line shape; it could also mean an open polygon. Shapes delineated by this data can range from simple to complex, including pentagons, hexagons, kites, or even circles. Utilize your understanding of different geometric patterns, their unique traits, such as the number of sides, angles, curvature, the inclusion or exclusion of arcs, etc., and correspond them with appropriate SVG commands to decide the correct answer amongst the provided options. Two or more 'A' commands may also imply a circle and not necessarily an ellipse. Lastly, highlight your chosen answer by placing it between <answer> and </answer>. Please list your chosen answer option in the final part of your response.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Based on the given SVG path data, assess and discern the geometric shape it depicts. Remember, this data describes a complete figure using various path commands 'M' (move to), 'L' (line to), 'H' (horizontal line to), 'V' (vertical line to), 'C' (cubic Bézier curve), 'S' (smooth cubic Bézier curve), 'Q' (quadratic Bézier curve), 'T' (smooth quadratic Bézier curve), 'A' (elliptical Arc that can construct a circular arc, a full circle, or an ellipse), and 'Z' (close path). The path commands collaboratively reveal a comprehensive geometric shape. It's imperative to note that a series of 'L' commands following 'M' command collaboratively form sides of a geometric shape until the next 'M' command is encountered. Also, keep in mind that the absence of 'Z' command might not essentially denote a line shape; it could also mean an open polygon. Shapes delineated by this data can range from simple to complex, including pentagons, hexagons, kites, or even circles. Utilize your understanding of different geometric patterns, their unique traits, such as the number of sides, angles, curvature, the inclusion or exclusion of arcs, etc., and correspond them with appropriate SVG commands to decide the correct answer amongst the provided options. Two or more 'A' commands may also imply a circle and not necessarily an ellipse. Lastly, highlight your chosen answer by placing it between <answer> and </answer>. Please list your chosen answer option in the final part of your response.
+This SVG path element <path d="M 59.18,98.64 L 65.20,80.96 L 57.00,68.63 L 55.43,56.00 M 55.43,56.00 L 67.76,43.69 M 67.76,43.69 L 80.38,62.66 L 92.36,80.67 L 59.18,98.64"/> draws a 
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+<answer>(G) pentagon</answer>
+
+Pred: G  Label: B  Correct: False
+Test Metric: 0.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 0.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:10

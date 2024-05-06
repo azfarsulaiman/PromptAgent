@@ -19,6 +19,7 @@ def eval(
     batch_size=1, 
     temperature=0, 
     log_dir='logs/prompt_test_logs', 
+    log_file='test_log_file',
     log_examples=True,
     data_dir=None, 
     api_key=None, 
@@ -39,7 +40,8 @@ def eval(
         os.makedirs(log_dir)
         
     api_key_config(api_key)
-    logger = create_logger(log_dir, task_name, log_mode='test')
+    # logger = create_logger(log_dir, task_name, log_mode='test')
+    logger = create_logger(log_dir, log_file, log_mode='test')
     
     task = get_task(task_name)(
         train_size=train_size, 

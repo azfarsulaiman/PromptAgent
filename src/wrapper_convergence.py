@@ -65,6 +65,7 @@ data_splits = {
     "temporal_sequences": {"train": 300, "test": 500},
     "causal_judgement": {"train": 90, "test": 100}
 }
+#training_percentages = [100, 75, 50, 30, 25, 20, 15, 10, 5, 1]
 
 # data_splits = {
 #     "penguins_in_a_table": {"train": 70, "test": 79},

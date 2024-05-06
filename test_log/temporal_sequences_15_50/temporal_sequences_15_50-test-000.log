@@ -1,0 +1,40 @@
+task_name: bigbench
+eval_prompt: Based on the given timeline of a person's daily activities, deduce the potential time slot when they possibly engaged in a distinct activity. To find the correct slot, ensure that it aligns with the individual's waking hours and doesn't coincide with any other activity they are involved in. Also evaluate the timing details of physical locations such as a shop or park, ascertain that they are open and accessible during the proposed time slot. The correct answer will be among the options provided. Be very careful in evaluating all the clues in the given situation. Answer using the label like '(A)', '(B)', etc. without including the accompanying time range or any additional info within your answer. It is crucial to get the format right. Put your answer between <answer> and </answer>. Please note, just the label of the option like '(A)' or '(B)' must be inside these answer tags and nothing else. For example, if the correct answer is option A, the format should be <answer>(A)</answer>.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Based on the given timeline of a person's daily activities, deduce the potential time slot when they possibly engaged in a distinct activity. To find the correct slot, ensure that it aligns with the individual's waking hours and doesn't coincide with any other activity they are involved in. Also evaluate the timing details of physical locations such as a shop or park, ascertain that they are open and accessible during the proposed time slot. The correct answer will be among the options provided. Be very careful in evaluating all the clues in the given situation. Answer using the label like '(A)', '(B)', etc. without including the accompanying time range or any additional info within your answer. It is crucial to get the format right. Put your answer between <answer> and </answer>. Please note, just the label of the option like '(A)' or '(B)' must be inside these answer tags and nothing else. For example, if the correct answer is option A, the format should be <answer>(A)</answer>.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Based on the given timeline of a person's daily activities, deduce the potential time slot when they possibly engaged in a distinct activity. To find the correct slot, ensure that it aligns with the individual's waking hours and doesn't coincide with any other activity they are involved in. Also evaluate the timing details of physical locations such as a shop or park, ascertain that they are open and accessible during the proposed time slot. The correct answer will be among the options provided. Be very careful in evaluating all the clues in the given situation. Answer using the label like '(A)', '(B)', etc. without including the accompanying time range or any additional info within your answer. It is crucial to get the format right. Put your answer between <answer> and </answer>. Please note, just the label of the option like '(A)' or '(B)' must be inside these answer tags and nothing else. For example, if the correct answer is option A, the format should be <answer>(A)</answer>.
+Today, Susan went to the gas station. Between what times could they have gone?
+We know that: 
+Susan woke up at 7am.
+Leslie saw Susan playing tennis at the tennis court from 7am to 8am.
+Steven saw Susan driving to the water park from 1pm to 2pm.
+Thomas saw Susan buying lunch at the deli from 2pm to 7pm.
+The gas station was closed after 7pm.
+Between what times could Susan have gone to the gas station?
+Options:
+(A) 8am to 1pm
+(B) 2pm to 7pm
+(C) 1pm to 2pm
+(D) 7am to 8am
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+<answer>(B)</answer>
+
+Pred: B  Label: A  Correct: False
+Test Metric: 0.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 0.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:10

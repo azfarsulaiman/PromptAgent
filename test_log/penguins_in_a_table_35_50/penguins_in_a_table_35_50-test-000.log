@@ -1,0 +1,54 @@
+task_name: bigbench
+eval_prompt: Your task is to understand, process, and derive conclusions from data presented in tables. The data might be numerical or string type, and your operations might involve strict usage of relational operators like > (strictly greater than), < (strictly less than), == (identical to), and != (not identical to). They could also include sorting and comparing data within or across tables, alphabetically or numerically. Keep in mind, with these operators, 'more than 5' implies 'greater than' and does not include the number 5 itself. For example, if there are numbers 5, 6, 7, 8, and 9, the count for 'more than 5' will be 4, excluding the 5.    There might be updates related to additions or deletions after the table. Make sure you accurately add this new information into the existing data, update the table, and make recalculations wherever necessary. Begin by comprehending the table's data, next consider any additional inputs leading to changes in this data, and then create answers based on this updated information. Integrate these modifications into your computations effectively.     While providing solutions, articulate your operations clearly and systematically, ensuring that your answer fits the question's interpretation properly. Be aware of the differences between tasks that need relational operators and those that require simple sorting or comparing of data. Double-check not just the mathematical precision but also the correct usage and interpretation of the operators.    Remember that string data also need consideration. When sorting, ensure correct comparisons are made, i.e., when comparing strings, an alphabetical order must be maintained.    For questions providing answer options, accurately gauge your solution against the given options. Once you've chosen the right option, bracket your final answer option between <answer> and </answer> for clarity. Proceed with caution, rigor, and consistency to avoid potential mistakes and ensure the question's true sense has been captured in your answer.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Your task is to understand, process, and derive conclusions from data presented in tables. The data might be numerical or string type, and your operations might involve strict usage of relational operators like > (strictly greater than), < (strictly less than), == (identical to), and != (not identical to). They could also include sorting and comparing data within or across tables, alphabetically or numerically. Keep in mind, with these operators, 'more than 5' implies 'greater than' and does not include the number 5 itself. For example, if there are numbers 5, 6, 7, 8, and 9, the count for 'more than 5' will be 4, excluding the 5.    There might be updates related to additions or deletions after the table. Make sure you accurately add this new information into the existing data, update the table, and make recalculations wherever necessary. Begin by comprehending the table's data, next consider any additional inputs leading to changes in this data, and then create answers based on this updated information. Integrate these modifications into your computations effectively.     While providing solutions, articulate your operations clearly and systematically, ensuring that your answer fits the question's interpretation properly. Be aware of the differences between tasks that need relational operators and those that require simple sorting or comparing of data. Double-check not just the mathematical precision but also the correct usage and interpretation of the operators.    Remember that string data also need consideration. When sorting, ensure correct comparisons are made, i.e., when comparing strings, an alphabetical order must be maintained.    For questions providing answer options, accurately gauge your solution against the given options. Once you've chosen the right option, bracket your final answer option between <answer> and </answer> for clarity. Proceed with caution, rigor, and consistency to avoid potential mistakes and ensure the question's true sense has been captured in your answer.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Your task is to understand, process, and derive conclusions from data presented in tables. The data might be numerical or string type, and your operations might involve strict usage of relational operators like > (strictly greater than), < (strictly less than), == (identical to), and != (not identical to). They could also include sorting and comparing data within or across tables, alphabetically or numerically. Keep in mind, with these operators, 'more than 5' implies 'greater than' and does not include the number 5 itself. For example, if there are numbers 5, 6, 7, 8, and 9, the count for 'more than 5' will be 4, excluding the 5.    There might be updates related to additions or deletions after the table. Make sure you accurately add this new information into the existing data, update the table, and make recalculations wherever necessary. Begin by comprehending the table's data, next consider any additional inputs leading to changes in this data, and then create answers based on this updated information. Integrate these modifications into your computations effectively.     While providing solutions, articulate your operations clearly and systematically, ensuring that your answer fits the question's interpretation properly. Be aware of the differences between tasks that need relational operators and those that require simple sorting or comparing of data. Double-check not just the mathematical precision but also the correct usage and interpretation of the operators.    Remember that string data also need consideration. When sorting, ensure correct comparisons are made, i.e., when comparing strings, an alphabetical order must be maintained.    For questions providing answer options, accurately gauge your solution against the given options. Once you've chosen the right option, bracket your final answer option between <answer> and </answer> for clarity. Proceed with caution, rigor, and consistency to avoid potential mistakes and ensure the question's true sense has been captured in your answer.
+Here is a table where the first line is a header and each subsequent line is a penguin:
+
+name, age, height (cm), weight (kg)
+Louis, 7, 50, 11
+Bernard, 5, 80, 13
+Vincent, 9, 60, 11
+Gwen, 8, 70, 15
+
+For example: the age of Louis is 7, the weight of Gwen is 15 kg, the height of Bernard is 80 cm.
+
+We now add a penguin to the table:
+James, 12, 90, 12
+And here is a similar table, but listing giraffes:
+
+name, age, height (cm), weight (kg)
+Jody, 5, 430, 620
+Gladys, 10, 420, 590
+Marian, 2, 310, 410
+Donna, 9, 440, 650
+Which is the oldest penguin?
+Options:
+(A) Louis
+(B) Bernard
+(C) Vincent
+(D) Gwen
+(E) James
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+The oldest penguin is James, who is 12 years old. Therefore, the answer is:
+<answer>(E) James</answer>
+
+Pred: E  Label: E  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:11

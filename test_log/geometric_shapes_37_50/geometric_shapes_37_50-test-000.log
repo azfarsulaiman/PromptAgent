@@ -1,0 +1,39 @@
+task_name: bigbench
+eval_prompt: Given the SVG path element, you're tasked to analyze it and determine the shape it represents. The path provides information such as the number of edges, their angles, and whether they are straight or curved. However, it is not just these details you need to focus on. The transformations of edges and angles as well as the repetition of points described in the SVG path could alter the shape's appearance. Remember that opening and closing path commands could impact the final shape. Be attentive to conflicting information, like discrepancies between the count of edges and what the path visually depicts.    Here's a list of possible shapes:  (A) circle - no edges, continuous curve  (B) heptagon - seven edges, all straight  (C) hexagon - six edges, all straight  (D) kite - four edges, two pairs of adjacent sides are equal  (E) line - one edge, without angles  (F) octagon - eight edges, all straight  (G) pentagon - five edges, all straight  (H) rectangle - four edges, all straight and each angle is a right angle  (I) sector - part of a circle, with a curved edge  (J) triangle - three edges, all straight  (K) trapezoid - four edges, one pair of opposite sides are parallel    After completing your analysis, please denote your selected shape between <answer> and </answer>.  Take note of these considerations:  - The number of edges in a shape may provide a clue of its type.  - The presence of curved lines might suggest a sector or a part of a circle.  - Identifying equal sides or right angles might be indicative of a certain shape, such as a rectangle or a kite.  - Always take into account the sequence and repetitions in the SVG path commands when analysing the shape.  - Take note that not every point in an SVG file is necessarily a corner of the polygon.    Be cautious about these pitfalls:  - Avoid quick judgment if there are ambiguous lengths or angles. Instead, analyze the shape characteristics from the path.  - Be careful not to mix up shapes with similar dimensions like heptagons and octagons.    Let's take an example, eight equal angles met by straight edges would indicate an octagon. Hence, your answer in this case will be <answer>(F) octagon</answer>. Apply this method to accurately evaluate the shape.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Given the SVG path element, you're tasked to analyze it and determine the shape it represents. The path provides information such as the number of edges, their angles, and whether they are straight or curved. However, it is not just these details you need to focus on. The transformations of edges and angles as well as the repetition of points described in the SVG path could alter the shape's appearance. Remember that opening and closing path commands could impact the final shape. Be attentive to conflicting information, like discrepancies between the count of edges and what the path visually depicts.    Here's a list of possible shapes:  (A) circle - no edges, continuous curve  (B) heptagon - seven edges, all straight  (C) hexagon - six edges, all straight  (D) kite - four edges, two pairs of adjacent sides are equal  (E) line - one edge, without angles  (F) octagon - eight edges, all straight  (G) pentagon - five edges, all straight  (H) rectangle - four edges, all straight and each angle is a right angle  (I) sector - part of a circle, with a curved edge  (J) triangle - three edges, all straight  (K) trapezoid - four edges, one pair of opposite sides are parallel    After completing your analysis, please denote your selected shape between <answer> and </answer>.  Take note of these considerations:  - The number of edges in a shape may provide a clue of its type.  - The presence of curved lines might suggest a sector or a part of a circle.  - Identifying equal sides or right angles might be indicative of a certain shape, such as a rectangle or a kite.  - Always take into account the sequence and repetitions in the SVG path commands when analysing the shape.  - Take note that not every point in an SVG file is necessarily a corner of the polygon.    Be cautious about these pitfalls:  - Avoid quick judgment if there are ambiguous lengths or angles. Instead, analyze the shape characteristics from the path.  - Be careful not to mix up shapes with similar dimensions like heptagons and octagons.    Let's take an example, eight equal angles met by straight edges would indicate an octagon. Hence, your answer in this case will be <answer>(F) octagon</answer>. Apply this method to accurately evaluate the shape.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Given the SVG path element, you're tasked to analyze it and determine the shape it represents. The path provides information such as the number of edges, their angles, and whether they are straight or curved. However, it is not just these details you need to focus on. The transformations of edges and angles as well as the repetition of points described in the SVG path could alter the shape's appearance. Remember that opening and closing path commands could impact the final shape. Be attentive to conflicting information, like discrepancies between the count of edges and what the path visually depicts.    Here's a list of possible shapes:  (A) circle - no edges, continuous curve  (B) heptagon - seven edges, all straight  (C) hexagon - six edges, all straight  (D) kite - four edges, two pairs of adjacent sides are equal  (E) line - one edge, without angles  (F) octagon - eight edges, all straight  (G) pentagon - five edges, all straight  (H) rectangle - four edges, all straight and each angle is a right angle  (I) sector - part of a circle, with a curved edge  (J) triangle - three edges, all straight  (K) trapezoid - four edges, one pair of opposite sides are parallel    After completing your analysis, please denote your selected shape between <answer> and </answer>.  Take note of these considerations:  - The number of edges in a shape may provide a clue of its type.  - The presence of curved lines might suggest a sector or a part of a circle.  - Identifying equal sides or right angles might be indicative of a certain shape, such as a rectangle or a kite.  - Always take into account the sequence and repetitions in the SVG path commands when analysing the shape.  - Take note that not every point in an SVG file is necessarily a corner of the polygon.    Be cautious about these pitfalls:  - Avoid quick judgment if there are ambiguous lengths or angles. Instead, analyze the shape characteristics from the path.  - Be careful not to mix up shapes with similar dimensions like heptagons and octagons.    Let's take an example, eight equal angles met by straight edges would indicate an octagon. Hence, your answer in this case will be <answer>(F) octagon</answer>. Apply this method to accurately evaluate the shape.
+This SVG path element <path d="M 59.18,98.64 L 65.20,80.96 L 57.00,68.63 L 55.43,56.00 M 55.43,56.00 L 67.76,43.69 M 67.76,43.69 L 80.38,62.66 L 92.36,80.67 L 59.18,98.64"/> draws a 
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+<answer>(J) triangle</answer>
+
+Pred: J  Label: B  Correct: False
+Test Metric: 0.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 0.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:10

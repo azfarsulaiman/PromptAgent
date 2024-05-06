@@ -1,0 +1,34 @@
+task_name: bigbench
+eval_prompt: Thoroughly assess the links between the given premises and hypotheses, and inquire both the direct and implied relations arising from them. Remember, a premise can entail a hypothesis even without a direct claim, so factor in any indirect connections too. After your analysis, classify the connections as either 'entailment', if the premise confirms the hypothesis either implicitly or explicitly, or 'non-entailment', if it does not. Finalize your evaluation with the appropriate label 'entailment' or 'non-entailment' within <answer> and </answer> brackets.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Thoroughly assess the links between the given premises and hypotheses, and inquire both the direct and implied relations arising from them. Remember, a premise can entail a hypothesis even without a direct claim, so factor in any indirect connections too. After your analysis, classify the connections as either 'entailment', if the premise confirms the hypothesis either implicitly or explicitly, or 'non-entailment', if it does not. Finalize your evaluation with the appropriate label 'entailment' or 'non-entailment' within <answer> and </answer> brackets.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Thoroughly assess the links between the given premises and hypotheses, and inquire both the direct and implied relations arising from them. Remember, a premise can entail a hypothesis even without a direct claim, so factor in any indirect connections too. After your analysis, classify the connections as either 'entailment', if the premise confirms the hypothesis either implicitly or explicitly, or 'non-entailment', if it does not. Finalize your evaluation with the appropriate label 'entailment' or 'non-entailment' within <answer> and </answer> brackets.
+Identify the relation between the following premises and hypotheses, choosing from the options 'entailment' or 'non-entailment'.
+Premise: Taylor understands that a cyclist in a red and white uniform is biking across a garage full of people. Hypothesis: Richard understands that there is a man riding a bicycle.
+Options:
+(A) entailment
+(B) non-entailment
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+The premise states that Taylor understands that a cyclist in a red and white uniform is biking across a garage full of people. This premise does not explicitly mention anything about Richard or a man riding a bicycle. However, it indirectly implies that there is a man riding a bicycle in the scenario described. Therefore, there is an entailment between the premise and the hypothesis.
+
+<answer>(A) entailment</answer>
+
+Pred: A  Label: B  Correct: False
+Test Metric: 0.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 0.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:12

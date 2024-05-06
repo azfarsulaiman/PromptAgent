@@ -1,0 +1,32 @@
+task_name: bigbench
+eval_prompt: With careful consideration, examine the given premise and hypothesis to establish a 'entailment' or 'non-entailment' relationship. 'Entailment' signifies that the hypothesis logically follows the premise, while 'non-entailment' suggests otherwise. It's critical to remember that a character's beliefs, suspicions, or assumptions in the premise don't necessarily depict factual reality, they're subjective and might diverge from the objective truth stipulated in the hypothesis. Hence, understanding this subtle but crucial divide is imperative in your analysis. In the premise and hypothesis, attempt to recognize the nuanced differences in sentence structure and presentation, even when they convey similar information. Assimilating such subtle distinctions, especially in layered beliefs and assumptions, is key to ascertain if an 'entailment' or 'non-entailment' relationship exists. View the premise and hypothesis as separate entities, and don’t presuppose a direct correlation where none is explicitly given. Utilize critical thinking to comprehend the detailed layers in the premise and hypothesis. Upon the conclusion of your deep-dive analysis, present your deduction, 'entailment' or 'non-entailment', encapsulated within the 'answer' tags. It's vital to draw a clear line between belief or suspicion and factual reality while conducting this exercise.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+With careful consideration, examine the given premise and hypothesis to establish a 'entailment' or 'non-entailment' relationship. 'Entailment' signifies that the hypothesis logically follows the premise, while 'non-entailment' suggests otherwise. It's critical to remember that a character's beliefs, suspicions, or assumptions in the premise don't necessarily depict factual reality, they're subjective and might diverge from the objective truth stipulated in the hypothesis. Hence, understanding this subtle but crucial divide is imperative in your analysis. In the premise and hypothesis, attempt to recognize the nuanced differences in sentence structure and presentation, even when they convey similar information. Assimilating such subtle distinctions, especially in layered beliefs and assumptions, is key to ascertain if an 'entailment' or 'non-entailment' relationship exists. View the premise and hypothesis as separate entities, and don’t presuppose a direct correlation where none is explicitly given. Utilize critical thinking to comprehend the detailed layers in the premise and hypothesis. Upon the conclusion of your deep-dive analysis, present your deduction, 'entailment' or 'non-entailment', encapsulated within the 'answer' tags. It's vital to draw a clear line between belief or suspicion and factual reality while conducting this exercise.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+With careful consideration, examine the given premise and hypothesis to establish a 'entailment' or 'non-entailment' relationship. 'Entailment' signifies that the hypothesis logically follows the premise, while 'non-entailment' suggests otherwise. It's critical to remember that a character's beliefs, suspicions, or assumptions in the premise don't necessarily depict factual reality, they're subjective and might diverge from the objective truth stipulated in the hypothesis. Hence, understanding this subtle but crucial divide is imperative in your analysis. In the premise and hypothesis, attempt to recognize the nuanced differences in sentence structure and presentation, even when they convey similar information. Assimilating such subtle distinctions, especially in layered beliefs and assumptions, is key to ascertain if an 'entailment' or 'non-entailment' relationship exists. View the premise and hypothesis as separate entities, and don’t presuppose a direct correlation where none is explicitly given. Utilize critical thinking to comprehend the detailed layers in the premise and hypothesis. Upon the conclusion of your deep-dive analysis, present your deduction, 'entailment' or 'non-entailment', encapsulated within the 'answer' tags. It's vital to draw a clear line between belief or suspicion and factual reality while conducting this exercise.
+Identify the relation between the following premises and hypotheses, choosing from the options 'entailment' or 'non-entailment'.
+Premise: Taylor understands that a cyclist in a red and white uniform is biking across a garage full of people. Hypothesis: Richard understands that there is a man riding a bicycle.
+Options:
+(A) entailment
+(B) non-entailment
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+<answer>(A) entailment</answer>
+
+Pred: A  Label: B  Correct: False
+Test Metric: 0.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 0.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:10

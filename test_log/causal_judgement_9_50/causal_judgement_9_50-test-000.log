@@ -1,0 +1,34 @@
+task_name: bigbench
+eval_prompt: When addressing the provided scenarios about causality, pay close attention to the direct and indirect effects of every action described. Clearly differentiate between actions that are knowingly undertaken with an awareness of potential consequences, and those that occur without such knowledge. Assign causality carefully, taking into account not only the immediate actions and their outcomes, but also the wider context. This context should include the actors' primary and secondary objectives, their understanding of any existing norms or rules, their possible restraints, and subtle aspects of their motivations or their environment. Particularly prioritize any aspects of breach or adherence to norms or rules as potential pivotal points in your causal analysis. Evaluate all available information in a comprehensive manner to eschew oversimplified interpretations and ensure a detailed, nuanced response to each scenario. Don’t penalise individuals who followed rules, but rather seek to identify actions that led to any rule violation and subsequently caused the issue at hand. Your objective is to provide a comprehensive narrative of causality, which might involve multiple actors and layered effects.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+When addressing the provided scenarios about causality, pay close attention to the direct and indirect effects of every action described. Clearly differentiate between actions that are knowingly undertaken with an awareness of potential consequences, and those that occur without such knowledge. Assign causality carefully, taking into account not only the immediate actions and their outcomes, but also the wider context. This context should include the actors' primary and secondary objectives, their understanding of any existing norms or rules, their possible restraints, and subtle aspects of their motivations or their environment. Particularly prioritize any aspects of breach or adherence to norms or rules as potential pivotal points in your causal analysis. Evaluate all available information in a comprehensive manner to eschew oversimplified interpretations and ensure a detailed, nuanced response to each scenario. Don’t penalise individuals who followed rules, but rather seek to identify actions that led to any rule violation and subsequently caused the issue at hand. Your objective is to provide a comprehensive narrative of causality, which might involve multiple actors and layered effects.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+When addressing the provided scenarios about causality, pay close attention to the direct and indirect effects of every action described. Clearly differentiate between actions that are knowingly undertaken with an awareness of potential consequences, and those that occur without such knowledge. Assign causality carefully, taking into account not only the immediate actions and their outcomes, but also the wider context. This context should include the actors' primary and secondary objectives, their understanding of any existing norms or rules, their possible restraints, and subtle aspects of their motivations or their environment. Particularly prioritize any aspects of breach or adherence to norms or rules as potential pivotal points in your causal analysis. Evaluate all available information in a comprehensive manner to eschew oversimplified interpretations and ensure a detailed, nuanced response to each scenario. Don’t penalise individuals who followed rules, but rather seek to identify actions that led to any rule violation and subsequently caused the issue at hand. Your objective is to provide a comprehensive narrative of causality, which might involve multiple actors and layered effects.
+How would a typical person answer each of the following questions about causation?
+Lauren and Jane work for the same company. They each need to use a computer for work sometimes. Unfortunately, the computer isn't very powerful. If two people are logged on at the same time, it usually crashes. So the company decided to institute an official policy. It declared that Lauren would be the only one permitted to use the computer in the mornings and that Jane would be the only one permitted to use the computer in the afternoons. As expected, Lauren logged on the computer the next day at 9:00 am. But Jane decided to disobey the official policy. She also logged on at 9:00 am. The computer crashed immediately. Did Jane cause the computer to crash?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+In this scenario, Jane's decision to disobey the official policy and log on to the computer at the same time as Lauren directly led to the computer crashing. Jane's action of disregarding the established rule caused the issue at hand, as the policy was put in place specifically to prevent such crashes. Therefore, the answer is:
+
+<answer>(A) Yes</answer>
+
+Pred: A  Label: A  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:11

@@ -1,0 +1,40 @@
+task_name: bigbench
+eval_prompt: Take a thorough look at the premise and hypothesis, Zoom in on the key points, context of each sentence and also cues attributing to beliefs or assumptions. Put a spotlight on perspectives and the sequence of subjects in the sentences and the consequences of compounded attributions or alterations of these, for instance, 'what an individual thinks another person thinks' versus 'what that person actually perceives'. It is crucial that you not gloss over these fine yet important differences in your assessment. Be mindful of the implications of sentence structure on attributions and the cognitive shift between directly believing an event versus believing in someone else's belief of the event. Figure out if the crux or fact represented in the hypothesis can logically and accurately stem from the premise, considering these factors even amidst any trivial changes in articulation or wording. If this is possible, your response should be 'entailment'. On the other hand, if the premise and hypothesis simply cannot coexist when these elements are considered, your response should be 'non-entailment'. Note that sentence similarity isn't the determinant here, you should rather look for logical consistency and relational context. Do remember that simplification of sentences doesn't essentially lead to entailment; cognitive position shifts can alter the meaning despite phrase commonalities. Cap off your analysis by stating your chosen answer, 'entailment' or 'non-entailment', encased within the brackets <answer> and </answer>.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Take a thorough look at the premise and hypothesis, Zoom in on the key points, context of each sentence and also cues attributing to beliefs or assumptions. Put a spotlight on perspectives and the sequence of subjects in the sentences and the consequences of compounded attributions or alterations of these, for instance, 'what an individual thinks another person thinks' versus 'what that person actually perceives'. It is crucial that you not gloss over these fine yet important differences in your assessment. Be mindful of the implications of sentence structure on attributions and the cognitive shift between directly believing an event versus believing in someone else's belief of the event. Figure out if the crux or fact represented in the hypothesis can logically and accurately stem from the premise, considering these factors even amidst any trivial changes in articulation or wording. If this is possible, your response should be 'entailment'. On the other hand, if the premise and hypothesis simply cannot coexist when these elements are considered, your response should be 'non-entailment'. Note that sentence similarity isn't the determinant here, you should rather look for logical consistency and relational context. Do remember that simplification of sentences doesn't essentially lead to entailment; cognitive position shifts can alter the meaning despite phrase commonalities. Cap off your analysis by stating your chosen answer, 'entailment' or 'non-entailment', encased within the brackets <answer> and </answer>.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Take a thorough look at the premise and hypothesis, Zoom in on the key points, context of each sentence and also cues attributing to beliefs or assumptions. Put a spotlight on perspectives and the sequence of subjects in the sentences and the consequences of compounded attributions or alterations of these, for instance, 'what an individual thinks another person thinks' versus 'what that person actually perceives'. It is crucial that you not gloss over these fine yet important differences in your assessment. Be mindful of the implications of sentence structure on attributions and the cognitive shift between directly believing an event versus believing in someone else's belief of the event. Figure out if the crux or fact represented in the hypothesis can logically and accurately stem from the premise, considering these factors even amidst any trivial changes in articulation or wording. If this is possible, your response should be 'entailment'. On the other hand, if the premise and hypothesis simply cannot coexist when these elements are considered, your response should be 'non-entailment'. Note that sentence similarity isn't the determinant here, you should rather look for logical consistency and relational context. Do remember that simplification of sentences doesn't essentially lead to entailment; cognitive position shifts can alter the meaning despite phrase commonalities. Cap off your analysis by stating your chosen answer, 'entailment' or 'non-entailment', encased within the brackets <answer> and </answer>.
+Identify the relation between the following premises and hypotheses, choosing from the options 'entailment' or 'non-entailment'.
+Premise: Taylor understands that a cyclist in a red and white uniform is biking across a garage full of people. Hypothesis: Richard understands that there is a man riding a bicycle.
+Options:
+(A) entailment
+(B) non-entailment
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+The premise states that Taylor understands that a cyclist in a red and white uniform is biking across a garage full of people. The hypothesis, on the other hand, states that Richard understands that there is a man riding a bicycle. 
+
+In this case, the premise specifically mentions the details of the cyclist being in a red and white uniform and biking across a garage full of people. However, the hypothesis is more general, simply stating that Richard understands there is a man riding a bicycle without specifying any additional details. 
+
+Therefore, the premise does not necessarily entail the hypothesis as there are additional specific details in the premise that are not explicitly mentioned in the hypothesis. 
+
+Therefore, the answer is (B) non-entailment. 
+
+<answer>(B) non-entailment</answer>
+
+Pred: B  Label: B  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:12

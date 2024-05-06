@@ -1,0 +1,34 @@
+task_name: bigbench
+eval_prompt: Evaluate the entire context, timeline, and all possible influencing factors to come up with a nuanced causal conclusion. Acknowledge that 'cause' can be more than just the 'chief' component but could also include factors of lesser influence contributing to the outcome. Understand the actions, inactions, and intentions of each individual actor in the situation in order to interpret their respective roles. Where there are multiple actions that could potentially converge to produce the same result, think of each actor's action separately as a potential cause, without assigning an immediate priority rank. When discussing functional systems or sequences, distinguish between a system functioning as it should and deviations that result in dissimilar outcomes. Critically consider the range of impacts, incorporating unintentional effects even if the causative actor was aware of them. Contemplate on how various actions, or lack thereof, serve as triggers for specific sequences of events. However, in assessing causality, keep the specific framing and requirements of the questions in mind. Be clear on the necessity of stripping down the event to its individual contributing elements and analysing these elements independently before forming a generalized conclusion. Understand that in scenarios involving 'AND', 'OR' conditions, each condition needs due evaluation for its own causal worth. Your analysis should not limit itself to identifying the main cause, but rather it should consider the full range of causes forming the causal network, dissecting their respective roles in how the situation unfolded.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Evaluate the entire context, timeline, and all possible influencing factors to come up with a nuanced causal conclusion. Acknowledge that 'cause' can be more than just the 'chief' component but could also include factors of lesser influence contributing to the outcome. Understand the actions, inactions, and intentions of each individual actor in the situation in order to interpret their respective roles. Where there are multiple actions that could potentially converge to produce the same result, think of each actor's action separately as a potential cause, without assigning an immediate priority rank. When discussing functional systems or sequences, distinguish between a system functioning as it should and deviations that result in dissimilar outcomes. Critically consider the range of impacts, incorporating unintentional effects even if the causative actor was aware of them. Contemplate on how various actions, or lack thereof, serve as triggers for specific sequences of events. However, in assessing causality, keep the specific framing and requirements of the questions in mind. Be clear on the necessity of stripping down the event to its individual contributing elements and analysing these elements independently before forming a generalized conclusion. Understand that in scenarios involving 'AND', 'OR' conditions, each condition needs due evaluation for its own causal worth. Your analysis should not limit itself to identifying the main cause, but rather it should consider the full range of causes forming the causal network, dissecting their respective roles in how the situation unfolded.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Evaluate the entire context, timeline, and all possible influencing factors to come up with a nuanced causal conclusion. Acknowledge that 'cause' can be more than just the 'chief' component but could also include factors of lesser influence contributing to the outcome. Understand the actions, inactions, and intentions of each individual actor in the situation in order to interpret their respective roles. Where there are multiple actions that could potentially converge to produce the same result, think of each actor's action separately as a potential cause, without assigning an immediate priority rank. When discussing functional systems or sequences, distinguish between a system functioning as it should and deviations that result in dissimilar outcomes. Critically consider the range of impacts, incorporating unintentional effects even if the causative actor was aware of them. Contemplate on how various actions, or lack thereof, serve as triggers for specific sequences of events. However, in assessing causality, keep the specific framing and requirements of the questions in mind. Be clear on the necessity of stripping down the event to its individual contributing elements and analysing these elements independently before forming a generalized conclusion. Understand that in scenarios involving 'AND', 'OR' conditions, each condition needs due evaluation for its own causal worth. Your analysis should not limit itself to identifying the main cause, but rather it should consider the full range of causes forming the causal network, dissecting their respective roles in how the situation unfolded.
+How would a typical person answer each of the following questions about causation?
+Lauren and Jane work for the same company. They each need to use a computer for work sometimes. Unfortunately, the computer isn't very powerful. If two people are logged on at the same time, it usually crashes. So the company decided to institute an official policy. It declared that Lauren would be the only one permitted to use the computer in the mornings and that Jane would be the only one permitted to use the computer in the afternoons. As expected, Lauren logged on the computer the next day at 9:00 am. But Jane decided to disobey the official policy. She also logged on at 9:00 am. The computer crashed immediately. Did Jane cause the computer to crash?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+In this scenario, Jane's decision to disobey the official policy and log on to the computer at the same time as Lauren directly contributed to the computer crashing. While the computer's lack of power and the company's policy were contributing factors, Jane's action of logging on at the same time as Lauren was the immediate cause of the crash.
+
+Therefore, the answer is: <answer>(A) Yes</answer>
+
+Pred: A  Label: A  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:11

@@ -1,0 +1,34 @@
+task_name: bigbench
+eval_prompt: Utilize the data from the described scenario to evaluate all actions and events, in their chronological order, that are contributing to the final outcome. Dedicate your efforts to further comprehend the causation process. Make a precise discrimination between the primary actions that directly cause the outcome, secondary actions that contribute to the outcome, unrelated actions that do not impact the outcome and collective behaviors that collectively lead to the outcome. Consequences from policy breaches or exceptions, sequences of actions including those without which the outcome would not have occurred should be seen as a cause. Based on your understanding, evaluate if an individual’s action directly caused the outcome or if it was a consequence of multiple contributing factors. Keep in mind that overstating the primary action can distract from the importance of potential secondary actions contributing to the overall outcome. When evaluating actions or events, consider the intentions, contributions, and sequences of all involved parties. Where more than one action results in the same outcome, apply an even spread of analysis. Be aware of appropriately interpreting the logical conditionals, particularly 'either/or' scenarios, refraining from imputing causation to an action conducted after the conditions for the outcome have been satisfied. Use your interpretations to answer questions about causal attributions with precision, adhering to both direct and collective attribution in linear and non-linear causation models.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Utilize the data from the described scenario to evaluate all actions and events, in their chronological order, that are contributing to the final outcome. Dedicate your efforts to further comprehend the causation process. Make a precise discrimination between the primary actions that directly cause the outcome, secondary actions that contribute to the outcome, unrelated actions that do not impact the outcome and collective behaviors that collectively lead to the outcome. Consequences from policy breaches or exceptions, sequences of actions including those without which the outcome would not have occurred should be seen as a cause. Based on your understanding, evaluate if an individual’s action directly caused the outcome or if it was a consequence of multiple contributing factors. Keep in mind that overstating the primary action can distract from the importance of potential secondary actions contributing to the overall outcome. When evaluating actions or events, consider the intentions, contributions, and sequences of all involved parties. Where more than one action results in the same outcome, apply an even spread of analysis. Be aware of appropriately interpreting the logical conditionals, particularly 'either/or' scenarios, refraining from imputing causation to an action conducted after the conditions for the outcome have been satisfied. Use your interpretations to answer questions about causal attributions with precision, adhering to both direct and collective attribution in linear and non-linear causation models.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Utilize the data from the described scenario to evaluate all actions and events, in their chronological order, that are contributing to the final outcome. Dedicate your efforts to further comprehend the causation process. Make a precise discrimination between the primary actions that directly cause the outcome, secondary actions that contribute to the outcome, unrelated actions that do not impact the outcome and collective behaviors that collectively lead to the outcome. Consequences from policy breaches or exceptions, sequences of actions including those without which the outcome would not have occurred should be seen as a cause. Based on your understanding, evaluate if an individual’s action directly caused the outcome or if it was a consequence of multiple contributing factors. Keep in mind that overstating the primary action can distract from the importance of potential secondary actions contributing to the overall outcome. When evaluating actions or events, consider the intentions, contributions, and sequences of all involved parties. Where more than one action results in the same outcome, apply an even spread of analysis. Be aware of appropriately interpreting the logical conditionals, particularly 'either/or' scenarios, refraining from imputing causation to an action conducted after the conditions for the outcome have been satisfied. Use your interpretations to answer questions about causal attributions with precision, adhering to both direct and collective attribution in linear and non-linear causation models.
+How would a typical person answer each of the following questions about causation?
+Lauren and Jane work for the same company. They each need to use a computer for work sometimes. Unfortunately, the computer isn't very powerful. If two people are logged on at the same time, it usually crashes. So the company decided to institute an official policy. It declared that Lauren would be the only one permitted to use the computer in the mornings and that Jane would be the only one permitted to use the computer in the afternoons. As expected, Lauren logged on the computer the next day at 9:00 am. But Jane decided to disobey the official policy. She also logged on at 9:00 am. The computer crashed immediately. Did Jane cause the computer to crash?
+Options:
+(A) Yes
+(B) No
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+In this scenario, the primary action that directly caused the computer to crash was Jane's decision to disobey the official policy and log on at the same time as Lauren. This action directly led to both of them being logged on simultaneously, resulting in the computer crashing. Therefore, the answer is:
+
+<answer>(A) Yes</answer>
+
+Pred: A  Label: A  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:11

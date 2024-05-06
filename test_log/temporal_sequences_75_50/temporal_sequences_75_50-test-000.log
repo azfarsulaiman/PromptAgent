@@ -1,0 +1,42 @@
+task_name: bigbench
+eval_prompt: Based on the provided timeline and activities, determine when an individual might have had the opportunity to carry out a specific task. Please consider that, although activities cannot overlap or happen concurrently, immediate transitions between activities are feasible, and one task can begin as soon as the previous task ends. Also, keep in mind the constraints of when and where certain activities or locations are available or unavailable. As part of your process, systematically analyze all possible scenarios. Evaluate the timings, making sure to identify any time slots for the task that do not conflict with other scheduled activities. Inclusive starting and ending times denote all time frames. Include the individual's wake time as a potential activity window before any scheduled tasks. Be thorough in reviewing all the information and cross-reference it with the provided options before making your final decision. The chosen option should fit within operational hours of venues or places integral to the task. The time window for the task is still valid if it begins before the closing hour, even if it extends beyond that. In your answer, weigh up all the options, confirm their feasibility, select the most likely scenario, and clearly indicate this using <answer>option</answer> format ensuring it doesn’t conflict with other listed activities or operational constraints.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Based on the provided timeline and activities, determine when an individual might have had the opportunity to carry out a specific task. Please consider that, although activities cannot overlap or happen concurrently, immediate transitions between activities are feasible, and one task can begin as soon as the previous task ends. Also, keep in mind the constraints of when and where certain activities or locations are available or unavailable. As part of your process, systematically analyze all possible scenarios. Evaluate the timings, making sure to identify any time slots for the task that do not conflict with other scheduled activities. Inclusive starting and ending times denote all time frames. Include the individual's wake time as a potential activity window before any scheduled tasks. Be thorough in reviewing all the information and cross-reference it with the provided options before making your final decision. The chosen option should fit within operational hours of venues or places integral to the task. The time window for the task is still valid if it begins before the closing hour, even if it extends beyond that. In your answer, weigh up all the options, confirm their feasibility, select the most likely scenario, and clearly indicate this using <answer>option</answer> format ensuring it doesn’t conflict with other listed activities or operational constraints.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Based on the provided timeline and activities, determine when an individual might have had the opportunity to carry out a specific task. Please consider that, although activities cannot overlap or happen concurrently, immediate transitions between activities are feasible, and one task can begin as soon as the previous task ends. Also, keep in mind the constraints of when and where certain activities or locations are available or unavailable. As part of your process, systematically analyze all possible scenarios. Evaluate the timings, making sure to identify any time slots for the task that do not conflict with other scheduled activities. Inclusive starting and ending times denote all time frames. Include the individual's wake time as a potential activity window before any scheduled tasks. Be thorough in reviewing all the information and cross-reference it with the provided options before making your final decision. The chosen option should fit within operational hours of venues or places integral to the task. The time window for the task is still valid if it begins before the closing hour, even if it extends beyond that. In your answer, weigh up all the options, confirm their feasibility, select the most likely scenario, and clearly indicate this using <answer>option</answer> format ensuring it doesn’t conflict with other listed activities or operational constraints.
+Today, Susan went to the gas station. Between what times could they have gone?
+We know that: 
+Susan woke up at 7am.
+Leslie saw Susan playing tennis at the tennis court from 7am to 8am.
+Steven saw Susan driving to the water park from 1pm to 2pm.
+Thomas saw Susan buying lunch at the deli from 2pm to 7pm.
+The gas station was closed after 7pm.
+Between what times could Susan have gone to the gas station?
+Options:
+(A) 8am to 1pm
+(B) 2pm to 7pm
+(C) 1pm to 2pm
+(D) 7am to 8am
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+Based on the timeline provided, Susan could have gone to the gas station between 8am to 1pm. This time slot does not conflict with any of the other scheduled activities and falls within the operational hours of the gas station. 
+
+Therefore, the answer is <answer>(A) 8am to 1pm</answer>.
+
+Pred: A  Label: A  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:11

@@ -1,0 +1,42 @@
+task_name: bigbench
+eval_prompt: Based on the provided timeline, identify the person's recorded activities along with their respective times. Use this data to identify the free time periods where the individual could have feasibly been at the stated location. Now, compare these potential time slots with the options labelled A, B, C, and D, and diligently resolve any conflicts between these findings and the provided options. Provide clear reasoning for your acceptance or rejection of each option, ensuring that the selected time slot aligns with one of the labelled options while also matching the individual's unoccupied periods. After careful consideration of all these factors, determine the best option for when the person could realistically have been at the location. Validate your final selection by cross-checking it with the identified free time slots and the options provided. Present your ultimate choice, along with substantiating reasons for your decision, within <answer> and </answer>.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Based on the provided timeline, identify the person's recorded activities along with their respective times. Use this data to identify the free time periods where the individual could have feasibly been at the stated location. Now, compare these potential time slots with the options labelled A, B, C, and D, and diligently resolve any conflicts between these findings and the provided options. Provide clear reasoning for your acceptance or rejection of each option, ensuring that the selected time slot aligns with one of the labelled options while also matching the individual's unoccupied periods. After careful consideration of all these factors, determine the best option for when the person could realistically have been at the location. Validate your final selection by cross-checking it with the identified free time slots and the options provided. Present your ultimate choice, along with substantiating reasons for your decision, within <answer> and </answer>.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Based on the provided timeline, identify the person's recorded activities along with their respective times. Use this data to identify the free time periods where the individual could have feasibly been at the stated location. Now, compare these potential time slots with the options labelled A, B, C, and D, and diligently resolve any conflicts between these findings and the provided options. Provide clear reasoning for your acceptance or rejection of each option, ensuring that the selected time slot aligns with one of the labelled options while also matching the individual's unoccupied periods. After careful consideration of all these factors, determine the best option for when the person could realistically have been at the location. Validate your final selection by cross-checking it with the identified free time slots and the options provided. Present your ultimate choice, along with substantiating reasons for your decision, within <answer> and </answer>.
+Today, Susan went to the gas station. Between what times could they have gone?
+We know that: 
+Susan woke up at 7am.
+Leslie saw Susan playing tennis at the tennis court from 7am to 8am.
+Steven saw Susan driving to the water park from 1pm to 2pm.
+Thomas saw Susan buying lunch at the deli from 2pm to 7pm.
+The gas station was closed after 7pm.
+Between what times could Susan have gone to the gas station?
+Options:
+(A) 8am to 1pm
+(B) 2pm to 7pm
+(C) 1pm to 2pm
+(D) 7am to 8am
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+Susan could have gone to the gas station between 8am to 1pm. This time slot is the only one where Susan had free time according to the provided timeline. She was playing tennis from 7am to 8am, then Steven saw her driving to the water park from 1pm to 2pm, and Thomas saw her buying lunch at the deli from 2pm to 7pm. The gas station was closed after 7pm, so the only feasible time for Susan to have gone to the gas station is between 8am to 1pm.
+
+Therefore, the correct option is (A) 8am to 1pm. <answer>(A)</answer>
+
+Pred: A  Label: A  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:12

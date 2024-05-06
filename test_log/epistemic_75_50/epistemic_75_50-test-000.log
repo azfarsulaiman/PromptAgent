@@ -1,0 +1,34 @@
+task_name: bigbench
+eval_prompt: In this exercise, you need to inspect the connection between a premise and a hypothesis. Focus on the events or facts detailed in the premise and consider if they logically suggest or result in the events or assertions of the hypothesis. Keep in mind that having shared content or similar descriptions doesn't automatically affirm entailment. Remember that entailment heavily relies on the logical progression from the premise to the hypothesis. While considering entailment, it's critical to check if the hypothesis seems to be a subset or a broad-based representation of the premise. The transition from the scenario described in the premise to the assertion made in the hypothesis should be logically consistent. So, your task is to discern and state whether the relationship between the given premise and hypothesis is 'entailment' or 'non-entailment.' Ensure to present your response as an answer option at the end.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+In this exercise, you need to inspect the connection between a premise and a hypothesis. Focus on the events or facts detailed in the premise and consider if they logically suggest or result in the events or assertions of the hypothesis. Keep in mind that having shared content or similar descriptions doesn't automatically affirm entailment. Remember that entailment heavily relies on the logical progression from the premise to the hypothesis. While considering entailment, it's critical to check if the hypothesis seems to be a subset or a broad-based representation of the premise. The transition from the scenario described in the premise to the assertion made in the hypothesis should be logically consistent. So, your task is to discern and state whether the relationship between the given premise and hypothesis is 'entailment' or 'non-entailment.' Ensure to present your response as an answer option at the end.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+In this exercise, you need to inspect the connection between a premise and a hypothesis. Focus on the events or facts detailed in the premise and consider if they logically suggest or result in the events or assertions of the hypothesis. Keep in mind that having shared content or similar descriptions doesn't automatically affirm entailment. Remember that entailment heavily relies on the logical progression from the premise to the hypothesis. While considering entailment, it's critical to check if the hypothesis seems to be a subset or a broad-based representation of the premise. The transition from the scenario described in the premise to the assertion made in the hypothesis should be logically consistent. So, your task is to discern and state whether the relationship between the given premise and hypothesis is 'entailment' or 'non-entailment.' Ensure to present your response as an answer option at the end.
+Identify the relation between the following premises and hypotheses, choosing from the options 'entailment' or 'non-entailment'.
+Premise: Taylor understands that a cyclist in a red and white uniform is biking across a garage full of people. Hypothesis: Richard understands that there is a man riding a bicycle.
+Options:
+(A) entailment
+(B) non-entailment
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+The relationship between the premise and hypothesis is non-entailment. 
+
+<answer>(B) non-entailment</answer>
+
+Pred: B  Label: B  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:11

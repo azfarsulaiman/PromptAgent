@@ -16,7 +16,7 @@ def config():
     parser = argparse.ArgumentParser(description='test prompt')
     parser.add_argument('--task_name', type=str, default=None)
     parser.add_argument('--eval_prompt', type=str, default="Let's solve the problem.")
-    parser.add_argument('--prompt_file', type=str, default=None)
+    # parser.add_argument('--prompt_file', type=str, default=None)
     parser.add_argument('--post_instruction', type=str2bool, default=False)
     
     parser.add_argument('--train_size', type=int, default=0)
@@ -28,12 +28,11 @@ def config():
     parser.add_argument('--temperature', type=float, default=0)
     
     parser.add_argument('--log_dir', type=str, default='test_log/', help='Log directory.')
+    parser.add_argument('--log_file', type=str, default='test_log_file', help='Log directory.')
     parser.add_argument('--log_examples', type=str2bool, default=True)
     parser.add_argument('--data_dir', type=str, default=None)
-    
     parser.add_argument('--api_key', type=str, default= os.getenv("OPENAI_API_KEY"), help='OpenAI API key or PaLM2 API key')
     args = parser.parse_args()
-
     args = vars(args)
     
     return args
@@ -42,5 +41,7 @@ def main(args):
     eval(**args)
     
 if __name__ == '__main__':
+    # print("Main")
     args = config()
+    # print("args calculated")
     main(args)

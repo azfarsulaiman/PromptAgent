@@ -1,0 +1,40 @@
+task_name: bigbench
+eval_prompt: Based on a detailed itinerary of a person's day, your task is to pinpoint any free time slots in which they could have potentially visited another location. The selected time should not clash with the individual's known activities and should be singular and non-overlapping. Crucially, the proposed time for the visit should align with the operating hours of the target location. Choose the correct time slot from the available multiple-choice options and mark your answer within the <answer> and </answer> brackets. Ensure all known variables, including the person's daily schedule and the place's opening hours, are thoroughly considered in your response.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Based on a detailed itinerary of a person's day, your task is to pinpoint any free time slots in which they could have potentially visited another location. The selected time should not clash with the individual's known activities and should be singular and non-overlapping. Crucially, the proposed time for the visit should align with the operating hours of the target location. Choose the correct time slot from the available multiple-choice options and mark your answer within the <answer> and </answer> brackets. Ensure all known variables, including the person's daily schedule and the place's opening hours, are thoroughly considered in your response.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Based on a detailed itinerary of a person's day, your task is to pinpoint any free time slots in which they could have potentially visited another location. The selected time should not clash with the individual's known activities and should be singular and non-overlapping. Crucially, the proposed time for the visit should align with the operating hours of the target location. Choose the correct time slot from the available multiple-choice options and mark your answer within the <answer> and </answer> brackets. Ensure all known variables, including the person's daily schedule and the place's opening hours, are thoroughly considered in your response.
+Today, Susan went to the gas station. Between what times could they have gone?
+We know that: 
+Susan woke up at 7am.
+Leslie saw Susan playing tennis at the tennis court from 7am to 8am.
+Steven saw Susan driving to the water park from 1pm to 2pm.
+Thomas saw Susan buying lunch at the deli from 2pm to 7pm.
+The gas station was closed after 7pm.
+Between what times could Susan have gone to the gas station?
+Options:
+(A) 8am to 1pm
+(B) 2pm to 7pm
+(C) 1pm to 2pm
+(D) 7am to 8am
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+<answer>(A) 8am to 1pm</answer>
+
+Pred: A  Label: A  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:10

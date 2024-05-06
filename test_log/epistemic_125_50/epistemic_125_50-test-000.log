@@ -1,0 +1,36 @@
+task_name: bigbench
+eval_prompt: Apply a critical lens to the premises and hypotheses, unpacking them and identifying their inherent relationships. When examining the subjects, verbs, and objects, ensure that the hierarchy of the subjects is maintained. Bear in mind the beliefs, assumptions, and reasoning involved, especially in layered or complex situations. Remain aware that a subjective premise does not directly imply the hypothesis. To foreclose the possibility of misinterpretation, keep an eye out for the observer's viewpoint, if mentioned, and differentiate between an individual's assumptions and what they verifiably know. Forgo the addition of unmentioned details in the premise, but do notice the hidden links emerging naturally from described events or actions. Conduct a painstaking enquiry of the entities and actions in both the premise and the hypothesis, aiming to deduce causality. Ascertain whether the premise entails the hypothesis, taking stock of common knowledge, logic-based deductions, and the greater context. Settle into a steady pace and engage with each detail inherent in the scenario. Once your evaluation is complete, choose 'entailment' or 'non-entailment' based on your analysis. Expound on the rationale behind your choice. In your conclusion, embed your decision between <answer> and </answer>, demonstrating a balance between a detailed analysis and a holistic understanding of the scenario. Keep in mind to place greater emphasis on unraveling the true order of subjects and avoid assuming details that are not explicitly stated. In the case of layered beliefs or assumptions, make sure to carefully distinguish each level to get a clear understanding of the actual situation.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Apply a critical lens to the premises and hypotheses, unpacking them and identifying their inherent relationships. When examining the subjects, verbs, and objects, ensure that the hierarchy of the subjects is maintained. Bear in mind the beliefs, assumptions, and reasoning involved, especially in layered or complex situations. Remain aware that a subjective premise does not directly imply the hypothesis. To foreclose the possibility of misinterpretation, keep an eye out for the observer's viewpoint, if mentioned, and differentiate between an individual's assumptions and what they verifiably know. Forgo the addition of unmentioned details in the premise, but do notice the hidden links emerging naturally from described events or actions. Conduct a painstaking enquiry of the entities and actions in both the premise and the hypothesis, aiming to deduce causality. Ascertain whether the premise entails the hypothesis, taking stock of common knowledge, logic-based deductions, and the greater context. Settle into a steady pace and engage with each detail inherent in the scenario. Once your evaluation is complete, choose 'entailment' or 'non-entailment' based on your analysis. Expound on the rationale behind your choice. In your conclusion, embed your decision between <answer> and </answer>, demonstrating a balance between a detailed analysis and a holistic understanding of the scenario. Keep in mind to place greater emphasis on unraveling the true order of subjects and avoid assuming details that are not explicitly stated. In the case of layered beliefs or assumptions, make sure to carefully distinguish each level to get a clear understanding of the actual situation.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Apply a critical lens to the premises and hypotheses, unpacking them and identifying their inherent relationships. When examining the subjects, verbs, and objects, ensure that the hierarchy of the subjects is maintained. Bear in mind the beliefs, assumptions, and reasoning involved, especially in layered or complex situations. Remain aware that a subjective premise does not directly imply the hypothesis. To foreclose the possibility of misinterpretation, keep an eye out for the observer's viewpoint, if mentioned, and differentiate between an individual's assumptions and what they verifiably know. Forgo the addition of unmentioned details in the premise, but do notice the hidden links emerging naturally from described events or actions. Conduct a painstaking enquiry of the entities and actions in both the premise and the hypothesis, aiming to deduce causality. Ascertain whether the premise entails the hypothesis, taking stock of common knowledge, logic-based deductions, and the greater context. Settle into a steady pace and engage with each detail inherent in the scenario. Once your evaluation is complete, choose 'entailment' or 'non-entailment' based on your analysis. Expound on the rationale behind your choice. In your conclusion, embed your decision between <answer> and </answer>, demonstrating a balance between a detailed analysis and a holistic understanding of the scenario. Keep in mind to place greater emphasis on unraveling the true order of subjects and avoid assuming details that are not explicitly stated. In the case of layered beliefs or assumptions, make sure to carefully distinguish each level to get a clear understanding of the actual situation.
+Identify the relation between the following premises and hypotheses, choosing from the options 'entailment' or 'non-entailment'.
+Premise: Taylor understands that a cyclist in a red and white uniform is biking across a garage full of people. Hypothesis: Richard understands that there is a man riding a bicycle.
+Options:
+(A) entailment
+(B) non-entailment
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+The premise states that Taylor understands that a cyclist in a red and white uniform is biking across a garage full of people. The hypothesis, on the other hand, simply states that Richard understands that there is a man riding a bicycle. 
+
+Based on the premise, it is clear that Taylor's understanding is specific about the cyclist being in a red and white uniform and biking across a garage full of people. However, the hypothesis does not mention any specific details about the cyclist's uniform or the setting in which the cyclist is biking. Therefore, there is not enough information to conclude that Richard's understanding aligns with Taylor's specific details.
+
+Therefore, the relation between the premise and the hypothesis is <answer>(B) non-entailment</answer>.
+
+Pred: B  Label: B  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:12

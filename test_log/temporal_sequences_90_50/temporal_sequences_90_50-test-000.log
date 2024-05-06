@@ -1,0 +1,43 @@
+task_name: bigbench
+eval_prompt: Given an individual's complete day schedule and available timing of a specific location, you are to calculate the definitive time frame within which the individual might have visited the said location. Keep in mind that an individual cannot be in two different places at the same time. Hence, any time already designated for other activities in the itinerary will be considered unavailable for the visit to the location in question. Conversely, the time frame during which the location is closed should also be considered unavailable. Do not directly opt for the time slot that seems to offer the maximum duration as the answer, since it may be incorrect considering the other constraints. Implement a detailed review of all the provided options and choose the most plausible one which perfectly aligns all the given conditions. Make sure to contemplate every time frame during the day as this analysis necessitates a comprehensive understanding of 24 hours timeline. Provide your answer in the following format: <answer>(Option letter) Time frame</answer> which correctly signifies your understanding of the individual's schedule, location's operational times, and the skill of logical reasoning in managing time and space.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Given an individual's complete day schedule and available timing of a specific location, you are to calculate the definitive time frame within which the individual might have visited the said location. Keep in mind that an individual cannot be in two different places at the same time. Hence, any time already designated for other activities in the itinerary will be considered unavailable for the visit to the location in question. Conversely, the time frame during which the location is closed should also be considered unavailable. Do not directly opt for the time slot that seems to offer the maximum duration as the answer, since it may be incorrect considering the other constraints. Implement a detailed review of all the provided options and choose the most plausible one which perfectly aligns all the given conditions. Make sure to contemplate every time frame during the day as this analysis necessitates a comprehensive understanding of 24 hours timeline. Provide your answer in the following format: <answer>(Option letter) Time frame</answer> which correctly signifies your understanding of the individual's schedule, location's operational times, and the skill of logical reasoning in managing time and space.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Given an individual's complete day schedule and available timing of a specific location, you are to calculate the definitive time frame within which the individual might have visited the said location. Keep in mind that an individual cannot be in two different places at the same time. Hence, any time already designated for other activities in the itinerary will be considered unavailable for the visit to the location in question. Conversely, the time frame during which the location is closed should also be considered unavailable. Do not directly opt for the time slot that seems to offer the maximum duration as the answer, since it may be incorrect considering the other constraints. Implement a detailed review of all the provided options and choose the most plausible one which perfectly aligns all the given conditions. Make sure to contemplate every time frame during the day as this analysis necessitates a comprehensive understanding of 24 hours timeline. Provide your answer in the following format: <answer>(Option letter) Time frame</answer> which correctly signifies your understanding of the individual's schedule, location's operational times, and the skill of logical reasoning in managing time and space.
+Today, Susan went to the gas station. Between what times could they have gone?
+We know that: 
+Susan woke up at 7am.
+Leslie saw Susan playing tennis at the tennis court from 7am to 8am.
+Steven saw Susan driving to the water park from 1pm to 2pm.
+Thomas saw Susan buying lunch at the deli from 2pm to 7pm.
+The gas station was closed after 7pm.
+Between what times could Susan have gone to the gas station?
+Options:
+(A) 8am to 1pm
+(B) 2pm to 7pm
+(C) 1pm to 2pm
+(D) 7am to 8am
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+The possible time frame during which Susan could have gone to the gas station is:
+(B) 2pm to 7pm
+
+<answer>(B) 2pm to 7pm</answer>
+
+Pred: B  Label: A  Correct: False
+Test Metric: 0.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 0.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:11

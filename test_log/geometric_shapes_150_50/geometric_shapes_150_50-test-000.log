@@ -1,0 +1,40 @@
+task_name: bigbench
+eval_prompt: Please interpret the provided SVG (Scalable Vector Graphics) path data, taking into account all the commands present within the path, such as 'MoveTo' (M) which sets a new starting point without creating a line, 'LineTo' (L) that draws a straight line from the current point to the specified coordinates, and 'ArcTo' (A) that draws an arc or a curve. Count the number of sides by tallying the number of 'LineTo' commands and consider arcs or curves formed by 'ArcTo' in determining the nature of the shape. Always ensure that the shape could be closed without a line explicitly connecting the beginning and the end, giving rise to shapes like circles or sectors. Then, compare your findings with the provided shape options. Each option corresponds to a geometric shape with a specific number of sides, but bear in mind that sides could be curved and not necessarily straight. Once you have matched the number and type of sides to one of the options, respond with that option using the format <answer>(Option) shape</answer>. If you encounter any difficulties or inconsistencies during this task which prevent you from conclusively identifying a single shape, please report the result as inconclusive.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Please interpret the provided SVG (Scalable Vector Graphics) path data, taking into account all the commands present within the path, such as 'MoveTo' (M) which sets a new starting point without creating a line, 'LineTo' (L) that draws a straight line from the current point to the specified coordinates, and 'ArcTo' (A) that draws an arc or a curve. Count the number of sides by tallying the number of 'LineTo' commands and consider arcs or curves formed by 'ArcTo' in determining the nature of the shape. Always ensure that the shape could be closed without a line explicitly connecting the beginning and the end, giving rise to shapes like circles or sectors. Then, compare your findings with the provided shape options. Each option corresponds to a geometric shape with a specific number of sides, but bear in mind that sides could be curved and not necessarily straight. Once you have matched the number and type of sides to one of the options, respond with that option using the format <answer>(Option) shape</answer>. If you encounter any difficulties or inconsistencies during this task which prevent you from conclusively identifying a single shape, please report the result as inconclusive.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Please interpret the provided SVG (Scalable Vector Graphics) path data, taking into account all the commands present within the path, such as 'MoveTo' (M) which sets a new starting point without creating a line, 'LineTo' (L) that draws a straight line from the current point to the specified coordinates, and 'ArcTo' (A) that draws an arc or a curve. Count the number of sides by tallying the number of 'LineTo' commands and consider arcs or curves formed by 'ArcTo' in determining the nature of the shape. Always ensure that the shape could be closed without a line explicitly connecting the beginning and the end, giving rise to shapes like circles or sectors. Then, compare your findings with the provided shape options. Each option corresponds to a geometric shape with a specific number of sides, but bear in mind that sides could be curved and not necessarily straight. Once you have matched the number and type of sides to one of the options, respond with that option using the format <answer>(Option) shape</answer>. If you encounter any difficulties or inconsistencies during this task which prevent you from conclusively identifying a single shape, please report the result as inconclusive.
+This SVG path element <path d="M 59.18,98.64 L 65.20,80.96 L 57.00,68.63 L 55.43,56.00 M 55.43,56.00 L 67.76,43.69 M 67.76,43.69 L 80.38,62.66 L 92.36,80.67 L 59.18,98.64"/> draws a 
+Options:
+(A) circle
+(B) heptagon
+(C) hexagon
+(D) kite
+(E) line
+(F) octagon
+(G) pentagon
+(H) rectangle
+(I) sector
+(J) triangle
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+This SVG path data represents a shape with 8 sides, formed by the following LineTo commands: L 65.20,80.96, L 57.00,68.63, L 55.43,56.00, L 67.76,43.69, L 80.38,62.66, L 92.36,80.67, L 59.18,98.64. The shape is an (F) octagon.
+<answer>(F) octagon</answer>
+
+Pred: F  Label: B  Correct: False
+Test Metric: 0.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 0.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:12

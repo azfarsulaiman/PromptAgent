@@ -128,7 +128,7 @@ for i, dataset in enumerate(datasets):
             f"python main.py --task_name bigbench --search_algo mcts --batch_size 5 --depth_limit 5 "
             f"--train_size {train_size} --eval_size {eval_size} --test_size 0 --seed 42 --train_shuffle True "
             f"--iteration_num 10 --expand_width 3 --post_instruction False --pred_model gpt-3.5-turbo "
-            f"--optim_model gpt-4 --log_dir {log_dir} --log_file {train_log_file} --data_dir {data_path} --init_prompt '{description}' --api_key r8_0Y78CHZuGz7puJCmMHxKJusLhAb0P8v3QXkFd", # Make sure the main.py writes the trainiing log from main.py. Check for each dataset whether it writes to the intended log. If there are any empty log files. 
+            f"--optim_model gpt-4 --log_dir {log_dir} --log_file {train_log_file} --data_dir {data_path} --init_prompt '{description}' --api_key OPENAI_API_KEY", # Make sure the main.py writes the trainiing log from main.py. Check for each dataset whether it writes to the intended log. If there are any empty log files. 
             shell=True)
 #
         # Extract optimized prompt from the specific data.json file for each training set

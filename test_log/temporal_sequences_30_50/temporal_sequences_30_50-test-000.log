@@ -1,0 +1,51 @@
+task_name: bigbench
+eval_prompt: Carefully interpret the provided schedule, focusing on specific timeframes where there is complete availability with no other commitments or activities occurring. Do not consider any time slots that coincide with already listed engagements, meaning only choose options that completely fall into periods where the individual has nothing else scheduled. It is not the duration of the time slot that influences your selection, rather, the complete freedom from any other activities during that interval. Examine each option minutely, making certain it does not overlap with other commitments. Further, note that the operational hours of the event location are crucial and cannot be overlooked. Remember to cross-verify the times mentioned in the options with the schedule before choosing. Justify your final choice by providing clear reasoning for the same between <answer> and </answer>. Show your critical thinking ability by eliminating options that clash with the individuals' other commitments or the operating hours of the venue. Keep in mind that the individual is considered occupied during the times they are reported seen elsewhere.
+
+testset size: 1, shuffle: False, post_instruction: False
+Eval model: gpt-3.5-turbo, temperature: 0
+prompt example: 
+Carefully interpret the provided schedule, focusing on specific timeframes where there is complete availability with no other commitments or activities occurring. Do not consider any time slots that coincide with already listed engagements, meaning only choose options that completely fall into periods where the individual has nothing else scheduled. It is not the duration of the time slot that influences your selection, rather, the complete freedom from any other activities during that interval. Examine each option minutely, making certain it does not overlap with other commitments. Further, note that the operational hours of the event location are crucial and cannot be overlooked. Remember to cross-verify the times mentioned in the options with the schedule before choosing. Justify your final choice by providing clear reasoning for the same between <answer> and </answer>. Show your critical thinking ability by eliminating options that clash with the individuals' other commitments or the operating hours of the venue. Keep in mind that the individual is considered occupied during the times they are reported seen elsewhere.
+example_question
+At the end show the answer option bracketed between <answer> and </answer>.
+
+-------- example 0 --------
+Input:
+Carefully interpret the provided schedule, focusing on specific timeframes where there is complete availability with no other commitments or activities occurring. Do not consider any time slots that coincide with already listed engagements, meaning only choose options that completely fall into periods where the individual has nothing else scheduled. It is not the duration of the time slot that influences your selection, rather, the complete freedom from any other activities during that interval. Examine each option minutely, making certain it does not overlap with other commitments. Further, note that the operational hours of the event location are crucial and cannot be overlooked. Remember to cross-verify the times mentioned in the options with the schedule before choosing. Justify your final choice by providing clear reasoning for the same between <answer> and </answer>. Show your critical thinking ability by eliminating options that clash with the individuals' other commitments or the operating hours of the venue. Keep in mind that the individual is considered occupied during the times they are reported seen elsewhere.
+Today, Susan went to the gas station. Between what times could they have gone?
+We know that: 
+Susan woke up at 7am.
+Leslie saw Susan playing tennis at the tennis court from 7am to 8am.
+Steven saw Susan driving to the water park from 1pm to 2pm.
+Thomas saw Susan buying lunch at the deli from 2pm to 7pm.
+The gas station was closed after 7pm.
+Between what times could Susan have gone to the gas station?
+Options:
+(A) 8am to 1pm
+(B) 2pm to 7pm
+(C) 1pm to 2pm
+(D) 7am to 8am
+
+At the end show the answer option bracketed between <answer> and </answer>.
+
+Response:
+To determine when Susan could have gone to the gas station, we need to identify timeframes where she has no other commitments or activities scheduled. 
+
+From the given information:
+- Susan was playing tennis from 7am to 8am.
+- Susan was driving to the water park from 1pm to 2pm.
+- Susan was buying lunch at the deli from 2pm to 7pm.
+
+Based on the schedule, the only time slot where Susan has complete availability with no other commitments is between 8am to 1pm. During this time, she is not seen elsewhere, and the gas station is open for her to visit.
+
+Therefore, Susan could have gone to the gas station between 8am to 1pm. 
+
+<answer>(A) 8am to 1pm</answer>
+
+Pred: A  Label: A  Correct: True
+Test Metric: 1.0000
+-------------------------------
+--------------------------------------------
+Test Metric: 1.0000
+--------------------------------------------
+
+Done! Excution time: 0:00:12
